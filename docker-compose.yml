@@ -1,0 +1,98 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: loja_postgres
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      POSTGRES_USER: loja_user
+      POSTGRES_PASSWORD: loja_pass
+      POSTGRES_DB: loja_db
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U loja_user -d loja_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_URL: postgresql://loja_user:loja_pass@postgres:5432/loja_db
+        OS_APPROVAL_SECRET: str8Q6jsSsi1b6Idn800l9Pp7cSIS3PDqI51aCm2Tms=
+    container_name: loja_app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env.production
+    environment:
+      POSTGRES_USER: loja_user
+      POSTGRES_PASSWORD: loja_pass
+      POSTGRES_DB: loja_db
+      DATABASE_URL: postgresql://loja_user:loja_pass@postgres:5432/loja_db
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      NODE_ENV: production
+      AUTH_SECRET: tDLbenyP7iIN/sQSyXBTUug/x5AkYMZ925ues/9Ho+w=
+      AUTH_TRUST_HOST: true
+      NEXTAUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      OS_APPROVAL_SECRET: str8Q6jsSsi1b6Idn800l9Pp7cSIS3PDqI51aCm2Tms=
+      INTERNAL_API_URL: http://localhost:3000
+    volumes:
+      - uploads_data:/app/public/uploads
+      - wwebjs_auth:/app/.wwebjs_auth
+      - wwebjs_cache:/app/.wwebjs_cache
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+volumes:
+  postgres_data:
+    name: loja_postgres_data
+  uploads_data:
+    name: loja_uploads_data
+  wwebjs_auth:
+    name: loja_wwebjs_auth
+  wwebjs_cache:
+    name: loja_wwebjs_cache

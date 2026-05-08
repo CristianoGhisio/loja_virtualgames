@@ -1,0 +1,3428 @@
+
+{
+  "categories": [
+    {
+      "name": "Consoles de Videogame",
+      "brands": [
+        {
+          "name": "Sony",
+          "models": [
+            "PlayStation 5 Slim Edição Digital",
+            "PlayStation 5 Slim com Leitor",
+            "PlayStation 5 Edição Digital",
+            "PlayStation 5 Standard",
+            "PlayStation Portal Remote Player",
+            "PlayStation 4 Pro 1TB",
+            "PlayStation 4 Slim 1TB",
+            "PlayStation 4 Slim 500GB",
+            "PlayStation 4 Fat 500GB",
+            "PlayStation VR2",
+            "PlayStation VR (PS4)",
+            "PlayStation 3 Super Slim",
+            "PlayStation 3 Slim",
+            "PlayStation 3 Fat",
+            "PlayStation Vita Slim",
+            "PlayStation Vita Fat (OLED)",
+            "PSP 3000",
+            "PSP Go",
+            "PlayStation Classic Mini",
+            "PlayStation 2 Slim"
+          ]
+        },
+        {
+          "name": "Microsoft",
+          "models": [
+            "Xbox Series X 1TB",
+            "Xbox Series S 1TB (Black)",
+            "Xbox Series S 512GB (White)",
+            "Xbox One X 1TB",
+            "Xbox One S All-Digital Edition",
+            "Xbox One S 1TB",
+            "Xbox One S 500GB",
+            "Xbox One Elite Console",
+            "Xbox One Fat 1TB",
+            "Xbox One Fat 500GB",
+            "Xbox 360 E (Super Slim)",
+            "Xbox 360 S (Slim)",
+            "Xbox 360 Arcade",
+            "Xbox 360 Elite",
+            "Xbox 360 Pro",
+            "Xbox Series X Wrapper (Limited)",
+            "Xbox Wireless Headset",
+            "Kinect Xbox One",
+            "Kinect Xbox 360",
+            "Xbox Original"
+          ]
+        },
+        {
+          "name": "Nintendo",
+          "models": [
+            "Nintendo Switch OLED Model - White",
+            "Nintendo Switch OLED Model - Neon",
+            "Nintendo Switch OLED - Mario Red",
+            "Nintendo Switch V2 (Bateria Estendida)",
+            "Nintendo Switch V1",
+            "Nintendo Switch Lite - Blue",
+            "Nintendo Switch Lite - Coral",
+            "Nintendo Switch Lite - Yellow",
+            "Nintendo Switch Lite - Grey",
+            "Nintendo Switch Lite - Turquoise",
+            "New Nintendo 3DS XL",
+            "New Nintendo 3DS",
+            "Nintendo 3DS XL",
+            "Nintendo 3DS",
+            "Nintendo 2DS XL",
+            "Nintendo 2DS",
+            "Wii U Deluxe 32GB",
+            "Wii U Basic 8GB",
+            "Nintendo Wii (Black)",
+            "Nintendo Wii (White)"
+          ]
+        },
+        {
+          "name": "Valve",
+          "models": [
+            "Steam Deck OLED 1TB",
+            "Steam Deck OLED 512GB",
+            "Steam Deck LCD 512GB",
+            "Steam Deck LCD 256GB",
+            "Steam Deck LCD 64GB",
+            "Valve Index VR Kit",
+            "Valve Index Headset",
+            "Valve Index Controllers",
+            "Steam Controller",
+            "Steam Link"
+          ]
+        },
+        {
+          "name": "ASUS",
+          "models": [
+            "ROG Ally X (2024)",
+            "ROG Ally Z1 Extreme",
+            "ROG Ally Z1 Standard"
+          ]
+        },
+        {
+          "name": "Lenovo",
+          "models": [
+            "Legion Go 8.8\" 1TB",
+            "Legion Go 8.8\" 512GB"
+          ]
+        },
+        {
+          "name": "Logitech",
+          "models": [
+            "G Cloud Gaming Handheld"
+          ]
+        },
+        {
+          "name": "Retroid",
+          "models": [
+            "Retroid Pocket 4 Pro",
+            "Retroid Pocket 4",
+            "Retroid Pocket 3 Plus",
+            "Retroid Pocket 2S"
+          ]
+        },
+        {
+          "name": "Anbernic",
+          "models": [
+            "RG556 Android",
+            "RG405M Metal",
+            "RG35XX Plus",
+            "RG35XX H"
+          ]
+        },
+        {
+          "name": "Miyoo",
+          "models": [
+            "Miyoo Mini Plus",
+            "Miyoo Mini V4"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Smartphones",
+      "brands": [
+        {
+          "name": "Apple",
+          "models": [
+            "iPhone 15 Pro Max 1TB",
+            "iPhone 15 Pro Max 512GB",
+            "iPhone 15 Pro Max 256GB",
+            "iPhone 15 Pro 1TB",
+            "iPhone 15 Pro 512GB",
+            "iPhone 15 Pro 256GB",
+            "iPhone 15 Pro 128GB",
+            "iPhone 15 Plus 512GB",
+            "iPhone 15 Plus 256GB",
+            "iPhone 15 Plus 128GB",
+            "iPhone 15 512GB",
+            "iPhone 15 256GB",
+            "iPhone 15 128GB",
+            "iPhone 14 Pro Max",
+            "iPhone 14 Pro",
+            "iPhone 14 Plus",
+            "iPhone 14",
+            "iPhone 13 Pro Max",
+            "iPhone 13 Pro",
+            "iPhone 13",
+            "iPhone 13 Mini",
+            "iPhone 12 Pro Max",
+            "iPhone 12",
+            "iPhone 11",
+            "iPhone XR",
+            "iPhone SE (3rd Gen)"
+          ]
+        },
+        {
+          "name": "Samsung",
+          "models": [
+            "Galaxy S24 Ultra 1TB",
+            "Galaxy S24 Ultra 512GB",
+            "Galaxy S24 Ultra 256GB",
+            "Galaxy S24 Plus",
+            "Galaxy S24",
+            "Galaxy Z Fold 5",
+            "Galaxy Z Flip 5",
+            "Galaxy S23 Ultra",
+            "Galaxy S23 Plus",
+            "Galaxy S23",
+            "Galaxy S23 FE",
+            "Galaxy A55 5G",
+            "Galaxy A35 5G",
+            "Galaxy M55 5G",
+            "Galaxy S22 Ultra",
+            "Galaxy S22",
+            "Galaxy S21 FE",
+            "Galaxy S21 Ultra",
+            "Galaxy Note 20 Ultra",
+            "Galaxy A54 5G"
+          ]
+        },
+        {
+          "name": "Xiaomi",
+          "models": [
+            "Xiaomi 14 Ultra",
+            "Xiaomi 14",
+            "Xiaomi 13T Pro",
+            "Xiaomi 13T",
+            "Redmi Note 13 Pro+ 5G",
+            "Redmi Note 13 Pro 5G",
+            "Redmi Note 13 5G",
+            "Redmi Note 13 4G",
+            "POCO X6 Pro 5G",
+            "POCO X6 5G",
+            "POCO F5 Pro",
+            "POCO F5",
+            "POCO M6 Pro",
+            "Xiaomi 13 Ultra",
+            "Xiaomi 12T Pro",
+            "Redmi Note 12 Pro 5G",
+            "Redmi 13C",
+            "Redmi 12",
+            "Black Shark 5 Pro",
+            "Black Shark 4"
+          ]
+        },
+        {
+          "name": "Motorola",
+          "models": [
+            "Motorola Edge 50 Ultra",
+            "Motorola Edge 50 Pro",
+            "Motorola Edge 50 Fusion",
+            "Motorola Razr 40 Ultra",
+            "Motorola Razr 40",
+            "Moto G84 5G",
+            "Moto G54 5G",
+            "Moto G34 5G",
+            "Motorola Edge 40 Neo",
+            "Motorola Edge 40",
+            "Moto G24 Power",
+            "Moto G24",
+            "Moto G04",
+            "Motorola Edge 30 Ultra",
+            "Motorola Edge 30 Fusion",
+            "Moto G73 5G",
+            "Moto G53 5G",
+            "Moto E13",
+            "Motorola One Fusion+",
+            "Moto G200 5G"
+          ]
+        },
+        {
+          "name": "Google",
+          "models": [
+            "Pixel 8 Pro",
+            "Pixel 8",
+            "Pixel 7a",
+            "Pixel 7 Pro",
+            "Pixel 7",
+            "Pixel 6a",
+            "Pixel 6 Pro",
+            "Pixel 6",
+            "Pixel 5",
+            "Pixel 4a 5G"
+          ]
+        },
+        {
+          "name": "ASUS",
+          "models": [
+            "ROG Phone 8 Pro Edition",
+            "ROG Phone 8 Pro",
+            "ROG Phone 8",
+            "Zenfone 11 Ultra",
+            "Zenfone 10",
+            "ROG Phone 7 Ultimate",
+            "ROG Phone 7",
+            "Zenfone 9",
+            "ROG Phone 6 Pro",
+            "ROG Phone 6"
+          ]
+        },
+        {
+          "name": "Realme",
+          "models": [
+            "Realme 12 Pro+ 5G",
+            "Realme 12 Pro 5G",
+            "Realme 11 Pro+ 5G",
+            "Realme 11x 5G",
+            "Realme C67",
+            "Realme C55",
+            "Realme C53",
+            "Realme GT 3",
+            "Realme GT 2 Pro",
+            "Realme 10 Pro+"
+          ]
+        },
+        {
+          "name": "Infinix",
+          "models": [
+            "Infinix Note 40 Pro",
+            "Infinix Note 30 5G",
+            "Infinix Hot 40 Pro",
+            "Infinix Hot 30",
+            "Infinix Smart 8",
+            "Infinix Zero 30 5G",
+            "Infinix GT 10 Pro",
+            "Infinix Note 12 Pro",
+            "Infinix Hot 20i",
+            "Infinix Smart 7"
+          ]
+        },
+        {
+          "name": "OnePlus",
+          "models": [
+            "OnePlus 12",
+            "OnePlus 12R",
+            "OnePlus Open",
+            "OnePlus 11 5G",
+            "OnePlus 10T",
+            "OnePlus 10 Pro",
+            "OnePlus Nord 3",
+            "OnePlus Nord CE 3",
+            "OnePlus 9 Pro",
+            "OnePlus 8T"
+          ]
+        },
+        {
+          "name": "Huawei",
+          "models": [
+            "Huawei Pura 70 Ultra",
+            "Huawei P60 Pro",
+            "Huawei Mate 60 Pro",
+            "Huawei Mate X3",
+            "Huawei Nova 11 Pro",
+            "Huawei Nova 11i",
+            "Huawei P50 Pro",
+            "Huawei P50 Pocket",
+            "Huawei Mate 50 Pro",
+            "Huawei Nova Y91"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Controles & Joysticks",
+      "brands": [
+        {
+          "name": "Sony",
+          "models": [
+            "DualSense Edge Wireless Controller",
+            "DualSense Cosmic Red",
+            "DualSense Starlight Blue",
+            "DualSense Nova Pink",
+            "DualSense Galactic Purple",
+            "DualSense Gray Camouflage",
+            "DualSense Midnight Black",
+            "DualSense White (Padrão)",
+            "DualSense Volcanic Red",
+            "DualSense Sterling Silver",
+            "DualShock 4 Jet Black",
+            "DualShock 4 Magma Red",
+            "DualShock 4 Glacier White",
+            "DualShock 4 Green Camouflage",
+            "DualShock 4 Gold",
+            "DualShock 4 Midnight Blue",
+            "PlayStation Move Motion Controller",
+            "DualShock 3 (PS3)",
+            "DualShock 2 (PS2)",
+            "Access Controller (Acessibilidade)"
+          ]
+        },
+        {
+          "name": "Microsoft",
+          "models": [
+            "Xbox Elite Wireless Controller Series 2 - Core",
+            "Xbox Elite Wireless Controller Series 2 - Black",
+            "Xbox Wireless Controller - Carbon Black",
+            "Xbox Wireless Controller - Robot White",
+            "Xbox Wireless Controller - Shock Blue",
+            "Xbox Wireless Controller - Pulse Red",
+            "Xbox Wireless Controller - Electric Volt",
+            "Xbox Wireless Controller - Deep Pink",
+            "Xbox Wireless Controller - Astral Purple",
+            "Xbox Wireless Controller - Velocity Green",
+            "Xbox Wireless Controller - Mineral Camo",
+            "Xbox Wireless Controller - Daystrike Camo",
+            "Xbox Wireless Controller - 20th Anniversary",
+            "Xbox Wireless Controller - Starfield Edition",
+            "Xbox Wireless Controller - Forza Horizon 5",
+            "Controle Xbox One S (Bluetooth)",
+            "Controle Xbox 360 com Fio",
+            "Controle Xbox 360 Sem Fio",
+            "Xbox Adaptive Controller",
+            "Xbox Media Remote"
+          ]
+        },
+        {
+          "name": "Nintendo",
+          "models": [
+            "Nintendo Switch Pro Controller",
+            "Joy-Con Pair - Neon Red/Blue",
+            "Joy-Con Pair - Neon Purple/Orange",
+            "Joy-Con Pair - Blue/Yellow",
+            "Joy-Con Pair - Pastel Pink/Yellow",
+            "Joy-Con Pair - Pastel Purple/Green",
+            "Joy-Con Pair - Grey",
+            "Joy-Con Pair - Zelda Skyward Sword",
+            "Joy-Con (L) - Blue",
+            "Joy-Con (R) - Red",
+            "Nintendo Switch Pro Controller - Zelda TotK",
+            "Nintendo Switch Pro Controller - Splatoon 3",
+            "Nintendo Switch Pro Controller - Monster Hunter",
+            "Nintendo GameCube Controller (Smash Bros)",
+            "Poké Ball Plus",
+            "Nintendo 64 Controller (Switch Online)",
+            "SEGA Genesis Control Pad (Switch Online)",
+            "SNES Controller (Switch Online)",
+            "NES Controllers (Switch Online)",
+            "Wii Remote Plus"
+          ]
+        },
+        {
+          "name": "8BitDo",
+          "models": [
+            "8BitDo Ultimate Bluetooth Controller",
+            "8BitDo Ultimate 2.4g Wireless",
+            "8BitDo Pro 2",
+            "8BitDo SN30 Pro",
+            "8BitDo SN30 Pro+",
+            "8BitDo Lite 2",
+            "8BitDo M30 Bluetooth",
+            "8BitDo Arcade Stick",
+            "8BitDo Zero 2",
+            "8BitDo Micro",
+            "8BitDo Ultimate C 2.4g",
+            "8BitDo Ultimate C Wired",
+            "8BitDo NeoGeo Wireless",
+            "8BitDo Retro Mechanical Keyboard",
+            "8BitDo USB Adapter 2",
+            "8BitDo Media Remote for Xbox",
+            "8BitDo N30 Pro 2",
+            "8BitDo SF30 Pro",
+            "8BitDo GBros Adapter",
+            "8BitDo Twin Cube Speakers"
+          ]
+        },
+        {
+          "name": "GameSir",
+          "models": [
+            "GameSir G7 SE (Hall Effect)",
+            "GameSir G7 Wired",
+            "GameSir T4 Kaleid",
+            "GameSir T4 Pro",
+            "GameSir T4 Cyclone Pro",
+            "GameSir X2 Pro (Mobile)",
+            "GameSir X2 Bluetooth",
+            "GameSir X2 Type-C",
+            "GameSir X3 Type-C (Cooler)",
+            "GameSir G8 Galileo",
+            "GameSir T3s",
+            "GameSir T3",
+            "GameSir G4 Pro",
+            "GameSir G3s",
+            "GameSir VX2 AimSwitch",
+            "GameSir VX Adapter",
+            "GameSir F4 Falcon",
+            "GameSir F8 Pro Snowgon",
+            "GameSir T1s",
+            "GameSir Nova Lite"
+          ]
+        },
+        {
+          "name": "Razer",
+          "models": [
+            "Razer Wolverine V2 Chroma",
+            "Razer Wolverine V2",
+            "Razer Wolverine V2 Pro (PS5)",
+            "Razer Kishi V2 for iPhone",
+            "Razer Kishi V2 for Android",
+            "Razer Kishi V2 Pro",
+            "Razer Kishi V1",
+            "Razer Raiju Ultimate",
+            "Razer Raiju Tournament",
+            "Razer Raiju Mobile",
+            "Razer Junglecat",
+            "Razer Panthera Evo (Arcade)",
+            "Razer Atrox (Arcade)",
+            "Razer Kitsune (Leverless)",
+            "Razer Tartarus V2",
+            "Razer Tartarus Pro",
+            "Razer Orbweaver Chroma",
+            "Razer Stream Controller",
+            "Razer Stream Controller X",
+            "Razer Edge Handheld"
+          ]
+        },
+        {
+          "name": "PowerA",
+          "models": [
+            "PowerA Enhanced Wired (Xbox)",
+            "PowerA Fusion Pro 3",
+            "PowerA Fusion Pro 2",
+            "PowerA Spectra Infinity",
+            "PowerA Nano Enhanced",
+            "PowerA MOGA XP5-X Plus",
+            "PowerA MOGA XP7-X Plus",
+            "PowerA Wireless Controller (Switch) - Mario",
+            "PowerA Wireless Controller (Switch) - Zelda",
+            "PowerA Wireless Controller (Switch) - Pokemon",
+            "PowerA Enhanced Wired (Switch) - Animal Crossing",
+            "PowerA Enhanced Wired (Switch) - Kirby",
+            "PowerA Wired Controller (Xbox Series X)",
+            "PowerA Advantage Wired Controller",
+            "PowerA Fusion FightPad",
+            "PowerA GameCube Style Wired (Switch)",
+            "PowerA Protection Case",
+            "PowerA Joy-Con Comfort Grip",
+            "PowerA Charging Stand",
+            "PowerA Lumectra Controller"
+          ]
+        },
+        {
+          "name": "Hori",
+          "models": [
+            "Hori Split Pad Pro (Black)",
+            "Hori Split Pad Pro (Pokemon)",
+            "Hori Split Pad Pro (Pac-Man)",
+            "Hori Split Pad Compact",
+            "Hori Fighting Commander OCTA",
+            "Hori Fighting Stick Alpha",
+            "Hori Racing Wheel Apex",
+            "Hori Mario Kart Racing Wheel Pro",
+            "Hori Nintendo Switch Horipad",
+            "Hori Battle Pad (GameCube Style)",
+            "Hori Onyx Plus",
+            "Hori Mini Wired Gamepad",
+            "Hori Tac Pro (Keypad)",
+            "Hori Flight Stick",
+            "Hori Real Arcade Pro N",
+            "Hori Real Arcade Pro V",
+            "Hori Grip Controller",
+            "Hori Drum Controller (Taiko)",
+            "Hori Lan Adapter",
+            "Hori Screen Protector"
+          ]
+        },
+        {
+          "name": "PDP",
+          "models": [
+            "PDP Victrix Pro BFG",
+            "PDP Victrix Gambit",
+            "PDP Afterglow Wave Wired",
+            "PDP Afterglow Wireless",
+            "PDP Rematch Wired (Switch)",
+            "PDP Rematch Wired (Xbox)",
+            "PDP Wired Controller (Xbox)",
+            "PDP Faceoff Deluxe+ Audio",
+            "PDP Little Wireless",
+            "PDP Rock Candy Wired",
+            "PDP Realmz Wireless",
+            "PDP Realmz Wired",
+            "PDP Gaming Remote Control",
+            "PDP Media Remote",
+            "PDP Talon Media Remote",
+            "PDP Charge System",
+            "PDP Gaming LvL40 Headset",
+            "PDP Metavolt",
+            "PDP Commuter Case",
+            "PDP Pull-N-Go Case"
+          ]
+        },
+        {
+          "name": "Thrustmaster",
+          "models": [
+            "Thrustmaster eSwap X Pro",
+            "Thrustmaster eSwap S Pro",
+            "Thrustmaster eSwap XR Pro (Forza)",
+            "Thrustmaster T248 Racing Wheel",
+            "Thrustmaster T300 RS GT",
+            "Thrustmaster T128",
+            "Thrustmaster T80 Ferrari 488",
+            "Thrustmaster T-GT II",
+            "Thrustmaster TS-XW Servo",
+            "Thrustmaster TH8A Shifter",
+            "Thrustmaster T-LCM Pedals",
+            "Thrustmaster TCA Sidestick Airbus",
+            "Thrustmaster TCA Quadrant Airbus",
+            "Thrustmaster T.Flight Hotas 4",
+            "Thrustmaster T.Flight Hotas One",
+            "Thrustmaster T.16000M FCS",
+            "Thrustmaster MFD Cougar",
+            "Thrustmaster TPR Pendular Rudder",
+            "Thrustmaster Ferrari F1 Wheel Add-on",
+            "Thrustmaster GP XID Pro"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Headsets & Áudio Gamer",
+      "brands": [
+        {
+          "name": "HyperX",
+          "models": [
+            "HyperX Cloud III Wireless",
+            "HyperX Cloud III Wired",
+            "HyperX Cloud Alpha Wireless",
+            "HyperX Cloud Alpha S",
+            "HyperX Cloud Alpha",
+            "HyperX Cloud II Wireless",
+            "HyperX Cloud II",
+            "HyperX Cloud Stinger 2 Wireless",
+            "HyperX Cloud Stinger 2",
+            "HyperX Cloud Stinger Core",
+            "HyperX Cloud Flight",
+            "HyperX Cloud Mix",
+            "HyperX Cloud Orbit S",
+            "HyperX Cloud Revolver 7.1",
+            "HyperX Cloud Earbuds II",
+            "HyperX Cirro Buds Pro",
+            "HyperX QuadCast S (Mic)",
+            "HyperX QuadCast (Mic)",
+            "HyperX SoloCast (Mic)",
+            "HyperX DuoCast (Mic)"
+          ]
+        },
+        {
+          "name": "Logitech G",
+          "models": [
+            "Logitech G Pro X 2 Lightspeed",
+            "Logitech G Pro X Wireless",
+            "Logitech G Pro X Wired",
+            "Logitech G733 Lightspeed",
+            "Logitech G735 (Aurora)",
+            "Logitech G535 Lightspeed",
+            "Logitech G435 Lightspeed",
+            "Logitech G432 7.1",
+            "Logitech G335 Wired",
+            "Logitech G332",
+            "Logitech G935 Wireless",
+            "Logitech G635 Wired",
+            "Logitech G FITS (Earbuds)",
+            "Logitech Astro A50 X",
+            "Logitech Astro A50 Gen 4",
+            "Logitech Astro A40 TR",
+            "Logitech Astro A30 Wireless",
+            "Logitech Astro A20 Gen 2",
+            "Logitech Astro A10 Gen 2",
+            "Logitech Blue Yeti (Mic)"
+          ]
+        },
+        {
+          "name": "Razer",
+          "models": [
+            "Razer BlackShark V2 Pro (2023)",
+            "Razer BlackShark V2 Pro",
+            "Razer BlackShark V2 USB",
+            "Razer BlackShark V2 X",
+            "Razer Barracuda Pro",
+            "Razer Barracuda",
+            "Razer Barracuda X (2022)",
+            "Razer Kraken V3 Pro",
+            "Razer Kraken V3 HyperSense",
+            "Razer Kraken V3",
+            "Razer Kraken V3 X",
+            "Razer Kraken Kitty V2 Pro",
+            "Razer Kraken Kitty V2",
+            "Razer Kraken Kitty Edition",
+            "Razer Kraken X Lite",
+            "Razer Hammerhead Pro HyperSpeed",
+            "Razer Hammerhead HyperSpeed",
+            "Razer Hammerhead True Wireless",
+            "Razer Seiren V3 Chroma (Mic)",
+            "Razer Seiren Mini (Mic)"
+          ]
+        },
+        {
+          "name": "Corsair",
+          "models": [
+            "Corsair Virtuoso RGB Wireless XT",
+            "Corsair Virtuoso RGB Wireless SE",
+            "Corsair HS80 Max Wireless",
+            "Corsair HS80 RGB Wireless",
+            "Corsair HS80 RGB USB",
+            "Corsair HS65 Wireless",
+            "Corsair HS65 Surround",
+            "Corsair HS55 Wireless",
+            "Corsair HS55 Stereo",
+            "Corsair HS35 Stereo",
+            "Corsair Void RGB Elite Wireless",
+            "Corsair Void RGB Elite USB",
+            "Corsair Void Elite Surround",
+            "Corsair Virtuoso Pro (Open Back)",
+            "Corsair ST100 (Stand)",
+            "Corsair Wave:3 (Elgato Mic)",
+            "Corsair Wave:1 (Elgato Mic)",
+            "Corsair Wave DX (Elgato Mic)",
+            "Corsair HS70 Bluetooth",
+            "Corsair HS60 Haptic"
+          ]
+        },
+        {
+          "name": "SteelSeries",
+          "models": [
+            "SteelSeries Arctis Nova Pro Wireless",
+            "SteelSeries Arctis Nova Pro",
+            "SteelSeries Arctis Nova 7 Wireless",
+            "SteelSeries Arctis Nova 7P",
+            "SteelSeries Arctis Nova 7X",
+            "SteelSeries Arctis Nova 4",
+            "SteelSeries Arctis Nova 3",
+            "SteelSeries Arctis Nova 1",
+            "SteelSeries Arctis 9 Wireless",
+            "SteelSeries Arctis 7+ Wireless",
+            "SteelSeries Arctis 7P+",
+            "SteelSeries Arctis 5",
+            "SteelSeries Arctis 3",
+            "SteelSeries Arctis 1 Wireless",
+            "SteelSeries Arctis 1 Wired",
+            "SteelSeries Tusq (In-Ear)",
+            "SteelSeries Arena 9 (Speakers)",
+            "SteelSeries Arena 7 (Speakers)",
+            "SteelSeries Arena 3 (Speakers)",
+            "SteelSeries Alias Pro (Mic)"
+          ]
+        },
+        {
+          "name": "JBL",
+          "models": [
+            "JBL Quantum 910 Wireless",
+            "JBL Quantum 810 Wireless",
+            "JBL Quantum 610 Wireless",
+            "JBL Quantum 400",
+            "JBL Quantum 350 Wireless",
+            "JBL Quantum 300",
+            "JBL Quantum 200",
+            "JBL Quantum 100",
+            "JBL Quantum TWS",
+            "JBL Quantum TWS Air",
+            "JBL Quantum One",
+            "JBL Quantum 50 (In-Ear)",
+            "JBL Quantum Stream (Mic)",
+            "JBL Quantum Duo (Speakers)",
+            "JBL Tune 770NC",
+            "JBL Tune 520BT",
+            "JBL Live 660NC",
+            "JBL Live Pro 2",
+            "JBL Tour One M2",
+            "JBL Flip 6 (Speaker)"
+          ]
+        },
+        {
+          "name": "Sony",
+          "models": [
+            "Sony Inzone H9 Wireless",
+            "Sony Inzone H7 Wireless",
+            "Sony Inzone H3 Wired",
+            "Sony Inzone Buds",
+            "Sony Pulse Elite Wireless",
+            "Sony Pulse Explore Earbuds",
+            "Sony Pulse 3D Wireless (PS5)",
+            "Sony Pulse 3D Midnight Black",
+            "Sony Gold Wireless (PS4)",
+            "Sony Platinum Wireless (PS4)",
+            "Sony WH-1000XM5",
+            "Sony WH-1000XM4",
+            "Sony WH-CH720N",
+            "Sony WH-CH520",
+            "Sony WF-1000XM5",
+            "Sony WF-C700N",
+            "Sony WF-C500",
+            "Sony LinkBuds S",
+            "Sony MDR-7506 (Studio)",
+            "Sony MDR-ZX110"
+          ]
+        },
+        {
+          "name": "Microsoft",
+          "models": [
+            "Xbox Wireless Headset (2024)",
+            "Xbox Wireless Headset (Original)",
+            "Xbox Stereo Headset (Wired)",
+            "Xbox Chat Headset",
+            "Surface Headphones 2",
+            "Surface Earbuds",
+            "Xbox One Stereo Headset",
+            "Xbox One Chat Headset",
+            "Microsoft Modern Wireless Headset",
+            "Microsoft Modern USB Headset"
+          ]
+        },
+        {
+          "name": "Turtle Beach",
+          "models": [
+            "Turtle Beach Stealth Pro",
+            "Turtle Beach Stealth 700 Gen 2 MAX",
+            "Turtle Beach Stealth 600 Gen 2 MAX",
+            "Turtle Beach Stealth 600 Gen 2 USB",
+            "Turtle Beach Recon 500",
+            "Turtle Beach Recon 200 Gen 2",
+            "Turtle Beach Recon 70",
+            "Turtle Beach Recon 50",
+            "Turtle Beach Battle Buds",
+            "Turtle Beach Elite Atlas Aero",
+            "Turtle Beach Atlas Air",
+            "Turtle Beach VelocityOne Flight Deck",
+            "Turtle Beach Atom Controller",
+            "Turtle Beach React-R",
+            "Turtle Beach Recon Cloud",
+            "Turtle Beach Recon Controller",
+            "Turtle Beach Fuel Station",
+            "Turtle Beach Stream Mic",
+            "Turtle Beach XO Three",
+            "Turtle Beach XO One"
+          ]
+        },
+        {
+          "name": "Audio-Technica",
+          "models": [
+            "Audio-Technica ATH-M50xSTS (StreamSet)",
+            "Audio-Technica ATH-M50xBT2",
+            "Audio-Technica ATH-M50x",
+            "Audio-Technica ATH-M40x",
+            "Audio-Technica ATH-M30x",
+            "Audio-Technica ATH-M20x",
+            "Audio-Technica ATH-G1WL",
+            "Audio-Technica ATH-G1",
+            "Audio-Technica ATH-GL3",
+            "Audio-Technica ATH-GDL3",
+            "Audio-Technica ATH-ADG1X",
+            "Audio-Technica ATH-AG1X",
+            "Audio-Technica AT2020USB-X (Mic)",
+            "Audio-Technica AT2020USB+ (Mic)",
+            "Audio-Technica AT2020 (Mic)",
+            "Audio-Technica AT2035 (Mic)",
+            "Audio-Technica AT2040 (Mic)",
+            "Audio-Technica BPHS1",
+            "Audio-Technica ATH-CKS50TW",
+            "Audio-Technica ATH-SQ1TW"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Acessórios para Consoles",
+      "brands": [
+        {
+          "name": "Sony",
+          "models": [
+            "Base de Carregamento DualSense",
+            "Câmera HD PS5",
+            "Controle de Mídia PS5",
+            "Tampas do Console PS5 (Midnight Black)",
+            "Tampas do Console PS5 (Cosmic Red)",
+            "Tampas do Console PS5 (Nova Pink)",
+            "Tampas do Console PS5 (Starlight Blue)",
+            "Tampas do Console PS5 (Galactic Purple)",
+            "Tampas do Console PS5 (Gray Camouflage)",
+            "Suporte Vertical PS5 Slim",
+            "Adaptador PlayStation Camera (PS4 para PS5)",
+            "PlayStation Link USB Adapter",
+            "Back Button Attachment (PS4)",
+            "Suporte Vertical PS4",
+            "Câmera PS4 V2",
+            "Cabo HDMI Oficial Sony",
+            "Adaptador AC PS Vita",
+            "Memory Card PS Vita 64GB",
+            "Memory Card PS Vita 32GB",
+            "Memory Card PS2 8MB"
+          ]
+        },
+        {
+          "name": "Microsoft",
+          "models": [
+            "Cartão de Expansão Seagate 2TB (Xbox)",
+            "Cartão de Expansão Seagate 1TB (Xbox)",
+            "Cartão de Expansão Seagate 512GB (Xbox)",
+            "Cartão de Expansão WD_BLACK C50 1TB",
+            "Cartão de Expansão WD_BLACK C50 512GB",
+            "Bateria Recarregável Xbox + Cabo USB-C",
+            "Kit Play and Charge Xbox",
+            "Adaptador Wireless Xbox para Windows 10",
+            "Suporte Vertical Xbox Series S",
+            "Capa de Silicone Controle Xbox",
+            "Chatpad Xbox One",
+            "Sintonizador de TV Digital Xbox One",
+            "Fonte de Alimentação Xbox One (Original)",
+            "Cabo HDMI Ultra High Speed Xbox",
+            "HD Externo Seagate Game Drive 2TB Xbox",
+            "HD Externo Seagate Game Drive 4TB Xbox",
+            "Controle Remoto Xbox One Media",
+            "Adaptador de Headset Estéreo Xbox",
+            "Bateria Pilhas AA Recarregáveis",
+            "Cabo USB-C de 3 Metros"
+          ]
+        },
+        {
+          "name": "Nintendo",
+          "models": [
+            "Nintendo Switch Dock Set (OLED White)",
+            "Nintendo Switch Dock Set (Black)",
+            "Nintendo Switch AC Adapter",
+            "Nintendo Switch Adjustable Charging Stand",
+            "Nintendo Switch Carrying Case & Screen Protector",
+            "Nintendo Switch Joy-Con Strap",
+            "Nintendo Switch Joy-Con Wheel (Set of 2)",
+            "Nintendo Switch Joy-Con AA Battery Pack",
+            "GameCube Controller Adapter",
+            "Amiibo Link (Tears of the Kingdom)",
+            "Amiibo Zelda & Loftwing",
+            "Amiibo Metroid Dread Set",
+            "Amiibo Mario Cat",
+            "Amiibo Peach Cat",
+            "Amiibo Steve & Alex (Minecraft)",
+            "Amiibo Sephiroth",
+            "Amiibo Kazuya",
+            "Amiibo Pyra & Mythra",
+            "Amiibo Sora",
+            "Mario Kart Live: Home Circuit (Mario Set)"
+          ]
+        },
+        {
+          "name": "Hori",
+          "models": [
+            "Hori Screen Protective Filter (Switch OLED)",
+            "Hori Screen Protective Filter (Switch Lite)",
+            "Hori PlayStand for Nintendo Switch",
+            "Hori Multiport USB PlayStand",
+            "Hori Split Pad Pro Attachment Set",
+            "Hori Cargo Pouch",
+            "Hori Adventure Pack (Zelda)",
+            "Hori Adventure Pack (Pokemon)",
+            "Hori Vault Case (Mario)",
+            "Hori Tough Pouch",
+            "Hori Game Card Case 24",
+            "Hori Racing Wheel Apex Clamp",
+            "Hori Tactical Assault Commander",
+            "Hori Fighting Stick Alpha Case",
+            "Hori PS5 DualSense Charging Stand",
+            "Hori Xbox Charging Station",
+            "Hori Solo Charging Station",
+            "Hori 3D Surround Gaming Neckset",
+            "Hori Gaming Earbuds Pro",
+            "Hori Hybrid System Armor"
+          ]
+        },
+        {
+          "name": "PowerA",
+          "models": [
+            "PowerA Protection Case for Nintendo Switch - Mario",
+            "PowerA Protection Case for Nintendo Switch - Zelda",
+            "PowerA Protection Case for Nintendo Switch - Pokemon",
+            "PowerA Protection Case for Nintendo Switch - Kirby",
+            "PowerA Protection Case for Nintendo Switch - Metroid",
+            "PowerA Joy-Con Comfort Grip - Black",
+            "PowerA Joy-Con Comfort Grip - Red",
+            "PowerA Charging Dock for Nintendo Switch",
+            "PowerA Nano Enhanced Wireless Controller Pouch",
+            "PowerA Controller Charging Base for Xbox",
+            "PowerA Dual Charging Station for Xbox Series X|S",
+            "PowerA Play & Charge Kit for Xbox",
+            "PowerA USB-C Cable for PlayStation 5",
+            "PowerA DualSense Charging Station",
+            "PowerA Everywhere Messenger Bag (Switch)",
+            "PowerA Stealth Case Kit",
+            "PowerA Clean & Protect Kit",
+            "PowerA Anti-Glare Screen Protector",
+            "PowerA Game Card Case",
+            "PowerA Wired Earbuds"
+          ]
+        },
+        {
+          "name": "Seagate",
+          "models": [
+            "Seagate Game Drive for PS5 5TB",
+            "Seagate Game Drive for PS5 2TB",
+            "Seagate Game Drive for PS4 4TB",
+            "Seagate Game Drive for PS4 2TB",
+            "Seagate Game Drive for Xbox 4TB",
+            "Seagate Game Drive for Xbox 2TB",
+            "Seagate Storage Expansion Card Xbox 2TB",
+            "Seagate Storage Expansion Card Xbox 1TB",
+            "Seagate Storage Expansion Card Xbox 512GB",
+            "Seagate FireCuda 530 SSD 4TB (Heatsink)",
+            "Seagate FireCuda 530 SSD 2TB (Heatsink)",
+            "Seagate FireCuda 530 SSD 1TB (Heatsink)",
+            "Seagate FireCuda 530 SSD 500GB (Heatsink)",
+            "Seagate Game Drive Hub for Xbox 8TB",
+            "Seagate Horizon Forbidden West Game Drive 2TB",
+            "Seagate God of War Ragnarok Game Drive 2TB",
+            "Seagate Starfield Game Drive 2TB",
+            "Seagate Spider-Man Game Drive 2TB",
+            "Seagate The Last of Us Game Drive 2TB",
+            "Seagate Cyberpunk 2077 Game Drive 2TB"
+          ]
+        },
+        {
+          "name": "WD_BLACK",
+          "models": [
+            "WD_BLACK SN850P NVMe SSD for PS5 4TB",
+            "WD_BLACK SN850P NVMe SSD for PS5 2TB",
+            "WD_BLACK SN850P NVMe SSD for PS5 1TB",
+            "WD_BLACK C50 Expansion Card for Xbox 1TB",
+            "WD_BLACK C50 Expansion Card for Xbox 512GB",
+            "WD_BLACK P10 Game Drive 5TB",
+            "WD_BLACK P10 Game Drive 4TB",
+            "WD_BLACK P10 Game Drive 2TB",
+            "WD_BLACK P40 Game Drive SSD 2TB",
+            "WD_BLACK P40 Game Drive SSD 1TB",
+            "WD_BLACK P40 Game Drive SSD 500GB",
+            "WD_BLACK D30 Game Drive SSD 2TB",
+            "WD_BLACK D30 Game Drive SSD 1TB",
+            "WD_BLACK D30 Game Drive SSD 500GB",
+            "WD_BLACK D10 Game Drive 8TB",
+            "WD_BLACK D10 Game Drive for Xbox 12TB",
+            "WD_BLACK SN850X NVMe SSD 4TB",
+            "WD_BLACK SN850X NVMe SSD 2TB",
+            "WD_BLACK SN850X NVMe SSD 1TB",
+            "SanDisk microSDXC for Nintendo Switch 1TB"
+          ]
+        },
+        {
+          "name": "Nyko",
+          "models": [
+            "Nyko Charge Block for PS5",
+            "Nyko Charge Block for Xbox Series X",
+            "Nyko Charge Block for Switch Pro",
+            "Nyko Power Pak for PS4",
+            "Nyko Power Pak for Xbox One",
+            "Nyko Intercooler for PS5",
+            "Nyko Intercooler for Xbox Series X",
+            "Nyko Thin Case for Switch OLED",
+            "Nyko Dockable Case for Switch",
+            "Nyko Screen Armor for Switch",
+            "Nyko Kick Stand for Switch",
+            "Nyko Grip for Switch Lite",
+            "Nyko Data Bank for PS4",
+            "Nyko Modular Charge Station PS4",
+            "Nyko Sound Pad for Xbox One",
+            "Nyko Type Pad for Xbox One",
+            "Nyko Zoom for Kinect",
+            "Nyko Wand for Wii",
+            "Nyko Kama for Wii",
+            "Nyko Perfect Shot for Wii"
+          ]
+        },
+        {
+          "name": "KontrolFreek",
+          "models": [
+            "KontrolFreek FPS Freek Galaxy (PS5)",
+            "KontrolFreek FPS Freek Galaxy (Xbox)",
+            "KontrolFreek FPS Freek Inferno (PS5)",
+            "KontrolFreek FPS Freek Inferno (Xbox)",
+            "KontrolFreek FPS Freek Vortex (PS5)",
+            "KontrolFreek FPS Freek Vortex (Xbox)",
+            "KontrolFreek Omni (PS5)",
+            "KontrolFreek Omni (Xbox)",
+            "KontrolFreek CQC Rush (PS5)",
+            "KontrolFreek CQC Rush (Xbox)",
+            "KontrolFreek Precision Rings (Mixed)",
+            "KontrolFreek Precision Rings (Soft)",
+            "KontrolFreek Precision Rings (Hard)",
+            "KontrolFreek Performance Grips (PS5)",
+            "KontrolFreek Performance Grips (Xbox)",
+            "KontrolFreek Gaming Cable 12ft HDMI",
+            "KontrolFreek Gaming Cable 12ft USB-C",
+            "KontrolFreek No-Slip Thumb Grips (Switch)",
+            "KontrolFreek FPS Freek Edge",
+            "KontrolFreek Call of Duty Edition"
+          ]
+        },
+        {
+          "name": "Dobe",
+          "models": [
+            "Dobe PS5 Cooling Stand with Charger",
+            "Dobe PS5 Controller Charger Dock",
+            "Dobe PS5 Dust Proof Kit",
+            "Dobe PS5 Faceplate Black",
+            "Dobe PS5 Wall Mount",
+            "Dobe Xbox Series S Cooling Stand",
+            "Dobe Xbox Series X Cooling Fan",
+            "Dobe Xbox Controller Battery Pack",
+            "Dobe Switch 4-in-1 Joy-Con Charger",
+            "Dobe Switch Pro Controller Clip",
+            "Dobe Switch Tennis Racket",
+            "Dobe Switch Steering Wheel",
+            "Dobe Switch Grip Case",
+            "Dobe Switch TV Dock",
+            "Dobe Switch Game Card Case",
+            "Dobe PS4 Cooling Stand",
+            "Dobe PS4 Controller Charger",
+            "Dobe PS4 Back Button",
+            "Dobe VR Stand",
+            "Dobe Universal Headset Stand"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jogos (Mídia Física)",
+      "brands": [
+        {
+          "name": "PlayStation Studios",
+          "models": [
+            "Marvel's Spider-Man 2 (PS5)",
+            "God of War Ragnarök (PS5)",
+            "God of War Ragnarök (PS4)",
+            "The Last of Us Part II Remastered (PS5)",
+            "The Last of Us Part I (PS5)",
+            "Horizon Forbidden West (PS5)",
+            "Horizon Forbidden West (PS4)",
+            "Gran Turismo 7 (PS5)",
+            "Gran Turismo 7 (PS4)",
+            "Ratchet & Clank: Rift Apart (PS5)",
+            "Returnal (PS5)",
+            "Demon's Souls (PS5)",
+            "Ghost of Tsushima Director's Cut (PS5)",
+            "Ghost of Tsushima Director's Cut (PS4)",
+            "Uncharted: Legacy of Thieves Collection (PS5)",
+            "Marvel's Spider-Man: Miles Morales (PS5)",
+            "Marvel's Spider-Man: Miles Morales (PS4)",
+            "Sackboy: A Big Adventure (PS5)",
+            "Astro Bot (PS5)",
+            "Helldivers 2 (PS5)"
+          ]
+        },
+        {
+          "name": "Nintendo",
+          "models": [
+            "The Legend of Zelda: Tears of the Kingdom",
+            "The Legend of Zelda: Breath of the Wild",
+            "Super Mario Bros. Wonder",
+            "Super Mario Odyssey",
+            "Mario Kart 8 Deluxe",
+            "Super Smash Bros. Ultimate",
+            "Animal Crossing: New Horizons",
+            "Pokémon Scarlet",
+            "Pokémon Violet",
+            "Pokémon Legends: Arceus",
+            "Splatoon 3",
+            "Kirby and the Forgotten Land",
+            "Metroid Dread",
+            "Luigi's Mansion 3",
+            "Mario Party Superstars",
+            "Super Mario 3D World + Bowser's Fury",
+            "Pikmin 4",
+            "Xenoblade Chronicles 3",
+            "Fire Emblem Engage",
+            "Princess Peach: Showtime!"
+          ]
+        },
+        {
+          "name": "Xbox Game Studios",
+          "models": [
+            "Starfield (Xbox Series X)",
+            "Forza Motorsport (Xbox Series X)",
+            "Forza Horizon 5 (Xbox Series X)",
+            "Halo Infinite (Xbox Series X)",
+            "Halo: The Master Chief Collection",
+            "Gears 5",
+            "Gears Tactics",
+            "Sea of Thieves",
+            "Microsoft Flight Simulator",
+            "Grounded",
+            "Senua's Saga: Hellblade II",
+            "Avowed (Pre-order)",
+            "Fable (Pre-order)",
+            "State of Decay 2",
+            "Ori and the Will of the Wisps",
+            "Psychonauts 2",
+            "Minecraft Legends",
+            "Minecraft Dungeons",
+            "Age of Empires IV",
+            "Rare Replay"
+          ]
+        },
+        {
+          "name": "Ubisoft",
+          "models": [
+            "Assassin's Creed Mirage (PS5)",
+            "Assassin's Creed Mirage (Xbox)",
+            "Assassin's Creed Valhalla (PS5)",
+            "Assassin's Creed Valhalla (Xbox)",
+            "Avatar: Frontiers of Pandora (PS5)",
+            "Avatar: Frontiers of Pandora (Xbox)",
+            "Prince of Persia: The Lost Crown (Switch)",
+            "Prince of Persia: The Lost Crown (PS5)",
+            "Far Cry 6 (PS5)",
+            "Far Cry 6 (Xbox)",
+            "The Crew Motorfest (PS5)",
+            "The Crew Motorfest (Xbox)",
+            "Just Dance 2024 (Switch)",
+            "Just Dance 2024 (PS5)",
+            "Skull and Bones (PS5)",
+            "Mario + Rabbids Sparks of Hope (Switch)",
+            "Rainbow Six Siege (PS5)",
+            "Riders Republic (PS5)",
+            "Immortals Fenyx Rising (Switch)",
+            "Watch Dogs: Legion (PS5)"
+          ]
+        },
+        {
+          "name": "EA (Electronic Arts)",
+          "models": [
+            "EA Sports FC 24 (PS5)",
+            "EA Sports FC 24 (Xbox)",
+            "EA Sports FC 24 (Switch)",
+            "Madden NFL 24 (PS5)",
+            "F1 24 (PS5)",
+            "F1 23 (PS5)",
+            "Star Wars Jedi: Survivor (PS5)",
+            "Star Wars Jedi: Survivor (Xbox)",
+            "Dead Space Remake (PS5)",
+            "Need for Speed Unbound (PS5)",
+            "Wild Hearts (PS5)",
+            "Immortals of Aveum (PS5)",
+            "Battlefield 2042 (PS5)",
+            "It Takes Two (PS4/PS5)",
+            "Mass Effect Legendary Edition (PS4)",
+            "The Sims 4 (PS4)",
+            "UFC 5 (PS5)",
+            "NHL 24 (PS5)",
+            "PGA Tour (PS5)",
+            "Dragon Age: Dreadwolf (Pre-order)"
+          ]
+        },
+        {
+          "name": "Capcom",
+          "models": [
+            "Resident Evil 4 Remake (PS5)",
+            "Resident Evil 4 Remake (Xbox)",
+            "Resident Evil Village (PS5)",
+            "Resident Evil Village (Xbox)",
+            "Street Fighter 6 (PS5)",
+            "Street Fighter 6 (Xbox)",
+            "Dragon's Dogma 2 (PS5)",
+            "Dragon's Dogma 2 (Xbox)",
+            "Monster Hunter Rise (Switch)",
+            "Monster Hunter Rise (PS5)",
+            "Monster Hunter World: Iceborne (PS4)",
+            "Devil May Cry 5 Special Edition (PS5)",
+            "Exoprimal (PS5)",
+            "Resident Evil 2 Remake (PS4)",
+            "Resident Evil 3 Remake (PS4)",
+            "Mega Man Battle Network Collection (Switch)",
+            "Ace Attorney Trilogy (Switch)",
+            "Ghost Trick: Phantom Detective (Switch)",
+            "Apollo Justice Trilogy (Switch)",
+            "Kunitsu-Gami: Path of the Goddess (PS5)"
+          ]
+        },
+        {
+          "name": "Square Enix",
+          "models": [
+            "Final Fantasy VII Rebirth (PS5)",
+            "Final Fantasy VII Remake Intergrade (PS5)",
+            "Final Fantasy XVI (PS5)",
+            "Crisis Core: Final Fantasy VII Reunion (PS5)",
+            "Kingdom Hearts III (PS4)",
+            "Kingdom Hearts All-in-One Package (PS4)",
+            "Dragon Quest XI S (Switch)",
+            "Dragon Quest Monsters: The Dark Prince (Switch)",
+            "Octopath Traveler II (Switch)",
+            "Octopath Traveler II (PS5)",
+            "Star Ocean: The Second Story R (Switch)",
+            "Star Ocean: The Second Story R (PS5)",
+            "NieR: Automata The End of YoRHa Edition (Switch)",
+            "NieR: Automata Game of the YoRHa Edition (PS4)",
+            "Life is Strange: True Colors (PS5)",
+            "Forspoken (PS5)",
+            "Harvestella (Switch)",
+            "Theatrhythm Final Bar Line (Switch)",
+            "Tactics Ogre: Reborn (Switch)",
+            "Live A Live (Switch)"
+          ]
+        },
+        {
+          "name": "Bandai Namco",
+          "models": [
+            "Tekken 8 (PS5)",
+            "Tekken 8 (Xbox)",
+            "Elden Ring: Shadow of the Erdtree Edition (PS5)",
+            "Elden Ring (PS5)",
+            "Elden Ring (Xbox)",
+            "Armored Core VI: Fires of Rubicon (PS5)",
+            "Armored Core VI: Fires of Rubicon (Xbox)",
+            "Sand Land (PS5)",
+            "Naruto x Boruto Ultimate Ninja Storm Connections (PS5)",
+            "One Piece Odyssey (PS5)",
+            "Dragon Ball Z: Kakarot (PS5)",
+            "Dragon Ball FighterZ (PS4)",
+            "Tales of Arise (PS5)",
+            "Scarlet Nexus (PS5)",
+            "Little Nightmares II (Switch)",
+            "Digimon Survive (Switch)",
+            "Klonoa Phantasy Reverie Series (Switch)",
+            "Taiko no Tatsujin: Rhythm Festival (Switch)",
+            "Pac-Man World Re-Pac (Switch)",
+            "Jojo's Bizarre Adventure: All-Star Battle R (PS5)"
+          ]
+        },
+        {
+          "name": "Sega / Atlus",
+          "models": [
+            "Sonic Superstars (Switch)",
+            "Sonic Superstars (PS5)",
+            "Sonic Frontiers (PS5)",
+            "Sonic Frontiers (Switch)",
+            "Persona 3 Reload (PS5)",
+            "Persona 3 Reload (Xbox)",
+            "Persona 5 Royal (Switch)",
+            "Persona 5 Royal (PS5)",
+            "Persona 5 Tactica (Switch)",
+            "Like a Dragon: Infinite Wealth (PS5)",
+            "Like a Dragon: Infinite Wealth (Xbox)",
+            "Yakuza: Like a Dragon (PS5)",
+            "Like a Dragon Gaiden: The Man Who Erased His Name (PS5)",
+            "Lost Judgment (PS5)",
+            "Judgment (PS5)",
+            "Unicorn Overlord (Switch)",
+            "Unicorn Overlord (PS5)",
+            "Metaphor: ReFantazio (PS5)",
+            "Shin Megami Tensei V: Vengeance (Switch)",
+            "Super Monkey Ball Banana Rumble (Switch)"
+          ]
+        },
+        {
+          "name": "Warner Bros. Games",
+          "models": [
+            "Hogwarts Legacy (PS5)",
+            "Hogwarts Legacy (Xbox Series X)",
+            "Hogwarts Legacy (Switch)",
+            "Hogwarts Legacy (PS4)",
+            "Mortal Kombat 1 (PS5)",
+            "Mortal Kombat 1 (Xbox)",
+            "Mortal Kombat 1 (Switch)",
+            "Suicide Squad: Kill the Justice League (PS5)",
+            "Gotham Knights (PS5)",
+            "LEGO Star Wars: The Skywalker Saga (Switch)",
+            "LEGO Star Wars: The Skywalker Saga (PS5)",
+            "LEGO Harry Potter Collection (Switch)",
+            "Back 4 Blood (PS5)",
+            "Batman: Arkham Collection (PS4)",
+            "Mortal Kombat 11 Ultimate (PS5)",
+            "Injustice 2 Legendary Edition (PS4)",
+            "Middle-earth: Shadow of War (PS4)",
+            "Scribblenauts Mega Pack (Switch)",
+            "Cars 3: Driven to Win (Switch)",
+            "MultiVersus Founder's Pack"
+          ]
+        },
+        {
+          "name": "Rockstar Games",
+          "models": [
+            "Grand Theft Auto VI (Pre-order)",
+            "Grand Theft Auto V (PS5)",
+            "Grand Theft Auto V (Xbox Series X)",
+            "Grand Theft Auto: The Trilogy (Switch)",
+            "Red Dead Redemption 2 (PS4)",
+            "Red Dead Redemption (Switch)",
+            "Red Dead Redemption (PS4)",
+            "L.A. Noire (Switch)",
+            "L.A. Noire (PS4)",
+            "Bully (PS4)",
+            "Max Payne 3 (Xbox 360/One)",
+            "Grand Theft Auto IV (Xbox 360/One)",
+            "Midnight Club: Los Angeles (Xbox 360/One)",
+            "Red Dead Redemption 2 (Xbox One)",
+            "Grand Theft Auto V (PS4)",
+            "Grand Theft Auto V (Xbox One)",
+            "Red Dead Redemption (Xbox 360/One)",
+            "L.A. Noire (Xbox One)",
+            "The Warriors (PS4)",
+            "Manhunt (PS4)"
+          ]
+        },
+        {
+          "name": "Konami",
+          "models": [
+            "Metal Gear Solid: Master Collection Vol. 1 (PS5)",
+            "Metal Gear Solid: Master Collection Vol. 1 (Switch)",
+            "Silent Hill 2 Remake (PS5)",
+            "eFootball 2024 Points Card",
+            "Super Bomberman R 2 (Switch)",
+            "Super Bomberman R 2 (PS5)",
+            "Yu-Gi-Oh! Legacy of the Duelist (Switch)",
+            "Castlevania Anniversary Collection (Switch)",
+            "Teenage Mutant Ninja Turtles: The Cowabunga Collection (Switch)",
+            "Teenage Mutant Ninja Turtles: The Cowabunga Collection (PS5)",
+            "Metal Gear Solid V: The Phantom Pain (PS4)",
+            "Pro Evolution Soccer 2021 (PS4)",
+            "Castlevania Advance Collection (Switch)",
+            "Contra Anniversary Collection (Switch)",
+            "Silent Hill: The Short Message (PS5)",
+            "Yu-Gi-Oh! Rush Duel (Switch)",
+            "Momotaro Dentetsu World (Switch)",
+            "Cygni: All Guns Blazing (PS5)",
+            "Suikoden I & II HD Remaster (PS4)",
+            "GetsuFumaDen: Undying Moon (Switch)"
+          ]
+        },
+        {
+          "name": "Activision Blizzard",
+          "models": [
+            "Call of Duty: Modern Warfare III (PS5)",
+            "Call of Duty: Modern Warfare III (Xbox)",
+            "Call of Duty: Modern Warfare II (PS5)",
+            "Call of Duty: Black Ops Cold War (PS5)",
+            "Diablo IV (PS5)",
+            "Diablo IV (Xbox)",
+            "Overwatch 2 Coins Card",
+            "Crash Bandicoot 4: It's About Time (PS5)",
+            "Crash Bandicoot 4: It's About Time (Switch)",
+            "Crash Bandicoot N. Sane Trilogy (Switch)",
+            "Spyro Reignited Trilogy (Switch)",
+            "Spyro Reignited Trilogy (PS4)",
+            "Tony Hawk's Pro Skater 1 + 2 (PS5)",
+            "Sekiro: Shadows Die Twice (PS4)",
+            "Call of Duty: Vanguard (PS5)",
+            "Crash Team Racing Nitro-Fueled (Switch)",
+            "Diablo III: Eternal Collection (Switch)",
+            "Diablo II: Resurrected (Xbox)",
+            "World of Warcraft Time Card",
+            "StarCraft II Battle Chest"
+          ]
+        },
+        {
+          "name": "Indie & Outros",
+          "models": [
+            "Hollow Knight (Switch)",
+            "Hollow Knight (PS4)",
+            "Hades (Switch)",
+            "Hades (PS5)",
+            "Stardew Valley (Switch)",
+            "Celeste (Switch)",
+            "Cuphead (Switch)",
+            "Dead Cells (Switch)",
+            "Cult of the Lamb (Switch)",
+            "Cult of the Lamb (PS5)",
+            "Sea of Stars (Switch)",
+            "Sea of Stars (PS5)",
+            "Among Us (Switch)",
+            "Tunic (PS4)",
+            "Sifu (PS5)",
+            "Stray (PS5)",
+            "Kena: Bridge of Spirits (PS5)",
+            "No Man's Sky (PS5)",
+            "No Man's Sky (Switch)",
+            "The Witcher 3: Wild Hunt (Switch)",
+            "The Witcher 3: Wild Hunt (PS5)",
+            "Cyberpunk 2077: Ultimate Edition (PS5)",
+            "Cyberpunk 2077: Ultimate Edition (Xbox)",
+            "Baldur's Gate 3 (PS5)",
+            "Dave the Diver (Switch)",
+            "Dredge (Switch)",
+            "Cocoon (Switch)",
+            "Vampire Survivors (Switch)",
+            "Inscryption (Switch)",
+            "Disco Elysium: The Final Cut (Switch)"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PC Gamer & Hardware",
+          "brands": [
+            {
+              "name": "NVIDIA",
+              "models": [
+                "GeForce RTX 4090 24GB",
+                "GeForce RTX 4080 Super 16GB",
+                "GeForce RTX 4070 Ti Super 16GB",
+                "GeForce RTX 4070 Super 12GB",
+                "GeForce RTX 4060 Ti 16GB",
+                "GeForce RTX 4060 Ti 8GB",
+                "GeForce RTX 4060 8GB",
+                "GeForce RTX 3060 12GB",
+                "GeForce RTX 3050 6GB",
+                "GeForce GTX 1660 Super",
+                "GeForce GTX 1650 4GB",
+                "NVIDIA Shield TV Pro",
+                "NVIDIA Jetson Orin Nano"
+              ]
+            },
+            {
+              "name": "AMD",
+              "models": [
+                "Radeon RX 7900 XTX 24GB",
+                "Radeon RX 7900 XT 20GB",
+                "Radeon RX 7800 XT 16GB",
+                "Radeon RX 7700 XT 12GB",
+                "Radeon RX 7600 XT 16GB",
+                "Radeon RX 7600 8GB",
+                "Ryzen 9 7950X3D Processor",
+                "Ryzen 9 7900X Processor",
+                "Ryzen 7 7800X3D Processor",
+                "Ryzen 7 7700X Processor",
+                "Ryzen 5 7600X Processor",
+                "Ryzen 5 5600X Processor"
+              ]
+            },
+            {
+              "name": "Intel",
+              "models": [
+                "Core i9-14900KS Processor",
+                "Core i9-14900K Processor",
+                "Core i7-14700K Processor",
+                "Core i5-14600K Processor",
+                "Core i9-13900K Processor",
+                "Core i7-13700K Processor",
+                "Core i5-13600K Processor",
+                "Core i5-12400F Processor",
+                "Arc A770 16GB Graphics",
+                "Arc A750 8GB Graphics",
+                "Arc A580 8GB Graphics",
+                "Intel NUC 13 Extreme Kit"
+              ]
+            },
+            {
+              "name": "ASUS (Components)",
+              "models": [
+                "ROG Maximus Z790 Hero Motherboard",
+                "ROG Strix B760-F Gaming Wifi Motherboard",
+                "TUF Gaming X670E-Plus Wifi Motherboard",
+                "Prime B650M-A Wifi II Motherboard",
+                "ROG Thor 1000W Platinum II PSU",
+                "ROG Strix 850W Gold PSU",
+                "ROG Ryujin III 360 ARGB Cooler",
+                "ROG Hyperion GR701 Case",
+                "TUF Gaming GT502 Case",
+                "ASUS Prime AP201 Case"
+              ]
+            },
+            {
+              "name": "MSI",
+              "models": [
+                "MEG Z790 GODLIKE Motherboard",
+                "MPG Z790 Carbon Wifi Motherboard",
+                "MAG B760 Tomahawk Wifi Motherboard",
+                "MEG X670E ACE Motherboard",
+                "MPG X670E Carbon Wifi Motherboard",
+                "MAG B650 Tomahawk Wifi Motherboard",
+                "MEG Ai1300P PCIE5 PSU",
+                "MAG A850GL PCIE5 PSU",
+                "MEG CoreLiquid S360 Cooler",
+                "MPG Gungnir 300R Airflow Case"
+              ]
+            },
+            {
+              "name": "Gigabyte",
+              "models": [
+                "Z790 AORUS Master Motherboard",
+                "Z790 AORUS Elite AX Motherboard",
+                "B760 AORUS Elite AX Motherboard",
+                "X670E AORUS Master Motherboard",
+                "B650 AORUS Elite AX Motherboard",
+                "GeForce RTX 4070 Gaming OC",
+                "Radeon RX 7800 XT Gaming OC",
+                "AORUS Gen5 12000 SSD",
+                "AORUS Waterforce X 360 Cooler",
+                "C301 Glass Case"
+              ]
+            },
+            {
+              "name": "Corsair (Components)",
+              "models": [
+                "Dominator Titanium DDR5 64GB Kit",
+                "Vengeance RGB DDR5 32GB Kit",
+                "Vengeance LPX DDR4 16GB Kit",
+                "MP700 PRO Gen5 NVMe SSD 2TB",
+                "MP600 PRO LPX NVMe SSD 2TB (PS5)",
+                "RM1000x Shift PSU",
+                "RM850e PSU",
+                "iCUE H150i Elite LCD XT Cooler",
+                "4000D Airflow Case",
+                "5000D Airflow Case"
+              ]
+            },
+            {
+              "name": "Kingston",
+              "models": [
+                "Fury Renegade DDR5 RGB 32GB Kit",
+                "Fury Beast DDR5 32GB Kit",
+                "Fury Beast DDR4 RGB 16GB Kit",
+                "Fury Renegade NVMe SSD 2TB",
+                "KC3000 NVMe SSD 2TB",
+                "NV2 NVMe SSD 1TB",
+                "NV2 NVMe SSD 500GB",
+                "XS2000 Portable SSD 2TB",
+                "XS1000 Portable SSD 1TB",
+                "DataTraveler Max Pendrive 512GB"
+              ]
+            },
+            {
+              "name": "NZXT",
+              "models": [
+                "N7 Z790 Motherboard",
+                "N7 B650E Motherboard",
+                "Kraken Elite 360 RGB Cooler",
+                "Kraken 240 RGB Cooler",
+                "H9 Flow Case",
+                "H7 Flow RGB Case",
+                "H6 Flow Case",
+                "H5 Flow Case",
+                "C1200 Gold PSU",
+                "C850 Gold PSU"
+              ]
+            },
+            {
+              "name": "Cooler Master",
+              "models": [
+                "MasterLiquid PL360 Flux Cooler",
+                "MasterLiquid ML240L V2 RGB Cooler",
+                "Hyper 212 Halo Black Air Cooler",
+                "MasterBox TD500 Mesh V2 Case",
+                "MasterBox NR200P V2 Case",
+                "HAF 700 Evo Case",
+                "Cosmos C700M Case",
+                "V850 Gold i Multi PSU",
+                "MWE Gold 850 V2 PSU",
+                "CryoFuze Violet Thermal Paste"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TVs & Monitores",
+          "brands": [
+            {
+              "name": "Samsung",
+              "models": [
+                "Smart TV 55\" Neo QLED 4K QN85C",
+                "Smart TV 65\" Neo QLED 8K QN800C",
+                "Smart TV 55\" OLED 4K S90C",
+                "Smart TV 50\" QLED 4K Q60C",
+                "Smart TV 43\" Crystal UHD 4K CU8000",
+                "Monitor Gamer Odyssey Ark 2nd Gen 55\"",
+                "Monitor Gamer Odyssey OLED G9 49\"",
+                "Monitor Gamer Odyssey Neo G9 57\"",
+                "Monitor Gamer Odyssey G7 32\"",
+                "Monitor Gamer Odyssey G5 34\"",
+                "Monitor Gamer Odyssey G4 27\"",
+                "Monitor Gamer Odyssey G3 24\"",
+                "Smart Monitor M8 32\"",
+                "Smart Monitor M5 27\""
+              ]
+            },
+            {
+              "name": "LG",
+              "models": [
+                "Smart TV 55\" OLED evo C3 4K",
+                "Smart TV 65\" OLED evo G3 4K",
+                "Smart TV 42\" OLED evo C3 4K (Gamer)",
+                "Smart TV 55\" QNED 80 4K",
+                "Smart TV 50\" 4K UHD UR8750",
+                "Monitor Gamer UltraGear OLED 45\" Curvo",
+                "Monitor Gamer UltraGear OLED 27\" 240Hz",
+                "Monitor Gamer UltraGear 32\" 4K 144Hz",
+                "Monitor Gamer UltraGear 27\" GP850 Nano IPS",
+                "Monitor Gamer UltraGear 24\" GN600 144Hz",
+                "Monitor UltraWide 34\" WP65C",
+                "Monitor UltraWide 29\" WK600",
+                "Smart TV StanbyME Go 27\""
+              ]
+            },
+            {
+              "name": "Sony",
+              "models": [
+                "Smart TV 55\" BRAVIA XR A80L OLED",
+                "Smart TV 65\" BRAVIA XR A95L QD-OLED",
+                "Smart TV 55\" BRAVIA XR X90L Full Array LED",
+                "Smart TV 75\" BRAVIA XR X93L Mini LED",
+                "Smart TV 50\" BRAVIA X80K LED",
+                "Monitor Gamer INZONE M9 27\" 4K 144Hz",
+                "Monitor Gamer INZONE M3 27\" FHD 240Hz",
+                "Smart TV 85\" BRAVIA XR Z9K 8K Mini LED"
+              ]
+            },
+            {
+              "name": "TCL",
+              "models": [
+                "Smart TV 55\" C845 Mini LED 4K 144Hz",
+                "Smart TV 65\" C835 Mini LED 4K",
+                "Smart TV 55\" C735 QLED 4K 144Hz",
+                "Smart TV 50\" C645 QLED 4K",
+                "Smart TV 43\" P635 4K HDR",
+                "Smart TV 32\" S5400 FHD",
+                "Smart TV 98\" C735 QLED 4K (Big Screen)",
+                "Monitor Gamer 34\" Curvo 165Hz",
+                "Monitor Gamer 27\" QHD 165Hz"
+              ]
+            },
+            {
+              "name": "Philips",
+              "models": [
+                "Smart TV 55\" Ambilight The One 8808",
+                "Smart TV 65\" OLED+ 908 Bowers & Wilkins",
+                "Smart TV 50\" 4K UHD 7908 Ambilight",
+                "Monitor Gamer Evnia 34\" QD-OLED Curvo",
+                "Monitor Gamer Evnia 27\" 4K",
+                "Monitor 27\" 4K USB-C Docking"
+              ]
+            },
+            {
+              "name": "Dell",
+              "models": [
+                "Alienware 34 Curved QD-OLED Monitor",
+                "Alienware 32 4K QD-OLED Monitor",
+                "Alienware 27 360Hz QD-OLED Monitor",
+                "Alienware 25 Gaming Monitor 360Hz",
+                "Dell 32 4K UHD Gaming Monitor",
+                "Dell 27 Gaming Monitor G2724D",
+                "Dell 24 Gaming Monitor G2422HS",
+                "Dell UltraSharp 32 6K Monitor",
+                "Dell UltraSharp 27 Thunderbolt Hub Monitor"
+              ]
+            },
+            {
+              "name": "BenQ",
+              "models": [
+                "Mobiuz EX3210U 4K 144Hz Monitor",
+                "Mobiuz EX2710Q QHD 165Hz Monitor",
+                "Mobiuz EX2510S FHD 165Hz Monitor",
+                "Zowie XL2566K 360Hz eSports Monitor",
+                "Zowie XL2546K 240Hz eSports Monitor",
+                "Zowie XL2411K 144Hz eSports Monitor",
+                "DesignVue PD3220U 4K Monitor",
+                "DesignVue PD2705U 4K Monitor"
+              ]
+            },
+            {
+              "name": "AOC",
+              "models": [
+                "AGON Pro AG276QZD OLED 240Hz",
+                "AGON AG493UCX2 49\" Ultrawide",
+                "AOC Hero 27\" 144Hz IPS",
+                "AOC Hero 24\" 144Hz IPS",
+                "AOC Viper 24\" 165Hz",
+                "AOC Legend 27\" 240Hz Curvo",
+                "AOC Sniper 27\" 75Hz",
+                "AOC Speed 24\" 75Hz"
+              ]
+            },
+            {
+              "name": "ASUS (Monitors)",
+              "models": [
+                "ROG Swift OLED PG32UCDM 4K 240Hz",
+                "ROG Swift OLED PG27AQDM 240Hz",
+                "ROG Swift PG259QN 360Hz",
+                "ROG Strix XG27AQMR 300Hz",
+                "TUF Gaming VG27AQ 165Hz",
+                "TUF Gaming VG249Q 144Hz",
+                "ProArt Display PA279CRV 4K",
+                "ZenScreen MB16AC Portable Monitor"
+              ]
+            },
+            {
+              "name": "Acer",
+              "models": [
+                "Predator X27U OLED 240Hz",
+                "Predator X32 FP Mini LED 4K",
+                "Predator XB273U 270Hz",
+                "Nitro XV272U 170Hz",
+                "Nitro KG241Y 165Hz",
+                "Nitro QG241Y 165Hz",
+                "Acer CB282K 4K Monitor",
+                "Acer PM161Q Portable Monitor"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Notebooks Gamer & Laptops",
+          "brands": [
+            {
+              "name": "Dell",
+              "models": [
+                "Alienware m18 R2 Gaming Laptop",
+                "Alienware x16 R2 Gaming Laptop",
+                "Alienware m16 R2 Gaming Laptop",
+                "Dell G15 Gaming Laptop (RTX 4050)",
+                "Dell G16 Gaming Laptop (RTX 4060)",
+                "XPS 16 Laptop",
+                "XPS 14 Laptop",
+                "XPS 13 Laptop",
+                "Inspiron 15 Laptop",
+                "Inspiron 14 Laptop"
+              ]
+            },
+            {
+              "name": "ASUS",
+              "models": [
+                "ROG Strix SCAR 18 (2024)",
+                "ROG Zephyrus G14 (2024)",
+                "ROG Zephyrus G16 (2024)",
+                "ROG Strix G16 (2024)",
+                "TUF Gaming A15 (2024)",
+                "TUF Gaming F15 (2023)",
+                "Zenbook Duo (2024)",
+                "Zenbook 14 OLED",
+                "Vivobook Pro 15 OLED",
+                "Vivobook Go 15"
+              ]
+            },
+            {
+              "name": "Lenovo",
+              "models": [
+                "Legion 9i Gen 9",
+                "Legion Pro 7i Gen 9",
+                "Legion Pro 5i Gen 9",
+                "Legion Slim 7i Gen 8",
+                "Legion Slim 5 Gen 8",
+                "LOQ 15IRH8 Gaming Laptop",
+                "Yoga Pro 9i",
+                "Yoga Book 9i",
+                "ThinkPad X1 Carbon Gen 12",
+                "IdeaPad Slim 5"
+              ]
+            },
+            {
+              "name": "Acer",
+              "models": [
+                "Predator Helios 18",
+                "Predator Helios 16",
+                "Predator Triton 17 X",
+                "Nitro 17 Gaming Laptop",
+                "Nitro 16 Gaming Laptop",
+                "Nitro V 15 Gaming Laptop",
+                "Swift Go 14 OLED",
+                "Swift X 14",
+                "Aspire 5",
+                "Aspire 3"
+              ]
+            },
+            {
+              "name": "MSI",
+              "models": [
+                "Titan 18 HX",
+                "Raider GE78 HX",
+                "Stealth 16 AI Studio",
+                "Vector GP68 HX",
+                "Pulse 17 AI",
+                "Katana 15 AI",
+                "Cyborg 15 AI",
+                "Prestige 16 AI Studio",
+                "Modern 14",
+                "Summit E16 AI"
+              ]
+            },
+            {
+              "name": "Razer",
+              "models": [
+                "Razer Blade 18 (2024)",
+                "Razer Blade 16 (2024)",
+                "Razer Blade 14 (2024)",
+                "Razer Blade 15 (2023)",
+                "Razer Blade 17 (2022)",
+                "Razer Book 13"
+              ]
+            },
+            {
+              "name": "HP",
+              "models": [
+                "OMEN Transcend 14",
+                "OMEN 16 Gaming Laptop",
+                "Victus 16 Gaming Laptop",
+                "Victus 15 Gaming Laptop",
+                "Spectre x360 14",
+                "Spectre x360 16",
+                "Envy x360 15",
+                "Pavilion Plus 14",
+                "HP 15 Laptop",
+                "Dragonfly G4"
+              ]
+            },
+            {
+              "name": "Apple",
+              "models": [
+                "MacBook Pro 16\" (M3 Max)",
+                "MacBook Pro 16\" (M3 Pro)",
+                "MacBook Pro 14\" (M3 Max)",
+                "MacBook Pro 14\" (M3 Pro)",
+                "MacBook Pro 14\" (M3)",
+                "MacBook Air 15\" (M3)",
+                "MacBook Air 13\" (M3)",
+                "MacBook Air 13\" (M2)",
+                "MacBook Air 13\" (M1)"
+              ]
+            },
+            {
+              "name": "Samsung",
+              "models": [
+                "Galaxy Book4 Ultra",
+                "Galaxy Book4 Pro 360",
+                "Galaxy Book4 Pro",
+                "Galaxy Book4 360",
+                "Galaxy Book3 Ultra",
+                "Galaxy Book3 360",
+                "Galaxy Book2 Pro",
+                "Galaxy Book2"
+              ]
+            },
+            {
+              "name": "Avell",
+              "models": [
+                "Avell A72 ION",
+                "Avell A70 ION",
+                "Avell A52 ION",
+                "Avell B.On",
+                "Avell Storm Two",
+                "Avell Storm Go",
+                "Avell Hyb New"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Teclados & Mouses Gamer",
+          "brands": [
+            {
+              "name": "Razer",
+              "models": [
+                "Razer Huntsman V3 Pro",
+                "Razer Huntsman Mini",
+                "Razer BlackWidow V4 Pro",
+                "Razer BlackWidow V3",
+                "Razer DeathStalker V2 Pro",
+                "Razer Ornata V3",
+                "Razer Viper V3 Pro",
+                "Razer Viper Mini Signature Edition",
+                "Razer DeathAdder V3 Pro",
+                "Razer Basilisk V3 Pro",
+                "Razer Naga V2 Pro",
+                "Razer Cobra Pro",
+                "Razer Orochi V2",
+                "Razer Gigantus V2 (Mousepad)",
+                "Razer Strider (Mousepad)"
+              ]
+            },
+            {
+              "name": "Logitech G",
+              "models": [
+                "Logitech G915 Lightspeed TKL",
+                "Logitech G915 Lightspeed Full",
+                "Logitech G Pro X TKL Lightspeed",
+                "Logitech G715 Wireless",
+                "Logitech G512 Carbon",
+                "Logitech G213 Prodigy",
+                "Logitech G Pro X Superlight 2",
+                "Logitech G Pro X Superlight",
+                "Logitech G502 X Plus",
+                "Logitech G502 Hero",
+                "Logitech G305 Lightspeed",
+                "Logitech G203 Lightsync",
+                "Logitech G705 Wireless",
+                "Logitech G840 XL (Mousepad)",
+                "Logitech G640 (Mousepad)"
+              ]
+            },
+            {
+              "name": "Corsair",
+              "models": [
+                "Corsair K100 AIR Wireless",
+                "Corsair K100 RGB Optical",
+                "Corsair K70 MAX RGB",
+                "Corsair K70 PRO Mini Wireless",
+                "Corsair K65 PRO Mini",
+                "Corsair K55 RGB PRO XT",
+                "Corsair M75 AIR Wireless",
+                "Corsair Darkstar Wireless",
+                "Corsair Nightsabre Wireless",
+                "Corsair Scimitar RGB Elite",
+                "Corsair M65 RGB Ultra",
+                "Corsair Sabre RGB Pro Wireless",
+                "Corsair Harpoon RGB Wireless",
+                "Corsair MM800 RGB Polaris (Mousepad)",
+                "Corsair MM350 Pro (Mousepad)"
+              ]
+            },
+            {
+              "name": "SteelSeries",
+              "models": [
+                "SteelSeries Apex Pro TKL (2023)",
+                "SteelSeries Apex Pro",
+                "SteelSeries Apex 9 TKL",
+                "SteelSeries Apex 7 TKL",
+                "SteelSeries Apex 5",
+                "SteelSeries Apex 3 TKL",
+                "SteelSeries Aerox 9 Wireless",
+                "SteelSeries Aerox 5 Wireless",
+                "SteelSeries Aerox 3 Wireless (2022)",
+                "SteelSeries Rival 650 Wireless",
+                "SteelSeries Rival 5",
+                "SteelSeries Rival 3 Wireless",
+                "SteelSeries Prime Wireless",
+                "SteelSeries QcK Prism Cloth (Mousepad)",
+                "SteelSeries QcK Heavy (Mousepad)"
+              ]
+            },
+            {
+              "name": "HyperX",
+              "models": [
+                "HyperX Alloy Rise",
+                "HyperX Alloy Origins 60",
+                "HyperX Alloy Origins Core",
+                "HyperX Alloy Origins",
+                "HyperX Alloy Elite 2",
+                "HyperX Alloy Core RGB",
+                "HyperX Pulsefire Haste 2 Wireless",
+                "HyperX Pulsefire Haste 2",
+                "HyperX Pulsefire Haste Wireless",
+                "HyperX Pulsefire Surge",
+                "HyperX Pulsefire Raid",
+                "HyperX Pulsefire Core",
+                "HyperX Pulsefire Mat RGB (Mousepad)",
+                "HyperX Pulsefire Mat (Mousepad)"
+              ]
+            },
+            {
+              "name": "Redragon",
+              "models": [
+                "Redragon Fizz K617",
+                "Redragon Kumara K552",
+                "Redragon Mitra K551",
+                "Redragon Dark Avenger K568",
+                "Redragon Draconic K530 Pro",
+                "Redragon Horus K618",
+                "Redragon Cobra M711",
+                "Redragon Griffin M607",
+                "Redragon Storm Elite M988",
+                "Redragon Vampire Elite M686",
+                "Redragon Impact M908",
+                "Redragon Ranger M910",
+                "Redragon Flicker Pro (Mousepad)",
+                "Redragon Kunlun (Mousepad)"
+              ]
+            },
+            {
+              "name": "Keychron",
+              "models": [
+                "Keychron Q1 Pro",
+                "Keychron Q2 Pro",
+                "Keychron Q3 Pro",
+                "Keychron K2 Pro",
+                "Keychron K6 Pro",
+                "Keychron K8 Pro",
+                "Keychron V1",
+                "Keychron V2",
+                "Keychron M3 Wireless Mouse",
+                "Keychron M1 Wireless Mouse"
+              ]
+            },
+            {
+              "name": "Glorious",
+              "models": [
+                "Glorious GMMK Pro",
+                "Glorious GMMK 2",
+                "Glorious GMMK TKL",
+                "Glorious Model O 2 Wireless",
+                "Glorious Model O 2",
+                "Glorious Model I 2 Wireless",
+                "Glorious Model D 2 Wireless",
+                "Glorious Model D Minus Wireless",
+                "Glorious Elements Mousepad",
+                "Glorious Stitch Cloth Mousepad"
+              ]
+            },
+            {
+              "name": "ASUS ROG",
+              "models": [
+                "ROG Azoth",
+                "ROG Falchion Ace",
+                "ROG Strix Scope II 96 Wireless",
+                "ROG Strix Scope RX",
+                "ROG Claymore II",
+                "ROG Harpe Ace Aim Lab Edition",
+                "ROG Chakram X",
+                "ROG Gladius III Wireless AimPoint",
+                "ROG Keris Wireless AimPoint",
+                "ROG Spatha X",
+                "ROG Balteus Qi (Mousepad)",
+                "ROG Scabbard II (Mousepad)"
+              ]
+            },
+            {
+              "name": "Akko",
+              "models": [
+                "Akko MOD007B PC",
+                "Akko 5075B Plus",
+                "Akko 3068B Plus",
+                "Akko 3098B",
+                "Akko MonsGeek M1",
+                "Akko MonsGeek M2",
+                "Akko AG325 Mouse",
+                "Akko Cream Keycap Set",
+                "Akko V3 Cream Blue Switch",
+                "Akko V3 Cream Yellow Switch"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Cadeiras & Mesas Gamer",
+          "brands": [
+            {
+              "name": "DXRacer",
+              "models": [
+                "Cadeira DXRacer Air Series",
+                "Cadeira DXRacer Master Series",
+                "Cadeira DXRacer Craft Series",
+                "Cadeira DXRacer Drifting Series",
+                "Cadeira DXRacer Prince Series",
+                "Cadeira DXRacer Formula Series",
+                "Cadeira DXRacer Racing Series",
+                "Cadeira DXRacer King Series",
+                "Cadeira DXRacer Tank Series",
+                "Mesa Gamer DXRacer NEX"
+              ]
+            },
+            {
+              "name": "Secretlab",
+              "models": [
+                "Secretlab TITAN Evo 2022 (Regular)",
+                "Secretlab TITAN Evo 2022 (XL)",
+                "Secretlab TITAN Evo 2022 (Small)",
+                "Secretlab TITAN Evo SoftWeave Plus",
+                "Secretlab TITAN Evo NEO Hybrid Leatherette",
+                "Secretlab TITAN Evo NAPA Leather",
+                "Secretlab OMEGA 2020",
+                "Secretlab MAGNUS Pro Desk",
+                "Secretlab MAGNUS Metal Desk",
+                "Secretlab Lumbar Pillow Pro"
+              ]
+            },
+            {
+              "name": "ThunderX3",
+              "models": [
+                "Cadeira ThunderX3 TC5",
+                "Cadeira ThunderX3 TC3",
+                "Cadeira ThunderX3 EC3",
+                "Cadeira ThunderX3 YC3",
+                "Cadeira ThunderX3 BC3",
+                "Cadeira ThunderX3 EAZE Loft",
+                "Cadeira ThunderX3 CORE Loft",
+                "Cadeira ThunderX3 XTC-Mesh",
+                "Mesa Gamer ThunderX3 ED7",
+                "Mesa Gamer ThunderX3 ED3"
+              ]
+            },
+            {
+              "name": "Noblechairs",
+              "models": [
+                "Noblechairs HERO Series Black Edition",
+                "Noblechairs HERO Series Real Leather",
+                "Noblechairs EPIC Series Black Edition",
+                "Noblechairs EPIC Series Mercedes-AMG",
+                "Noblechairs ICON Series Black Edition",
+                "Noblechairs ICON Series Real Leather",
+                "Noblechairs LEGEND Series",
+                "Noblechairs Footrest",
+                "Noblechairs Pillow Set",
+                "Noblechairs Memory Foam Pillow"
+              ]
+            },
+            {
+              "name": "Corsair",
+              "models": [
+                "Cadeira Corsair TC100 Relaxed",
+                "Cadeira Corsair T3 Rush",
+                "Cadeira Corsair TC200",
+                "Cadeira Corsair TC60 Fabric",
+                "Cadeira Corsair TC70 Remix",
+                "Cadeira Corsair T2 Road Warrior",
+                "Cadeira Corsair T1 Race",
+                "Mesa Gamer Corsair Platform:6"
+              ]
+            },
+            {
+              "name": "Razer",
+              "models": [
+                "Cadeira Razer Iskur V2",
+                "Cadeira Razer Iskur XL",
+                "Cadeira Razer Iskur Fabric",
+                "Cadeira Razer Iskur Black",
+                "Cadeira Razer Enki Pro",
+                "Cadeira Razer Enki",
+                "Cadeira Razer Enki X",
+                "Cadeira Razer Fujin Pro",
+                "Cadeira Razer Fujin",
+                "Almofada de Cabeça Razer"
+              ]
+            },
+            {
+              "name": "Herman Miller",
+              "models": [
+                "Cadeira Herman Miller Embody Gaming",
+                "Cadeira Herman Miller Aeron Gaming",
+                "Cadeira Herman Miller Sayl Gaming",
+                "Cadeira Herman Miller Vantum Gaming",
+                "Mesa Herman Miller Motia Gaming",
+                "Mesa Herman Miller Nevi Gaming",
+                "Braço de Monitor Ollin"
+              ]
+            },
+            {
+              "name": "Cougar",
+              "models": [
+                "Cadeira Cougar Armor Titan Pro",
+                "Cadeira Cougar Armor S Royal",
+                "Cadeira Cougar Armor One",
+                "Cadeira Cougar Armor PRO",
+                "Cadeira Cougar Fusion SF",
+                "Cadeira Cougar Explore S",
+                "Cadeira Cougar Ranger (Sofá)",
+                "Cadeira Cougar Argo (Ergonômica)",
+                "Mesa Gamer Cougar Mars Pro 150",
+                "Mesa Gamer Cougar Mars 120"
+              ]
+            },
+            {
+              "name": "Elements",
+              "models": [
+                "Cadeira Elements Magna",
+                "Cadeira Elements Lunari",
+                "Cadeira Elements Astra",
+                "Cadeira Elements Arkan",
+                "Cadeira Elements Veda",
+                "Cadeira Elements Nemesis",
+                "Cadeira Elements Sisyphus",
+                "Mesa Elements Alva"
+              ]
+            },
+            {
+              "name": "Pichau",
+              "models": [
+                "Cadeira Pichau Omega S",
+                "Cadeira Pichau Omega L",
+                "Cadeira Pichau Nova",
+                "Cadeira Pichau Donek",
+                "Cadeira Pichau Fantine",
+                "Cadeira Pichau Tyr",
+                "Cadeira Pichau Beholder",
+                "Mesa Pichau Gaming Karambit"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Tablets & E-readers",
+          "brands": [
+            {
+              "name": "Apple",
+              "models": [
+                "iPad Pro 12.9\" (M2)",
+                "iPad Pro 11\" (M2)",
+                "iPad Air 13\" (M2)",
+                "iPad Air 11\" (M2)",
+                "iPad (10th Gen)",
+                "iPad (9th Gen)",
+                "iPad mini (6th Gen)",
+                "Apple Pencil (2nd Gen)",
+                "Apple Pencil (USB-C)",
+                "Magic Keyboard for iPad"
+              ]
+            },
+            {
+              "name": "Samsung",
+              "models": [
+                "Galaxy Tab S9 Ultra",
+                "Galaxy Tab S9 Plus",
+                "Galaxy Tab S9",
+                "Galaxy Tab S9 FE Plus",
+                "Galaxy Tab S9 FE",
+                "Galaxy Tab S8 Ultra",
+                "Galaxy Tab A9 Plus",
+                "Galaxy Tab A9",
+                "Galaxy Tab Active4 Pro",
+                "S Pen Creator Edition"
+              ]
+            },
+            {
+              "name": "Amazon (Kindle)",
+              "models": [
+                "Kindle Scribe 64GB",
+                "Kindle Scribe 32GB",
+                "Kindle Oasis 32GB",
+                "Kindle Oasis 8GB",
+                "Kindle Paperwhite Signature Edition",
+                "Kindle Paperwhite (11th Gen)",
+                "Kindle (11th Gen)",
+                "Kindle Kids Edition",
+                "Kindle Paperwhite Kids"
+              ]
+            },
+            {
+              "name": "Xiaomi",
+              "models": [
+                "Xiaomi Pad 6S Pro 12.4",
+                "Xiaomi Pad 6",
+                "Xiaomi Pad 5",
+                "Redmi Pad SE",
+                "Redmi Pad",
+                "Xiaomi Smart Pen (2nd Gen)",
+                "Xiaomi Pad Keyboard"
+              ]
+            },
+            {
+              "name": "Lenovo",
+              "models": [
+                "Lenovo Tab Extreme",
+                "Lenovo Tab P12",
+                "Lenovo Tab P11 Pro Gen 2",
+                "Lenovo Tab P11 Gen 2",
+                "Lenovo Tab M10 Plus Gen 3",
+                "Lenovo Tab M9",
+                "Lenovo Smart Paper",
+                "Lenovo Precision Pen 3"
+              ]
+            },
+            {
+              "name": "Microsoft",
+              "models": [
+                "Surface Pro 9",
+                "Surface Pro 8",
+                "Surface Go 4",
+                "Surface Go 3",
+                "Surface Slim Pen 2",
+                "Surface Pro Signature Keyboard"
+              ]
+            },
+            {
+              "name": "Huawei",
+              "models": [
+                "Huawei MatePad Pro 13.2",
+                "Huawei MatePad Pro 11",
+                "Huawei MatePad Air",
+                "Huawei MatePad 11.5",
+                "Huawei MatePad SE",
+                "Huawei MatePad Paper",
+                "Huawei M-Pencil (3rd Gen)"
+              ]
+            },
+            {
+              "name": "Kobo",
+              "models": [
+                "Kobo Elipsa 2E",
+                "Kobo Sage",
+                "Kobo Libra 2",
+                "Kobo Clara 2E",
+                "Kobo Nia",
+                "Kobo Stylus 2"
+              ]
+            },
+            {
+              "name": "Remarkable",
+              "models": [
+                "reMarkable 2",
+                "Marker Plus",
+                "Marker",
+                "Book Folio"
+              ]
+            },
+            {
+              "name": "Wacom",
+              "models": [
+                "Wacom One 13 Touch",
+                "Wacom One 12",
+                "Wacom Cintiq 16",
+                "Wacom Intuos Pro Medium",
+                "Wacom Intuos Small Bluetooth"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Smartwatches & Wearables",
+          "brands": [
+            {
+              "name": "Apple",
+              "models": [
+                "Apple Watch Ultra 2",
+                "Apple Watch Ultra",
+                "Apple Watch Series 9 (45mm)",
+                "Apple Watch Series 9 (41mm)",
+                "Apple Watch Series 8",
+                "Apple Watch SE (2nd Gen)",
+                "Pulseira Esportiva Apple",
+                "Pulseira Loop Alpina",
+                "Pulseira Loop Trail",
+                "Pulseira Oceano"
+              ]
+            },
+            {
+              "name": "Samsung",
+              "models": [
+                "Galaxy Watch 6 Classic (47mm)",
+                "Galaxy Watch 6 Classic (43mm)",
+                "Galaxy Watch 6 (44mm)",
+                "Galaxy Watch 6 (40mm)",
+                "Galaxy Watch 5 Pro",
+                "Galaxy Watch 5",
+                "Galaxy Watch 4 Classic",
+                "Galaxy Fit 3",
+                "Pulseira Híbrida de Couro Eco",
+                "Pulseira Esportiva Extreme"
+              ]
+            },
+            {
+              "name": "Garmin",
+              "models": [
+                "Garmin Fenix 7X Pro Sapphire Solar",
+                "Garmin Fenix 7 Pro Sapphire Solar",
+                "Garmin Epix Pro (Gen 2)",
+                "Garmin Forerunner 965",
+                "Garmin Forerunner 265",
+                "Garmin Venu 3",
+                "Garmin Instinct 2X Solar",
+                "Garmin Enduro 2",
+                "Garmin Lily 2",
+                "Garmin Vivoactive 5"
+              ]
+            },
+            {
+              "name": "Xiaomi / Amazfit",
+              "models": [
+                "Xiaomi Watch 2 Pro",
+                "Xiaomi Watch S3",
+                "Xiaomi Smart Band 8 Pro",
+                "Xiaomi Smart Band 8",
+                "Amazfit Balance",
+                "Amazfit Cheetah Pro",
+                "Amazfit T-Rex Ultra",
+                "Amazfit GTR 4",
+                "Amazfit GTS 4",
+                "Amazfit Bip 5"
+              ]
+            },
+            {
+              "name": "Huawei",
+              "models": [
+                "Huawei Watch Ultimate Design",
+                "Huawei Watch Ultimate",
+                "Huawei Watch 4 Pro",
+                "Huawei Watch GT 4 (46mm)",
+                "Huawei Watch GT 4 (41mm)",
+                "Huawei Watch Fit 3",
+                "Huawei Band 9",
+                "Huawei Watch D (Blood Pressure)",
+                "Huawei Watch Buds"
+              ]
+            },
+            {
+              "name": "Fitbit",
+              "models": [
+                "Fitbit Charge 6",
+                "Fitbit Sense 2",
+                "Fitbit Versa 4",
+                "Fitbit Inspire 3",
+                "Fitbit Luxe",
+                "Fitbit Ace 3"
+              ]
+            },
+            {
+              "name": "Polar",
+              "models": [
+                "Polar Vantage V3",
+                "Polar Grit X Pro",
+                "Polar Pacer Pro",
+                "Polar Ignite 3",
+                "Polar Unite",
+                "Polar H10 (Heart Rate Sensor)"
+              ]
+            },
+            {
+              "name": "Suunto",
+              "models": [
+                "Suunto Race",
+                "Suunto Vertical",
+                "Suunto 9 Peak Pro",
+                "Suunto 5 Peak",
+                "Suunto Wing (Headphones)"
+              ]
+            },
+            {
+              "name": "Coros",
+              "models": [
+                "Coros Vertix 2",
+                "Coros Apex 2 Pro",
+                "Coros Apex 2",
+                "Coros Pace 3"
+              ]
+            },
+            {
+              "name": "Google",
+              "models": [
+                "Google Pixel Watch 2",
+                "Google Pixel Watch",
+                "Pulseira Active Pixel Watch",
+                "Pulseira Crafted Leather Pixel Watch"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Caixas de Som & Soundbars",
+          "brands": [
+            {
+              "name": "JBL",
+              "models": [
+                "JBL Boombox 3 Wi-Fi",
+                "JBL PartyBox Ultimate",
+                "JBL PartyBox 310",
+                "JBL Xtreme 3",
+                "JBL Charge 5",
+                "JBL Flip 6",
+                "JBL Clip 4",
+                "JBL Go 3",
+                "JBL Bar 1300X (Soundbar)",
+                "JBL Bar 1000 (Soundbar)",
+                "JBL Bar 800 (Soundbar)",
+                "JBL Bar 500 (Soundbar)",
+                "JBL Cinema SB190"
+              ]
+            },
+            {
+              "name": "Sony",
+              "models": [
+                "Sony SRS-XV900 Party Speaker",
+                "Sony SRS-XG500",
+                "Sony SRS-XG300",
+                "Sony SRS-XE300",
+                "Sony SRS-XB100",
+                "Sony HT-A7000 Soundbar",
+                "Sony HT-A5000 Soundbar",
+                "Sony HT-A3000 Soundbar",
+                "Sony HT-S400 Soundbar",
+                "Sony SA-SW5 (Subwoofer)"
+              ]
+            },
+            {
+              "name": "Logitech",
+              "models": [
+                "Logitech Z906 5.1 Surround",
+                "Logitech Z607 5.1 Surround",
+                "Logitech Z623 2.1",
+                "Logitech Z407 2.1 Bluetooth",
+                "Logitech Z333 2.1",
+                "Logitech Z207 Bluetooth",
+                "Ultimate Ears HYPERBOOM",
+                "Ultimate Ears EPICBOOM",
+                "Ultimate Ears MEGABOOM 3",
+                "Ultimate Ears WONDERBOOM 3"
+              ]
+            },
+            {
+              "name": "Edifier",
+              "models": [
+                "Edifier S3000MKII",
+                "Edifier S1000MKII",
+                "Edifier R2850DB",
+                "Edifier R1700BTs",
+                "Edifier R1280DBs",
+                "Edifier MR4 (Monitor)",
+                "Edifier G5000 (Gamer)",
+                "Edifier G2000 (Gamer)",
+                "Edifier QD35 (Gamer)",
+                "Edifier MP230 (Portable)"
+              ]
+            },
+            {
+              "name": "LG",
+              "models": [
+                "LG XBOOM XL7S",
+                "LG XBOOM RNC9",
+                "LG XBOOM Go XG9",
+                "LG XBOOM Go XG7",
+                "LG Sound Bar S95QR",
+                "LG Sound Bar SC9S",
+                "LG Sound Bar S80QY",
+                "LG Sound Bar S40Q"
+              ]
+            },
+            {
+              "name": "Samsung",
+              "models": [
+                "Samsung Sound Tower MX-ST90B",
+                "Samsung Sound Tower MX-ST50B",
+                "Samsung Soundbar HW-Q990C",
+                "Samsung Soundbar HW-Q930C",
+                "Samsung Soundbar HW-Q800C",
+                "Samsung Soundbar HW-S800B (Slim)",
+                "Samsung Soundbar HW-B550"
+              ]
+            },
+            {
+              "name": "Bose",
+              "models": [
+                "Bose Smart Ultra Soundbar",
+                "Bose Smart Soundbar 600",
+                "Bose TV Speaker",
+                "Bose SoundLink Revolve+ II",
+                "Bose SoundLink Flex",
+                "Bose SoundLink Micro",
+                "Bose S1 Pro+ System"
+              ]
+            },
+            {
+              "name": "Sonos",
+              "models": [
+                "Sonos Arc",
+                "Sonos Beam (Gen 2)",
+                "Sonos Ray",
+                "Sonos Sub (Gen 3)",
+                "Sonos Sub Mini",
+                "Sonos Era 300",
+                "Sonos Era 100",
+                "Sonos Move 2",
+                "Sonos Roam"
+              ]
+            },
+            {
+              "name": "Razer",
+              "models": [
+                "Razer Leviathan V2 Pro",
+                "Razer Leviathan V2",
+                "Razer Leviathan V2 X",
+                "Razer Nommo V2 Pro",
+                "Razer Nommo V2",
+                "Razer Nommo V2 X"
+              ]
+            },
+            {
+              "name": "Anker",
+              "models": [
+                "Soundcore Motion X600",
+                "Soundcore Motion+ 30W",
+                "Soundcore Motion Boom Plus",
+                "Soundcore Flare 2",
+                "Soundcore Rave Neo 2"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Drones & Câmeras",
+          "brands": [
+            {
+              "name": "DJI",
+              "models": [
+                "DJI Mavic 3 Pro Cine",
+                "DJI Mavic 3 Pro",
+                "DJI Mavic 3 Classic",
+                "DJI Air 3",
+                "DJI Mini 4 Pro",
+                "DJI Mini 3 Pro",
+                "DJI Mini 2 SE",
+                "DJI Avata 2 (FPV)",
+                "DJI Inspire 3",
+                "DJI Osmo Pocket 3",
+                "DJI Osmo Action 4",
+                "DJI RS 4 Pro (Gimbal)",
+                "DJI RS 4 (Gimbal)",
+                "DJI Mic 2"
+              ]
+            },
+            {
+              "name": "GoPro",
+              "models": [
+                "GoPro HERO12 Black",
+                "GoPro HERO11 Black",
+                "GoPro HERO11 Black Mini",
+                "GoPro HERO10 Black",
+                "GoPro MAX (360)",
+                "GoPro Media Mod",
+                "GoPro Light Mod",
+                "GoPro Volta (Grip)",
+                "GoPro Enduro Battery",
+                "GoPro 3-Way 2.0"
+              ]
+            },
+            {
+              "name": "Insta360",
+              "models": [
+                "Insta360 X4",
+                "Insta360 X3",
+                "Insta360 Ace Pro",
+                "Insta360 Ace",
+                "Insta360 GO 3",
+                "Insta360 Flow (Gimbal)",
+                "Insta360 Link (Webcam)",
+                "Insta360 ONE RS 1-Inch 360",
+                "Insta360 Invisible Selfie Stick"
+              ]
+            },
+            {
+              "name": "Canon",
+              "models": [
+                "Canon EOS R5",
+                "Canon EOS R6 Mark II",
+                "Canon EOS R8",
+                "Canon EOS R7",
+                "Canon EOS R50",
+                "Canon EOS R100",
+                "Canon PowerShot V10",
+                "Canon RF 24-70mm f/2.8L IS USM",
+                "Canon RF 50mm f/1.8 STM"
+              ]
+            },
+            {
+              "name": "Sony",
+              "models": [
+                "Sony Alpha a7R V",
+                "Sony Alpha a7 IV",
+                "Sony Alpha a7C II",
+                "Sony Alpha a6700",
+                "Sony ZV-E1 (Vlog)",
+                "Sony ZV-E10 (Vlog)",
+                "Sony ZV-1 II (Vlog)",
+                "Sony FX3 (Cinema)",
+                "Sony FX30 (Cinema)"
+              ]
+            },
+            {
+              "name": "Nikon",
+              "models": [
+                "Nikon Z8",
+                "Nikon Zf",
+                "Nikon Z6 II",
+                "Nikon Z5",
+                "Nikon Z30",
+                "Nikon Z fc",
+                "Nikon Coolpix P1000",
+                "Nikkor Z 24-70mm f/2.8 S"
+              ]
+            },
+            {
+              "name": "Fujifilm",
+              "models": [
+                "Fujifilm X100VI",
+                "Fujifilm X-T5",
+                "Fujifilm X-H2S",
+                "Fujifilm X-S20",
+                "Fujifilm GFX100 II",
+                "Fujifilm Instax Mini 12",
+                "Fujifilm Instax Mini Evo"
+              ]
+            },
+            {
+              "name": "Panasonic",
+              "models": [
+                "Panasonic Lumix S5IIX",
+                "Panasonic Lumix S5II",
+                "Panasonic Lumix GH6",
+                "Panasonic Lumix GH5M2",
+                "Panasonic Lumix G9II"
+              ]
+            },
+            {
+              "name": "Blackmagic",
+              "models": [
+                "Blackmagic Pocket Cinema Camera 6K Pro",
+                "Blackmagic Pocket Cinema Camera 6K G2",
+                "Blackmagic Pocket Cinema Camera 4K",
+                "Blackmagic URSA Mini Pro 12K"
+              ]
+            },
+            {
+              "name": "Polaroid",
+              "models": [
+                "Polaroid Now+ Gen 2",
+                "Polaroid Now Gen 2",
+                "Polaroid Go Gen 2",
+                "Polaroid I-2",
+                "Polaroid Film Color i-Type"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Rede & Roteadores",
+          "brands": [
+            {
+              "name": "TP-Link",
+              "models": [
+                "TP-Link Archer BE800 (Wi-Fi 7)",
+                "TP-Link Archer AXE75 (Wi-Fi 6E)",
+                "TP-Link Archer AX73 (Wi-Fi 6)",
+                "TP-Link Deco BE85 Mesh (Wi-Fi 7)",
+                "TP-Link Deco XE75 Mesh (Wi-Fi 6E)",
+                "TP-Link Deco X50 Mesh (Wi-Fi 6)",
+                "TP-Link Archer GX90 (Gamer)",
+                "TP-Link RE705X Range Extender",
+                "TP-Link TL-SG108 Switch",
+                "TP-Link UE306 USB Adapter"
+              ]
+            },
+            {
+              "name": "ASUS",
+              "models": [
+                "ROG Rapture GT-BE98 (Wi-Fi 7)",
+                "ROG Rapture GT-AXE16000",
+                "ROG Rapture GT-AX11000 Pro",
+                "ROG Rapture GT6 Mesh",
+                "ASUS RT-AX88U Pro",
+                "ASUS RT-AX86U Pro",
+                "ASUS ZenWiFi Pro XT12 Mesh",
+                "ASUS ZenWiFi XT9 Mesh",
+                "TUF Gaming AX6000",
+                "TUF Gaming AX4200"
+              ]
+            },
+            {
+              "name": "Netgear",
+              "models": [
+                "Netgear Nighthawk RS700S (Wi-Fi 7)",
+                "Netgear Nighthawk RAXE500",
+                "Netgear Nighthawk RAX200",
+                "Netgear Orbi 970 Series Mesh",
+                "Netgear Orbi 960 Series Mesh",
+                "Netgear Orbi 860 Series Mesh",
+                "Netgear Nighthawk M6 Pro (Mobile)",
+                "Netgear GS308 Switch"
+              ]
+            },
+            {
+              "name": "D-Link",
+              "models": [
+                "D-Link Eagle Pro AI M32 Mesh",
+                "D-Link Eagle Pro AI R15",
+                "D-Link DIR-X5460",
+                "D-Link DIR-X1860",
+                "D-Link DAP-X1860 Extender",
+                "D-Link DWR-2101 5G Wi-Fi"
+              ]
+            },
+            {
+              "name": "Ubiquiti (UniFi)",
+              "models": [
+                "UniFi Dream Machine Pro",
+                "UniFi Dream Router",
+                "UniFi U7 Pro (Wi-Fi 7 AP)",
+                "UniFi U6 Enterprise AP",
+                "UniFi U6 Pro AP",
+                "UniFi U6 Lite AP",
+                "UniFi Switch Lite 8 PoE",
+                "UniFi Switch Lite 16 PoE",
+                "AmpliFi Alien Mesh"
+              ]
+            },
+            {
+              "name": "Huawei",
+              "models": [
+                "Huawei WiFi BE3 Pro (Wi-Fi 7)",
+                "Huawei WiFi AX3 Pro",
+                "Huawei WiFi Mesh 7",
+                "Huawei WiFi Mesh 3",
+                "Huawei 5G CPE Pro 2"
+              ]
+            },
+            {
+              "name": "Intelbras",
+              "models": [
+                "Intelbras GX 3000 (Gamer)",
+                "Intelbras Twibi Force AX (Mesh)",
+                "Intelbras RX 3000 (Wi-Fi 6)",
+                "Intelbras RX 1500 (Wi-Fi 6)",
+                "Intelbras Action RF 1200",
+                "Intelbras Switch SF 800 Q+"
+              ]
+            },
+            {
+              "name": "Google",
+              "models": [
+                "Google Nest WiFi Pro (Wi-Fi 6E)",
+                "Google Nest WiFi Router",
+                "Google Nest WiFi Point"
+              ]
+            },
+            {
+              "name": "Amazon (Eero)",
+              "models": [
+                "Amazon eero Max 7 Mesh",
+                "Amazon eero Pro 6E Mesh",
+                "Amazon eero 6+ Mesh",
+                "Amazon eero 6 Mesh",
+                "Amazon eero PoE Gateway"
+              ]
+            },
+            {
+              "name": "MikroTik",
+              "models": [
+                "MikroTik hAP ax3",
+                "MikroTik hAP ax2",
+                "MikroTik Chateau 5G ax",
+                "MikroTik Audience",
+                "MikroTik RB5009"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Cabos & Adaptadores",
+          "brands": [
+            {
+              "name": "Ugreen",
+              "models": [
+                "Ugreen Nexode 140W GaN Charger",
+                "Ugreen Nexode 100W GaN Charger",
+                "Ugreen Nexode 65W GaN Charger",
+                "Ugreen USB-C to HDMI 2.1 Cable",
+                "Ugreen USB-C Hub 9-in-1",
+                "Ugreen Ethernet Cable Cat 8",
+                "Ugreen Audio Cable 3.5mm",
+                "Ugreen USB-C Cable 100W",
+                "Ugreen MagFlow Qi2 Charger",
+                "Ugreen DigiNest Pro Power Strip"
+              ]
+            },
+            {
+              "name": "Anker",
+              "models": [
+                "Anker Prime 240W GaN Charger",
+                "Anker 737 Power Bank (PowerCore 24K)",
+                "Anker 735 Charger (GaNPrime 65W)",
+                "Anker 622 Magnetic Battery (MagGo)",
+                "Anker 511 Charger (Nano 3)",
+                "Anker PowerLine III Flow USB-C",
+                "Anker PowerExpand 8-in-1 Hub",
+                "Anker 313 Wireless Charger",
+                "Anker 610 Magnetic Phone Grip"
+              ]
+            },
+            {
+              "name": "Baseus",
+              "models": [
+                "Baseus Blade Laptop Power Bank 100W",
+                "Baseus GaN5 Pro 140W Charger",
+                "Baseus GaN5 Pro 65W Charger",
+                "Baseus Metal Gleam Series 8-in-1 Hub",
+                "Baseus Cafule Cable USB-C",
+                "Baseus High Definition Series HDMI 2.1",
+                "Baseus Bowie H1 Headphones",
+                "Baseus Magnetic Wireless Power Bank",
+                "Baseus Car Charger 160W"
+              ]
+            },
+            {
+              "name": "Belkin",
+              "models": [
+                "Belkin BoostCharge Pro 3-in-1 MagSafe",
+                "Belkin BoostCharge Pro 140W GaN",
+                "Belkin BoostCharge Pro Power Bank",
+                "Belkin Connect USB-C 11-in-1 Dock",
+                "Belkin UltraGlass 2 Screen Protector",
+                "Belkin Thunderbolt 4 Cable",
+                "Belkin Audio Adapter 3.5mm + Charge"
+              ]
+            },
+            {
+              "name": "Samsung",
+              "models": [
+                "Samsung Trio Power Adapter 65W",
+                "Samsung 45W Power Adapter",
+                "Samsung 25W Power Adapter",
+                "Samsung Wireless Charger Duo",
+                "Samsung Battery Pack 10000mAh",
+                "Samsung USB-C to 3.5mm Adapter"
+              ]
+            },
+            {
+              "name": "Apple",
+              "models": [
+                "Apple 140W USB-C Power Adapter",
+                "Apple 96W USB-C Power Adapter",
+                "Apple 70W USB-C Power Adapter",
+                "Apple 35W Dual USB-C Port Compact",
+                "Apple 20W USB-C Power Adapter",
+                "Apple MagSafe Charger",
+                "Apple MagSafe Battery Pack",
+                "Apple Thunderbolt 4 Cable (1.8m)",
+                "Apple USB-C Digital AV Multiport Adapter",
+                "Apple Lightning to USB Cable"
+              ]
+            },
+            {
+              "name": "Intelbras",
+              "models": [
+                "Fonte Carregador USB-C 20W",
+                "Cabo USB-C para Lightning",
+                "Cabo USB-A para USB-C",
+                "Filtro de Linha 5 Tomadas",
+                "Protetor Eletrônico Smart"
+              ]
+            },
+            {
+              "name": "Elgato",
+              "models": [
+                "Elgato Thunderbolt 3 Dock",
+                "Elgato HDMI Cable 2.1",
+                "Elgato Chat Link Pro"
+              ]
+            },
+            {
+              "name": "HyperX",
+              "models": [
+                "HyperX Coiled Cable (Keyboard)",
+                "HyperX ChargePlay Duo (PS5)",
+                "HyperX ChargePlay Quad (Switch)"
+              ]
+            },
+            {
+              "name": "Razer",
+              "models": [
+                "Razer Thunderbolt 4 Dock Chroma",
+                "Razer USB-C GaN Charger 130W",
+                "Razer Laptop Stand Chroma V2"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Realidade Virtual (VR)",
+          "brands": [
+            {
+              "name": "Meta (Oculus)",
+              "models": [
+                "Meta Quest 3 512GB",
+                "Meta Quest 3 128GB",
+                "Meta Quest Pro",
+                "Meta Quest 2 256GB",
+                "Meta Quest 2 128GB",
+                "Meta Quest Link Cable",
+                "Meta Quest 3 Elite Strap",
+                "Meta Quest 3 Charging Dock",
+                "Meta Quest 2 Carrying Case",
+                "Meta Quest 2 Fit Pack"
+              ]
+            },
+            {
+              "name": "Sony",
+              "models": [
+                "PlayStation VR2 Horizon Bundle",
+                "PlayStation VR2 Headset",
+                "PlayStation VR2 Sense Controllers",
+                "PlayStation VR2 PC Adapter",
+                "PlayStation VR Worlds Bundle (PS4)",
+                "PlayStation VR Move Controllers"
+              ]
+            },
+            {
+              "name": "Valve",
+              "models": [
+                "Valve Index VR Kit",
+                "Valve Index Headset",
+                "Valve Index Controllers",
+                "Valve Index Base Station 2.0",
+                "Valve Index Face Gasket"
+              ]
+            },
+            {
+              "name": "HTC",
+              "models": [
+                "HTC Vive XR Elite",
+                "HTC Vive Pro 2 Full Kit",
+                "HTC Vive Pro 2 Headset",
+                "HTC Vive Focus 3",
+                "HTC Vive Flow",
+                "HTC Vive Cosmos Elite",
+                "HTC Vive Tracker 3.0",
+                "HTC Vive Facial Tracker"
+              ]
+            },
+            {
+              "name": "Pico",
+              "models": [
+                "Pico 4 Enterprise",
+                "Pico 4 256GB",
+                "Pico 4 128GB",
+                "Pico Neo 3 Link",
+                "Pico Motion Tracker"
+              ]
+            },
+            {
+              "name": "Bigscreen",
+              "models": [
+                "Bigscreen Beyond Headset",
+                "Bigscreen Audio Strap",
+                "Bigscreen Custom Cushion"
+              ]
+            },
+            {
+              "name": "Varjo",
+              "models": [
+                "Varjo XR-4 Focal Edition",
+                "Varjo XR-4",
+                "Varjo Aero",
+                "Varjo XR-3"
+              ]
+            },
+            {
+              "name": "Pimax",
+              "models": [
+                "Pimax Crystal",
+                "Pimax 8K X",
+                "Pimax 5K Super",
+                "Pimax Sword Controller"
+              ]
+            },
+            {
+              "name": "HP",
+              "models": [
+                "HP Reverb G2 VR Headset",
+                "HP Reverb G2 Omnicept Edition"
+              ]
+            },
+            {
+              "name": "XREAL",
+              "models": [
+                "XREAL Air 2 Pro AR Glasses",
+                "XREAL Air 2 AR Glasses",
+                "XREAL Beam (Adapter)",
+                "XREAL Adapter"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Action Figures & Colecionáveis",
+          "brands": [
+            {
+              "name": "Funko",
+              "models": [
+                "Funko Pop! Star Wars: Darth Vader",
+                "Funko Pop! Marvel: Spider-Man",
+                "Funko Pop! Pokemon: Charizard",
+                "Funko Pop! Harry Potter",
+                "Funko Pop! Stranger Things",
+                "Funko Pop! One Piece: Luffy",
+                "Funko Pop! Naruto Shippuden",
+                "Funko Pop! Dragon Ball Z: Goku",
+                "Funko Pop! My Hero Academia",
+                "Funko Pop! Disney: Stitch",
+                "Funko Soda Figures",
+                "Funko Gold Premium Figures"
+              ]
+            },
+            {
+              "name": "Bandai Banpresto",
+              "models": [
+                "SH Figuarts Goku Super Saiyan",
+                "SH Figuarts Vegeta",
+                "SH Figuarts Naruto Uzumaki",
+                "SH Figuarts Monkey D. Luffy",
+                "Banpresto Dragon Ball Z Grandista",
+                "Banpresto One Piece King of Artist",
+                "Banpresto Jujutsu Kaisen Vibration Stars",
+                "Banpresto Demon Slayer Jukon no Kata",
+                "Banpresto Chainsaw Man",
+                "Tamagotchi Uni"
+              ]
+            },
+            {
+              "name": "Hasbro",
+              "models": [
+                "Marvel Legends Series Spider-Man",
+                "Marvel Legends Series Iron Man",
+                "Marvel Legends Series Wolverine",
+                "Star Wars The Black Series Darth Vader",
+                "Star Wars The Black Series Mandalorian",
+                "Transformers Studio Series Optimus Prime",
+                "Transformers Studio Series Bumblebee",
+                "G.I. Joe Classified Series Snake Eyes",
+                "Power Rangers Lightning Collection",
+                "Beyblade Burst Pro Series"
+              ]
+            },
+            {
+              "name": "McFarlane Toys",
+              "models": [
+                "DC Multiverse Batman",
+                "DC Multiverse Superman",
+                "DC Multiverse The Joker",
+                "DC Multiverse Flash",
+                "Spawn Action Figure",
+                "Dune Action Figures",
+                "Warhammer 40k Figures",
+                "Avatar: The Last Airbender Figures",
+                "Mortal Kombat Figures",
+                "Call of Duty Figures"
+              ]
+            },
+            {
+              "name": "Iron Studios",
+              "models": [
+                "Iron Studios Batman Art Scale 1/10",
+                "Iron Studios Spider-Man Art Scale 1/10",
+                "Iron Studios Iron Man Art Scale 1/10",
+                "Iron Studios Thor Art Scale 1/10",
+                "Iron Studios Captain America Art Scale 1/10",
+                "Iron Studios Harry Potter Art Scale 1/10",
+                "Iron Studios Lord of the Rings Art Scale 1/10",
+                "Iron Studios Star Wars Art Scale 1/10",
+                "Iron Studios Jurassic Park Art Scale 1/10",
+                "Iron Studios X-Men Art Scale 1/10"
+              ]
+            },
+            {
+              "name": "Good Smile Company",
+              "models": [
+                "Nendoroid Link (Zelda)",
+                "Nendoroid Mario",
+                "Nendoroid Kirby",
+                "Nendoroid Hatsune Miku",
+                "Nendoroid 2B (NieR)",
+                "Figma Link",
+                "Figma Samus Aran",
+                "Pop Up Parade Series"
+              ]
+            },
+            {
+              "name": "Kotobukiya",
+              "models": [
+                "ARTFX J Attack on Titan",
+                "ARTFX J My Hero Academia",
+                "ARTFX J Jujutsu Kaisen",
+                "ARTFX Star Wars",
+                "Bishoujo Series Horror",
+                "Bishoujo Series Marvel",
+                "Bishoujo Series DC"
+              ]
+            },
+            {
+              "name": "NECA",
+              "models": [
+                "NECA Ultimate Chucky",
+                "NECA Ultimate Pennywise",
+                "NECA Ultimate Jason Voorhees",
+                "NECA Ultimate Michael Myers",
+                "NECA Alien",
+                "NECA Predator",
+                "NECA Terminator",
+                "NECA TMNT (Tartarugas Ninja)",
+                "NECA Gargoyles",
+                "NECA Universal Monsters"
+              ]
+            },
+            {
+              "name": "LEGO",
+              "models": [
+                "LEGO Star Wars Millennium Falcon",
+                "LEGO Harry Potter Hogwarts Castle",
+                "LEGO Marvel Avengers Tower",
+                "LEGO Super Mario The Mighty Bowser",
+                "LEGO Nintendo Entertainment System",
+                "LEGO Atari 2600",
+                "LEGO Pac-Man Arcade",
+                "LEGO Technic Ferrari Daytona SP3",
+                "LEGO Icons Concorde",
+                "LEGO Architecture Series"
+              ]
+            },
+            {
+              "name": "Mattel",
+              "models": [
+                "Masters of the Universe Origins",
+                "Jurassic World Hammond Collection",
+                "WWE Elite Collection",
+                "Hot Wheels Premium",
+                "Monster High Skullector"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Smart Home & Automação",
+          "brands": [
+            {
+              "name": "Amazon (Echo/Alexa)",
+              "models": [
+                "Echo Show 15",
+                "Echo Show 10 (3rd Gen)",
+                "Echo Show 8 (3rd Gen)",
+                "Echo Show 5 (3rd Gen)",
+                "Echo Studio",
+                "Echo (4th Gen)",
+                "Echo Dot (5th Gen) com Relógio",
+                "Echo Dot (5th Gen)",
+                "Echo Pop",
+                "Echo Auto (2nd Gen)",
+                "Amazon Smart Plug",
+                "Ring Video Doorbell 4",
+                "Ring Stick Up Cam Battery",
+                "Blink Mini Pan-Tilt"
+              ]
+            },
+            {
+              "name": "Google (Nest)",
+              "models": [
+                "Nest Hub Max",
+                "Nest Hub (2nd Gen)",
+                "Nest Audio",
+                "Nest Mini (2nd Gen)",
+                "Nest Doorbell (Battery)",
+                "Nest Cam (Indoor/Outdoor)",
+                "Nest Cam (Indoor)",
+                "Nest Thermostat",
+                "Chromecast with Google TV (4K)",
+                "Chromecast with Google TV (HD)"
+              ]
+            },
+            {
+              "name": "Philips Hue",
+              "models": [
+                "Philips Hue Starter Kit E27",
+                "Philips Hue Go Portable Light",
+                "Philips Hue Play Light Bar (Double)",
+                "Philips Hue Lightstrip Plus V4",
+                "Philips Hue Bridge",
+                "Philips Hue Dimmer Switch",
+                "Philips Hue Motion Sensor",
+                "Philips Hue Signe Gradient Table Lamp",
+                "Philips Hue Gradient Lightstrip TV 65\"",
+                "Philips Hue Sync Box"
+              ]
+            },
+            {
+              "name": "Xiaomi",
+              "models": [
+                "Xiaomi Smart Bulb RGB",
+                "Xiaomi Mi Bedside Lamp 2",
+                "Xiaomi Smart Lightstrip Pro",
+                "Xiaomi Smart Camera C400",
+                "Xiaomi Smart Camera C300",
+                "Xiaomi Smart Camera C200",
+                "Xiaomi Robot Vacuum S10+",
+                "Xiaomi Robot Vacuum E10",
+                "Xiaomi Smart Air Fryer Pro 4L",
+                "Xiaomi Smart Pet Feeder"
+              ]
+            },
+            {
+              "name": "Positivo Casa Inteligente",
+              "models": [
+                "Smart Lâmpada Wi-Fi RGB+",
+                "Smart Plug Wi-Fi 10A",
+                "Smart Controle Universal IR",
+                "Smart Câmera Bot Wi-Fi 360",
+                "Smart Vídeo Porteiro Wi-Fi",
+                "Smart Fechadura Digital",
+                "Smart Interruptor Wi-Fi 3 Teclas",
+                "Smart Fita LED RGB Wi-Fi",
+                "Smart Robô Aspirador Wi-Fi",
+                "Smart Sensor de Abertura"
+              ]
+            },
+            {
+              "name": "Intelbras",
+              "models": [
+                "Câmera Wi-Fi iM3 C (Interna)",
+                "Câmera Wi-Fi iM5 SC (Externa)",
+                "Câmera Wi-Fi iM7 (Full Color)",
+                "Videoporteiro Wi-Fi Allo w3",
+                "Fechadura Digital IFR 7000",
+                "Fechadura Digital IFR 3000",
+                "Lâmpada Inteligente EWS 410",
+                "Interruptor Smart EWS 1003",
+                "Controle Universal IZY Connect",
+                "Sensor de Gás Smart I SS 3001"
+              ]
+            },
+            {
+              "name": "Sonoff",
+              "models": [
+                "Sonoff MINI R4 (Extreme)",
+                "Sonoff Basic R2",
+                "Sonoff POW Elite (Power Meter)",
+                "Sonoff TH Elite (Temp & Hum)",
+                "Sonoff NSPanel Pro",
+                "Sonoff NSPanel",
+                "Sonoff SNZB-02 (Temp Sensor)",
+                "Sonoff SNZB-03 (Motion Sensor)",
+                "Sonoff Zigbee Bridge Pro",
+                "Sonoff iHost Smart Home Hub"
+              ]
+            },
+            {
+              "name": "Tuya",
+              "models": [
+                "Tuya Smart IR Remote",
+                "Tuya Smart Plug Energy Monitor",
+                "Tuya Smart Bulb E27",
+                "Tuya Smart Switch Module",
+                "Tuya Zigbee Gateway Hub",
+                "Tuya Fingerbot Plus",
+                "Tuya Smart Valve Manipulator",
+                "Tuya Smart Water Leak Sensor",
+                "Tuya Smart Smoke Detector",
+                "Tuya Smart Door Sensor"
+              ]
+            },
+            {
+              "name": "Yeelight",
+              "models": [
+                "Yeelight Smart Bulb 1S",
+                "Yeelight Lightstrip 1S",
+                "Yeelight LED Screen Light Bar Pro",
+                "Yeelight Bedside Lamp D2",
+                "Yeelight Arwen Ceiling Light",
+                "Yeelight Cube Smart Lamp",
+                "Yeelight Candela Lamp",
+                "Yeelight Motion Sensor Nightlight"
+              ]
+            },
+            {
+              "name": "Roku",
+              "models": [
+                "Roku Express 4K",
+                "Roku Express",
+                "Roku Streaming Stick 4K",
+                "Roku Streambar"
+              ]
+            }
+          ]
+        }
+      ]
+    }
