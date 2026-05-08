@@ -10,7 +10,7 @@ const PUBLIC_API_PREFIXES = [
   '/api/public/',
   '/api/login/',
   '/api/integrations/whatsapp/',
-  '/api/health/',
+  '/api/health',
 ];
 
 function isPublicApiRoute(pathname: string): boolean {
