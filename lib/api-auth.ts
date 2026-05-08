@@ -83,7 +83,19 @@ function validateOrigin(requestHeaders: Headers): boolean {
 }
 
 export async function checkAuth() {
-  const requestHeaders = await headers();
+  let requestHeaders: Headers;
+  try {
+    requestHeaders = await headers();
+  } catch (e) {
+    if (process.env.NEXT_PHASE === 'phase-production-build') {
+      return {
+        authorized: false,
+        response: NextResponse.json({ error: 'Build time' }, { status: 200 }),
+        user: null,
+      };
+    }
+    throw e;
+  }
 
   // CSRF protection: validate Origin header
   if (!validateOrigin(requestHeaders)) {
