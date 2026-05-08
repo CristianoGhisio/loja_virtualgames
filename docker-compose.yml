@@ -6,13 +6,15 @@ services:
     env_file:
       - .env.production
     environment:
-      POSTGRES_USER: loja_user
-      POSTGRES_PASSWORD: loja_pass
-      POSTGRES_DB: loja_db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
     deploy:
       resources:
         limits:
@@ -22,7 +24,7 @@ services:
           cpus: '0.25'
           memory: 256M
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U loja_user -d loja_db"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -38,35 +40,57 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        DATABASE_URL: postgresql://loja_user:loja_pass@postgres:5432/loja_db
-        OS_APPROVAL_SECRET: str8Q6jsSsi1b6Idn800l9Pp7cSIS3PDqI51aCm2Tms=
+        DATABASE_URL: ${DATABASE_URL}
+        OS_APPROVAL_SECRET: ${OS_APPROVAL_SECRET}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-/api}
     container_name: loja_app
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3000:3000"
+      - "3000:3000"
     depends_on:
       postgres:
         condition: service_healthy
     env_file:
       - .env.production
     environment:
-      POSTGRES_USER: loja_user
-      POSTGRES_PASSWORD: loja_pass
-      POSTGRES_DB: loja_db
-      DATABASE_URL: postgresql://loja_user:loja_pass@postgres:5432/loja_db
-      DB_HOST: postgres
-      DB_PORT: "5432"
-      NODE_ENV: production
-      AUTH_SECRET: tDLbenyP7iIN/sQSyXBTUug/x5AkYMZ925ues/9Ho+w=
-      AUTH_TRUST_HOST: true
-      NEXTAUTH_URL: http://localhost:3000
-      NEXT_PUBLIC_SITE_URL: http://localhost:3000
-      OS_APPROVAL_SECRET: str8Q6jsSsi1b6Idn800l9Pp7cSIS3PDqI51aCm2Tms=
-      INTERNAL_API_URL: http://localhost:3000
+      NODE_ENV: ${NODE_ENV:-production}
+      DATABASE_URL: ${DATABASE_URL}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      AUTH_SECRET: ${AUTH_SECRET}
+      AUTH_TRUST_HOST: ${AUTH_TRUST_HOST:-true}
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+      OS_APPROVAL_SECRET: ${OS_APPROVAL_SECRET}
+      INTERNAL_API_URL: ${INTERNAL_API_URL}
+      COSMOS_BASE_URL: ${COSMOS_BASE_URL}
+      COSMOS_TOKEN: ${COSMOS_TOKEN}
+      COSMOS_USER_AGENT: ${COSMOS_USER_AGENT:-Cosmos-API-Request}
+      COSMOS_TIMEOUT_MS: ${COSMOS_TIMEOUT_MS:-8000}
+      WHATSAPP_BOT_TOKEN: ${WHATSAPP_BOT_TOKEN}
+      WHATSAPP_BOT_BASE_URL: ${WHATSAPP_BOT_BASE_URL:-http://127.0.0.1:3333}
+      WHATSAPP_BOT_URL: ${WHATSAPP_BOT_URL:-http://127.0.0.1:3333/send}
     volumes:
       - uploads_data:/app/public/uploads
       - wwebjs_auth:/app/.wwebjs_auth
       - wwebjs_cache:/app/.wwebjs_cache
+    tmpfs:
+      - /tmp:noexec,nosuid,size=256M
+      - /app/.next/cache:noexec,nosuid,size=256M
+      - /app/.npm:noexec,nosuid,size=128M
+    networks:
+      - app_network
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    read_only: true
     deploy:
       resources:
         limits:
@@ -96,3 +120,8 @@ volumes:
     name: loja_wwebjs_auth
   wwebjs_cache:
     name: loja_wwebjs_cache
+
+networks:
+  app_network:
+    name: loja_network
+    driver: bridge
