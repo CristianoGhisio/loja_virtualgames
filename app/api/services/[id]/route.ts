@@ -3,6 +3,9 @@ import { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { checkAuth } from '@/lib/api-auth';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { authorized, response } = await checkAuth();

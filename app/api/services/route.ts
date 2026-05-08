@@ -4,6 +4,9 @@ import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);

@@ -3,6 +3,9 @@ import { CustomerType } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { checkAuth } from '@/lib/api-auth';
 
+
+export const dynamic = 'force-dynamic';
+
 interface ClientPayload {
   name: string;
   email?: string;

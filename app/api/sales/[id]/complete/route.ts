@@ -3,6 +3,9 @@ import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { SalesService } from '@/lib/services/sales';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function POST(
   _request: NextRequest,
   context: { params: Promise<{ id: string }> }

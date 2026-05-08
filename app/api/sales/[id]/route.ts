@@ -5,6 +5,9 @@ import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 import { StockService } from '@/lib/services/stock';
 
+
+export const dynamic = 'force-dynamic';
+
 async function cancelSale(saleId: string, userId?: string) {
   return prisma.$transaction(async (tx) => {
     const sale = await tx.sale.findUnique({

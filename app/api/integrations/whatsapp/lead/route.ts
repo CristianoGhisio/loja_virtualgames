@@ -4,6 +4,9 @@ import { prisma } from '@/lib/prisma';
 import { rateLimit, getClientIp, RATE_LIMITS } from '@/lib/rate-limit';
 import { timingSafeEqual } from 'node:crypto';
 
+
+export const dynamic = 'force-dynamic';
+
 function normalizePhone(phone: string): string {
   return phone.replace(/\D/g, '');
 }

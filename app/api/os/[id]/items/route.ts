@@ -5,6 +5,9 @@ import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 
+
+export const dynamic = 'force-dynamic';
+
 const itemSchema = z.object({
   type: z.enum(['PART', 'SERVICE']),
   productId: z.string().optional(),

@@ -7,6 +7,9 @@ import { getRequestId } from '@/lib/request-id';
 import { requireEnv } from '@/lib/env';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 
+
+export const dynamic = 'force-dynamic';
+
 const APPROVAL_SECRET = requireEnv('OS_APPROVAL_SECRET');
 
 function generateApprovalToken(osId: string, cleanCpf: string): string {

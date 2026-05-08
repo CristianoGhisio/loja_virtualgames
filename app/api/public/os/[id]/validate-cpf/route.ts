@@ -4,6 +4,9 @@ import { errorResponse, successResponse } from '@/lib/api-response';
 import { RATE_LIMITS } from '@/lib/rate-limit';
 import { withSecurity } from '@/lib/with-security';
 
+
+export const dynamic = 'force-dynamic';
+
 const postHandler = async (req: NextRequest, { params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const { cpf } = await req.json();

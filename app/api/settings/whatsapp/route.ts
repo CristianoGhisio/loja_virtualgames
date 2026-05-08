@@ -3,6 +3,9 @@ import { z } from 'zod';
 import { checkAuth } from '@/lib/api-auth';
 import { executeWhatsappAction, getWhatsappStatus } from '@/lib/services/whatsapp-bot-control';
 
+
+export const dynamic = 'force-dynamic';
+
 const bodySchema = z.object({
   action: z.enum(['connect', 'reconnect', 'disconnect']),
 });

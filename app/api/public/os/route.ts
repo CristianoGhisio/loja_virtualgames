@@ -5,6 +5,9 @@ import { errorResponse, successResponse } from '@/lib/api-response';
 import { rateLimit, getClientIp, RATE_LIMITS } from '@/lib/rate-limit';
 import { NextResponse } from 'next/server';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   try {
     // Rate limiting for public endpoint

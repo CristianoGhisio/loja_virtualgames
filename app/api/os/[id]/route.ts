@@ -5,6 +5,9 @@ import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }

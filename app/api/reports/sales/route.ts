@@ -3,6 +3,9 @@ import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { PrismaClient } from '@prisma/client';
 
+
+export const dynamic = 'force-dynamic';
+
 const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {

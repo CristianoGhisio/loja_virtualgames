@@ -9,6 +9,9 @@ import { randomUUID } from 'node:crypto';
 // File paths are validated against path traversal and allowed extensions
 /* eslint-disable security/detect-non-literal-fs-filename */
 
+
+export const dynamic = 'force-dynamic';
+
 const MAX_FILES = 3;
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 

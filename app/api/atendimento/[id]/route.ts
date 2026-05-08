@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 
+
+export const dynamic = 'force-dynamic';
+
 const STAGES = ['NOVO_CONTATO', 'EM_ANDAMENTO', 'CONTATO_QUENTE', 'VENDA_CONCLUIDA', 'FEEDBACK_REALIZADO', 'FINALIZADO'] as const;
 type FunnelStage = (typeof STAGES)[number];
 

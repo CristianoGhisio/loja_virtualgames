@@ -8,6 +8,9 @@ import { prisma } from '@/lib/prisma';
 import { FinancialService } from '@/lib/services/financial';
 import { ensureDailyCashOpen } from '@/lib/services/daily-cash';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   try {
     const { authorized, response } = await checkAuth();

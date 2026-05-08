@@ -6,6 +6,9 @@ import { createAuditLog } from '@/lib/audit';
 import { checkAuth } from '@/lib/api-auth';
 import { errorResponse } from '@/lib/api-response';
 
+
+export const dynamic = 'force-dynamic';
+
 const createUserSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
   email: z.string().email('Email inválido'),

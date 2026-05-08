@@ -7,6 +7,9 @@ import { prisma } from '@/lib/prisma';
 import { FinancialService } from '@/lib/services/financial';
 import { ensureDailyCashOpen } from '@/lib/services/daily-cash';
 
+
+export const dynamic = 'force-dynamic';
+
 type RowStatus = 'CONFIRMADO' | 'PENDENTE' | 'ATRASADO';
 
 const periodSchema = z.enum(['today', '7d', '30d', 'month', 'custom']).optional();

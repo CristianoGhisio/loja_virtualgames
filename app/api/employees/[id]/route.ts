@@ -3,6 +3,9 @@ import { EmployeeContractType, EmployeeStatus, Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { checkAuth } from '@/lib/api-auth';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

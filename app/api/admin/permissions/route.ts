@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { checkAuth } from '@/lib/api-auth';
 
+
+export const dynamic = 'force-dynamic';
+
 const TOP_MENU_MODULE_PERMISSIONS = [
   { action: 'read', resource: 'dashboard', description: 'Acesso ao Dashboard' },
   { action: 'read', resource: 'cash-daily', description: 'Acesso ao Caixa Diário' },

@@ -6,6 +6,9 @@ import { successResponse, errorResponse } from '@/lib/api-response';
 import { SalesService } from '@/lib/services/sales';
 import { prisma } from '@/lib/prisma';
 
+
+export const dynamic = 'force-dynamic';
+
 const createSaleSchema = z.object({
   customerId: z.string().nullable().optional(),
   items: z.array(z.object({

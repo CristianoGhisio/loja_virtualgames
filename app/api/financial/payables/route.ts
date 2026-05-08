@@ -5,6 +5,9 @@ import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 
+
+export const dynamic = 'force-dynamic';
+
 const addMonthsKeepingDay = (baseDate: Date, monthsToAdd: number) => {
   const day = baseDate.getDate();
   const year = baseDate.getFullYear();

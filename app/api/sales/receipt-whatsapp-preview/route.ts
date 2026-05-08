@@ -3,6 +3,9 @@ import { z } from 'zod';
 import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 
+
+export const dynamic = 'force-dynamic';
+
 const schema = z.object({
   customerName: z.string().min(1),
   customerPhone: z.string().min(10),

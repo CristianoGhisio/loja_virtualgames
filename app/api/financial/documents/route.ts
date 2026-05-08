@@ -4,6 +4,9 @@ import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 
+
+export const dynamic = 'force-dynamic';
+
 const schema = z.object({
   action: z.enum(['issue_boleto', 'issue_nfe']),
   receivableIds: z.array(z.string()).min(1),

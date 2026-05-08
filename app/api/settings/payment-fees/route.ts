@@ -6,6 +6,9 @@ import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 import { getPaymentFeeConfig } from '@/lib/services/payment-fees';
 
+
+export const dynamic = 'force-dynamic';
+
 const paymentFeesSchema = z.object({
   creditFixedFee: z.number().min(0),
   creditVariableFee: z.number().min(0),

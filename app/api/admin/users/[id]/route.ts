@@ -3,6 +3,9 @@ import { prisma } from '@/lib/prisma';
 import { checkAuth } from '@/lib/api-auth';
 import { createAuditLog } from '@/lib/audit';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function PATCH(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }

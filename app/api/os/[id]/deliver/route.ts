@@ -9,6 +9,9 @@ import { StockService } from '@/lib/services/stock';
 import { FinancialService } from '@/lib/services/financial';
 import { ensureDailyCashOpen } from '@/lib/services/daily-cash';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }

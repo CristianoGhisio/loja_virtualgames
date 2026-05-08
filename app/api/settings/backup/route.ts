@@ -3,6 +3,9 @@ import { z } from 'zod';
 import { checkAuth, hasApiPermission } from '@/lib/api-auth';
 import { backupStoragePaths, createManualBackup, listBackups, restoreBackupById } from '@/lib/services/backup';
 
+
+export const dynamic = 'force-dynamic';
+
 const backupActionSchema = z.discriminatedUnion('action', [
   z.object({ action: z.literal('create') }),
   z.object({

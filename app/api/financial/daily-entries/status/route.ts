@@ -2,6 +2,9 @@ import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { getDailyCashStatus } from '@/lib/services/daily-cash';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const { authorized, response } = await checkAuth();

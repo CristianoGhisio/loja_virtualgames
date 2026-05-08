@@ -4,6 +4,9 @@ import { checkAuth, hasApiPermission } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 
+
+export const dynamic = 'force-dynamic';
+
 const parseDescription = (description: string) => {
   const parts = description.split('|');
   if (parts.length < 3) {

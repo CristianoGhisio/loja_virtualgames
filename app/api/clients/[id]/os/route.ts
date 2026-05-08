@@ -4,6 +4,9 @@ import { checkAuth } from '@/lib/api-auth';
 import { withSecurity } from '@/lib/with-security';
 import { successResponse } from '@/lib/api-response';
 
+
+export const dynamic = 'force-dynamic';
+
 const getHandler = async (
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

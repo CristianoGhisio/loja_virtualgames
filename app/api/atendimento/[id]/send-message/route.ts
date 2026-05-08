@@ -3,6 +3,9 @@ import { prisma } from '@/lib/prisma';
 import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 
+
+export const dynamic = 'force-dynamic';
+
 export async function POST(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }

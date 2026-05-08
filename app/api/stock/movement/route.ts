@@ -6,6 +6,9 @@ import { successResponse, errorResponse } from '@/lib/api-response';
 import { StockService } from '@/lib/services/stock';
 import { prisma } from '@/lib/prisma';
 
+
+export const dynamic = 'force-dynamic';
+
 const movementSchema = z.object({
   productId: z.string(),
   quantity: z.number().positive(),

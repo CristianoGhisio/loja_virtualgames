@@ -4,6 +4,9 @@ import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
 import { CosmosService, CosmosGtinResponse, validateAndNormalizeGtin } from '@/lib/services/cosmos';
 
+
+export const dynamic = 'force-dynamic';
+
 function slugify(text: string): string {
   return text
     .toLowerCase()
