@@ -40,10 +40,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        DATABASE_URL: ${DATABASE_URL}
-        OS_APPROVAL_SECRET: ${OS_APPROVAL_SECRET}
-        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-/api}
+        NEXT_PUBLIC_SITE_URL: https://virtualgames.com.br
     container_name: loja_vps_app
     restart: unless-stopped
     ports:

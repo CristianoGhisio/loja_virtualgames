@@ -10,14 +10,13 @@ COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts
 
 FROM base AS builder
-ARG DATABASE_URL
-ARG OS_APPROVAL_SECRET
-ENV DATABASE_URL=$DATABASE_URL
-ENV OS_APPROVAL_SECRET=$OS_APPROVAL_SECRET
+ARG NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+ENV DATABASE_URL=postgresql://build:dummy@localhost:5432/build
+ENV NEXT_TELEMETRY_DISABLED=1
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ENV NEXT_TELEMETRY_DISABLED=1
 RUN npx prisma generate
 RUN npm run build
 
