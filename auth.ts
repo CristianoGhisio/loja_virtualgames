@@ -103,7 +103,11 @@ async function getUserById(id: string) {
   }
 }
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+let _nextAuth: ReturnType<typeof NextAuth> | null = null;
+
+function getNextAuth(): ReturnType<typeof NextAuth> {
+  if (_nextAuth) return _nextAuth;
+  _nextAuth = NextAuth({
   ...authConfig,
   callbacks: {
     ...authConfig.callbacks,
@@ -238,4 +242,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-});
+  });
+  return _nextAuth;
+}
+
+export const handlers = {
+  get GET() { return getNextAuth().handlers.GET; },
+  get POST() { return getNextAuth().handlers.POST; },
+};
+
+export async function auth(...args: unknown[]) {
+  return (getNextAuth().auth as (...a: unknown[]) => unknown)(...args);
+}
+
+export const signIn = ((...args: unknown[]) => {
+  return (getNextAuth().signIn as (...a: unknown[]) => unknown)(...args);
+}) as (...args: unknown[]) => unknown;
+
+export const signOut = ((...args: unknown[]) => {
+  return (getNextAuth().signOut as (...a: unknown[]) => unknown)(...args);
+}) as (...args: unknown[]) => unknown;
