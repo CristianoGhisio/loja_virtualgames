@@ -1,0 +1,126 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: loja_vps_postgres
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    expose:
+      - "5432"
+    volumes:
+      - loja_vps_postgres_data:/var/lib/postgresql/data
+    networks:
+      - loja_vps_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_URL: ${DATABASE_URL}
+        OS_APPROVAL_SECRET: ${OS_APPROVAL_SECRET}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-/api}
+    container_name: loja_vps_app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3002:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env.production
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      DATABASE_URL: ${DATABASE_URL}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      AUTH_SECRET: ${AUTH_SECRET}
+      AUTH_TRUST_HOST: ${AUTH_TRUST_HOST:-true}
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+      OS_APPROVAL_SECRET: ${OS_APPROVAL_SECRET}
+      INTERNAL_API_URL: ${INTERNAL_API_URL}
+      COSMOS_BASE_URL: ${COSMOS_BASE_URL}
+      COSMOS_TOKEN: ${COSMOS_TOKEN}
+      COSMOS_USER_AGENT: ${COSMOS_USER_AGENT:-Cosmos-API-Request}
+      COSMOS_TIMEOUT_MS: ${COSMOS_TIMEOUT_MS:-8000}
+      WHATSAPP_BOT_TOKEN: ${WHATSAPP_BOT_TOKEN}
+      WHATSAPP_BOT_BASE_URL: ${WHATSAPP_BOT_BASE_URL:-http://127.0.0.1:3333}
+      WHATSAPP_BOT_URL: ${WHATSAPP_BOT_URL:-http://127.0.0.1:3333/send}
+    volumes:
+      - loja_vps_uploads_data:/app/public/uploads
+      - loja_vps_wwebjs_auth:/app/.wwebjs_auth
+      - loja_vps_wwebjs_cache:/app/.wwebjs_cache
+    tmpfs:
+      - /tmp:noexec,nosuid,size=256M
+      - /app/.next/cache:noexec,nosuid,size=256M
+      - /app/.npm:noexec,nosuid,size=128M
+    networks:
+      - loja_vps_network
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+volumes:
+  loja_vps_postgres_data:
+    name: loja_vps_postgres_data
+  loja_vps_uploads_data:
+    name: loja_vps_uploads_data
+  loja_vps_wwebjs_auth:
+    name: loja_vps_wwebjs_auth
+  loja_vps_wwebjs_cache:
+    name: loja_vps_wwebjs_cache
+
+networks:
+  loja_vps_network:
+    name: loja_vps_network
+    driver: bridge
