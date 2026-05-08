@@ -1,37 +1,30 @@
-# Sistema de Atendimento — Correções e Melhorias de Fluxo
+# Deploy VPS — Correção de Build (Next.js 16 Turbopack + TypeScript)
 
 ## Resumo
-1. Modal de interações refatorado para estilo WhatsApp (bolhas, alinhamento, scroll, polling 3s)
-2. Fluxo automático de avaliação ao arrastar para última coluna (mensagem pronta + botão enviar)
-3. Auto-refresh periódico dos cards (30s)
-4. Docker: healthcheck + entrypoint mais resiliente
-
-## Tarefas
-Frontend; Backend; Docker
+Compilação Next.js resolvida (NextAuth lazy init). Erro restante: TypeScript type check — tipo quebrado do wrapper auth.
 
 ## Tarefas
 
-### Tarefa 1 — Modal de Conversa estilo WhatsApp
-- (X) Bolha cinza (cliente) à esquerda / bolha azul (atendente) à direita
-- (X) Mensagens de sistema (CRM) centralizadas
-- (X) Scroll automático para mensagens mais recentes
-- (X) Envio por Enter + botão de envio
-- (X) Animação de "digitando" no loading
-- (X) Check azul nas mensagens do atendente
+### Tarefa 1 — Planejamento e diagnóstico
+- (X) Identificar causa raiz: wrapper lazy do auth.ts perdeu tipos
+- (X) Build compila (68s) mas TypeScript type check falha (107.4s)
+- ( ) Mapear todas as rotas que usam `session?.user` do checkAuth
 
-### Tarefa 2 — Polling em tempo real
-- (X) Polling automático a cada 3s no modal de conversa
-- (X) Polling para refresh de cards a cada 30s
-- (X) Stop polling ao fechar modal
-- (X) Notificação hasNewMessage é limpa ao abrir conversa
+### Tarefa 2 — Corrigir tipos do auth.ts
+- ( ) Restaurar tipos corretos no auth export (preservar NextAuth Session | null)
+- ( ) handlers: usar tipo correto do NextAuth
+- ( ) signIn/signOut: preservar tipos originais
 
-### Tarefa 3 — Fluxo de Feedback
-- (X) Ao arrastar para última coluna: janela de confirmação com mensagem pronta
-- (X) Botão "Enviar Avaliação" em destaque (verde)
-- (X) Textarea editável para personalizar mensagem
-- (X) Card some da última coluna quando cliente responde
+### Tarefa 3 — Corrigir checkAuth
+- ( ) Tipar return type de checkAuth explicitamente
+- ( ) Garantir que session.user.id existe no tipo
 
-### Tarefa 4 — Docker
-- (X) Healthcheck HTTP no container app
-- (X) Entrypoint mais resiliente (MAX_RETRIES=90, validação de migrate)
-- (X) Containers reconstruídos e rodando
+### Tarefa 4 — Corrigir erro específico cash-flow/route.ts:328
+- ( ) Tipar session corretamente no destructuring
+
+### Tarefa 5 — Verificar TODAS as rotas com session.user
+- ( ) Buscar todas as ocorrências de session?.user ou session.user
+
+### Tarefa 6 — Build final
+- ( ) Commit, push, pull VPS, rebuild
+- ( ) Validar: compilação + type check sem erros

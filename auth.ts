@@ -251,14 +251,14 @@ export const handlers = {
   get POST() { return getNextAuth().handlers.POST; },
 };
 
-export async function auth(...args: unknown[]) {
-  return (getNextAuth().auth as (...a: unknown[]) => unknown)(...args);
-}
+export const auth: ReturnType<typeof getNextAuth>['auth'] = ((
+  ...args: Parameters<ReturnType<typeof getNextAuth>['auth']>
+) => getNextAuth().auth(...args)) as ReturnType<typeof getNextAuth>['auth'];
 
-export const signIn = ((...args: unknown[]) => {
-  return (getNextAuth().signIn as (...a: unknown[]) => unknown)(...args);
-}) as (...args: unknown[]) => unknown;
+export const signIn: ReturnType<typeof getNextAuth>['signIn'] = ((
+  ...args: Parameters<ReturnType<typeof getNextAuth>['signIn']>
+) => getNextAuth().signIn(...args)) as ReturnType<typeof getNextAuth>['signIn'];
 
-export const signOut = ((...args: unknown[]) => {
-  return (getNextAuth().signOut as (...a: unknown[]) => unknown)(...args);
-}) as (...args: unknown[]) => unknown;
+export const signOut: ReturnType<typeof getNextAuth>['signOut'] = ((
+  ...args: Parameters<ReturnType<typeof getNextAuth>['signOut']>
+) => getNextAuth().signOut(...args)) as ReturnType<typeof getNextAuth>['signOut'];
