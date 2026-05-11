@@ -18,7 +18,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: '0.4'
           memory: 256M
         reservations:
           cpus: '0.1'
@@ -42,6 +42,8 @@ services:
       args:
         NEXT_PUBLIC_SITE_URL: https://virtualgames.com.br
     container_name: loja_vps_app
+    init: true
+    stop_grace_period: 30s
     restart: unless-stopped
     ports:
       - "127.0.0.1:3002:3000"
@@ -90,10 +92,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: '0.9'
           memory: 1G
         reservations:
-          cpus: '0.25'
+          cpus: '0.2'
           memory: 256M
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
