@@ -1,8 +1,28 @@
 import type { NextAuthConfig } from 'next-auth';
- 
+
 export const authConfig = {
   pages: {
     signIn: '/login',
+  },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        path: '/',
+      },
+    },
+    csrfToken: {
+      name: `next-auth.csrf-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        path: '/',
+      },
+    },
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {

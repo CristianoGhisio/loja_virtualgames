@@ -109,6 +109,26 @@ function getNextAuth(): ReturnType<typeof NextAuth> {
   if (_nextAuth) return _nextAuth;
   _nextAuth = NextAuth({
   ...authConfig,
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        path: '/',
+      },
+    },
+    csrfToken: {
+      name: `next-auth.csrf-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        path: '/',
+      },
+    },
+  },
   callbacks: {
     ...authConfig.callbacks,
     async jwt({ token, user }) {
