@@ -68,6 +68,10 @@ function extractHostname(url: string): string | null {
   }
 }
 
+function normalizeHostname(hostname: string): string {
+  return hostname.replace(/^www\./, '');
+}
+
 function validateOrigin(requestHeaders: Headers): boolean {
   const origin = requestHeaders.get('origin');
 
@@ -84,16 +88,17 @@ function validateOrigin(requestHeaders: Headers): boolean {
     return false;
   }
 
-  const allowedHostnames = [
+  const allowedHostnames = (([
     process.env.NEXTAUTH_URL,
     process.env.INTERNAL_API_URL,
     'http://localhost:3000',
   ]
     .filter(Boolean)
     .map((url) => extractHostname(url as string))
-    .filter(Boolean) as string[];
+    .filter((h): h is string => h !== null)
+    .map(normalizeHostname)));
 
-  return allowedHostnames.some((allowed) => requestHostname === allowed);
+  return allowedHostnames.some((allowed) => normalizeHostname(requestHostname) === allowed);
 }
 
 export async function checkAuth() {

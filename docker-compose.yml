@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -47,7 +47,7 @@ services:
     container_name: loja_app
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3002:3000"
     depends_on:
       postgres:
         condition: service_healthy
@@ -93,7 +93,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
+          cpus: '1'
           memory: 2G
         reservations:
           cpus: '0.5'

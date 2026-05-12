@@ -33,6 +33,10 @@ function extractHostname(url: string): string | null {
   }
 }
 
+function normalizeHostname(hostname: string): string {
+  return hostname.replace(/^www\./, '');
+}
+
 function validateOrigin(req: NextRequest): { valid: boolean; status?: number; code?: string; error?: string } {
   if (ALLOWED_ORIGINS.length === 0) {
     return { valid: true };
@@ -48,11 +52,12 @@ function validateOrigin(req: NextRequest): { valid: boolean; status?: number; co
   }
 
   const requestHostname = extractHostname(origin);
-  const ALLOWED_HOSTNAMES = ALLOWED_ORIGINS
+  const ALLOWED_HOSTNAMES = (ALLOWED_ORIGINS
     .map((url) => extractHostname(url))
-    .filter(Boolean) as string[];
+    .filter((h): h is string => h !== null)
+    .map(normalizeHostname));
 
-  if (!ALLOWED_HOSTNAMES.some((allowed) => requestHostname === allowed)) {
+  if (!ALLOWED_HOSTNAMES.some((allowed) => normalizeHostname(requestHostname ?? '') === allowed)) {
     return { valid: false, status: 403, code: ErrorCodes.ACCESS_DENIED, error: 'Forbidden: invalid origin' };
   }
 
