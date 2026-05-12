@@ -187,6 +187,13 @@ export default function NovoFuncionarioPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.cargoFuncao || !formData.dataAdmissao || !formData.salarioBase) {
+      setActiveTab('funcional');
+      toast.error('Preencha os campos obrigatórios da aba "Dados Funcionais": Cargo, Data de Admissão e Salário Base.');
+      return;
+    }
+
     setLoading(true);
     try {
       const payload: EmployeeCreatePayload = {
@@ -392,7 +399,6 @@ export default function NovoFuncionarioPage() {
                   value={formData.cargoFuncao}
                   onChange={handleChange}
                   placeholder="Ex: Vendedor, Gerente" 
-                  required
                   className="bg-slate-950/60 border-cyan-400/30 focus-visible:ring-cyan-400/30" 
                 />
               </div>
@@ -423,7 +429,6 @@ export default function NovoFuncionarioPage() {
                   type="date"
                   value={formData.dataAdmissao}
                   onChange={handleChange}
-                  required
                   className="bg-slate-950/60 border-cyan-400/30 focus-visible:ring-cyan-400/30" 
                 />
               </div>
@@ -437,7 +442,6 @@ export default function NovoFuncionarioPage() {
                   min="0"
                   value={formData.salarioBase}
                   onChange={handleChange}
-                  required
                   className="bg-slate-950/60 border-cyan-400/30 focus-visible:ring-cyan-400/30" 
                 />
               </div>

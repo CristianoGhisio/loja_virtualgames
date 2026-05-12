@@ -25,6 +25,14 @@ const ALLOWED_ORIGINS = (() => {
   return origins;
 })();
 
+function extractHostname(url: string): string | null {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return null;
+  }
+}
+
 function validateOrigin(req: NextRequest): { valid: boolean; status?: number; code?: string; error?: string } {
   if (ALLOWED_ORIGINS.length === 0) {
     return { valid: true };
@@ -39,7 +47,12 @@ function validateOrigin(req: NextRequest): { valid: boolean; status?: number; co
     return { valid: false, status: 403, code: ErrorCodes.ACCESS_DENIED, error: 'Forbidden: invalid origin' };
   }
 
-  if (!ALLOWED_ORIGINS.some((allowed) => origin === allowed)) {
+  const requestHostname = extractHostname(origin);
+  const ALLOWED_HOSTNAMES = ALLOWED_ORIGINS
+    .map((url) => extractHostname(url))
+    .filter(Boolean) as string[];
+
+  if (!ALLOWED_HOSTNAMES.some((allowed) => requestHostname === allowed)) {
     return { valid: false, status: 403, code: ErrorCodes.ACCESS_DENIED, error: 'Forbidden: invalid origin' };
   }
 

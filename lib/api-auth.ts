@@ -60,26 +60,40 @@ export function hasApiPermission(user: SessionUser | null | undefined, module: s
  *   - Origin set to "null" (common in CSRF attacks from sandboxed iframes)
  * Allows requests with no Origin header (typical for same-origin GET requests).
  */
+function extractHostname(url: string): string | null {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return null;
+  }
+}
+
 function validateOrigin(requestHeaders: Headers): boolean {
   const origin = requestHeaders.get('origin');
 
-  // No Origin header — allow (typical for same-origin GET/navigation)
   if (!origin) {
     return true;
   }
 
-  // Block null origin (common CSRF vector from sandboxed iframes)
   if (origin === 'null') {
     return false;
   }
 
-  const allowedOrigins = [
+  const requestHostname = extractHostname(origin);
+  if (!requestHostname) {
+    return false;
+  }
+
+  const allowedHostnames = [
     process.env.NEXTAUTH_URL,
     process.env.INTERNAL_API_URL,
     'http://localhost:3000',
-  ].filter(Boolean) as string[];
+  ]
+    .filter(Boolean)
+    .map((url) => extractHostname(url as string))
+    .filter(Boolean) as string[];
 
-  return allowedOrigins.some((allowed) => origin === allowed);
+  return allowedHostnames.some((allowed) => requestHostname === allowed);
 }
 
 export async function checkAuth() {
