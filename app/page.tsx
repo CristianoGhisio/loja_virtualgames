@@ -9,14 +9,30 @@ import { Footer } from '@/components/layout/footer';
 import { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://virtualgames.com.br';
 
 export const metadata = {
-  title: 'Virtual Games | Loja Especializada em Videogames - Manutenção, Venda e Campeonatos',
-  description: 'Assistência técnica especializada em consoles e PCs. Compra, venda e troca de equipamentos gamer. Campeonatos e eventos. Sua loja definitiva para o universo gamer.',
-  keywords: ['loja de videogame', 'assistência técnica console', 'reparo PS5', 'manutenção Xbox', 'PC Gamer', 'campeonato eSports', 'loja gamer', 'acessórios gaming'],
+  title: 'Virtual Games | Manutenção de Consoles e PC Gamer em Santa Maria, RS',
+  description: 'Assistência técnica especializada em PS5, Xbox, Switch, PC Gamer e celulares em Santa Maria, RS. Reparo com garantia e atendimento rápido. Fale agora pelo WhatsApp!',
+  keywords: [
+    'manutenção PS5 Santa Maria',
+    'reparo Xbox Santa Maria',
+    'assistência técnica videogame Santa Maria',
+    'manutenção de consoles Santa Maria',
+    'PC gamer Santa Maria',
+    'troca de tela iPhone Santa Maria',
+    'assistência técnica celular Santa Maria',
+    'montagem PC gamer Santa Maria',
+    'assistência técnica PS5',
+    'reparo Nintendo Switch',
+    'manutenção PS4',
+    'assistência técnica Xbox',
+    'loja de videogame Santa Maria',
+    'PC Gamer RS',
+    'assistência técnica celulares'
+  ],
   authors: [{ name: 'Virtual Games' }],
   creator: 'Virtual Games',
   publisher: 'Virtual Games',
@@ -24,23 +40,25 @@ export const metadata = {
     type: 'website',
     locale: 'pt_BR',
     url: siteUrl,
-    siteName: 'Virtual Games',
-    title: 'Virtual Games | Loja Especializada em Videogames',
-    description: 'Assistência técnica especializada em consoles e PCs. Compra, venda e troca de equipamentos gamer.',
+    siteName: 'Virtual Games - Santa Maria, RS',
+    title: 'Virtual Games | Manutenção de Consoles e PC Gamer em Santa Maria, RS',
+    description: 'Assistência técnica especializada em PS5, Xbox, Switch, PC Gamer e celulares em Santa Maria, RS. Reparo com garantia e atendimento rápido.',
     images: [
       {
         url: `${siteUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Virtual Games - Loja Gamer',
+        alt: 'Virtual Games - Assistência Técnica em Consoles e PC Gamer em Santa Maria, RS',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Virtual Games | Loja Especializada em Videogames',
-    description: 'Assistência técnica especializada em consoles e PCs. Sua loja definitiva para o universo gamer.',
+    title: 'Virtual Games | Manutenção de Consoles e PC Gamer em Santa Maria, RS',
+    description: 'Assistência técnica especializada em PS5, Xbox, Switch, PC Gamer e celulares em Santa Maria, RS. Fale agora pelo WhatsApp!',
     images: [`${siteUrl}/og-image.jpg`],
+    site: '@virtualgames',
+    creator: '@virtualgames',
   },
   robots: {
     index: true,
@@ -78,7 +96,9 @@ function isDatabaseOfflineError(error: unknown): boolean {
 export default async function Home() {
   let settings = null;
   try {
-    settings = await prisma.storeSettings.findFirst();
+    settings = await prisma.storeSettings.findFirst({
+      orderBy: { updatedAt: 'desc' },
+    });
     if (!settings) {
       settings = await prisma.storeSettings.create({ data: {} });
     }
@@ -87,6 +107,15 @@ export default async function Home() {
       throw error;
     }
   }
+
+  const storeInfo = settings ?? {
+    nameFantasia: 'Virtual Games',
+    cnpj: '00.000.000/0001-00',
+    address: 'Rua Venâncio Aires, 1434, Torre Divindade. Sala 106 D-2, Centro, Santa Maria, RS - CEP 97010-002',
+    phone: '(55) 99725-2786',
+    email: 'contato@virtualgames.com',
+    serviceHours: 'Segunda a Sexta: 09:00 às 18:30 | Sábado: 09:00 às 13:00',
+  };
 
   let teamMembers: Array<{
     id: string;
@@ -122,18 +151,18 @@ export default async function Home() {
     name: 'Virtual Games',
     url: siteUrl,
     description: 'Loja especializada em videogames, assistência técnica, venda e campeonatos de eSports.',
-    telephone: settings?.phone || '(55) 99725-2786',
-    email: settings?.email || 'contato@virtualgames.com',
-    address: settings?.address ? {
+    telephone: storeInfo.phone,
+    email: storeInfo.email,
+    address: {
       '@type': 'PostalAddress',
-      streetAddress: settings.address,
-    } : undefined,
-    openingHoursSpecification: settings?.serviceHours ? [
+      streetAddress: storeInfo.address,
+    },
+    openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
-        description: settings.serviceHours,
+        description: storeInfo.serviceHours,
       }
-    ] : undefined,
+    ],
     sameAs: [
       'https://instagram.com/virtualgames',
       'https://facebook.com/virtualgames',
@@ -173,11 +202,11 @@ export default async function Home() {
           </article>
 
           <article aria-label="Contato">
-            <Contact settings={settings} />
+            <Contact settings={storeInfo} />
           </article>
         </div>
 
-        <Footer settings={settings} />
+        <Footer settings={storeInfo} />
       </main>
     </>
   );

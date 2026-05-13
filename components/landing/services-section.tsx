@@ -136,7 +136,7 @@ export function ServicesSection() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Serviços</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
-            Especialistas em reviver seu setup. Acompanhe o status do seu equipamento em tempo real.
+            Especialistas em manutenção de consoles e PC Gamer em Santa Maria, RS. Acompanhe o status do seu equipamento em tempo real.
           </p>
         </div>
 
@@ -167,17 +167,17 @@ export function ServicesSection() {
           <ServiceCard
             icon={<Smartphone className="w-8 h-8 sm:w-10 sm:h-10 text-neon-purple" />}
             title="Reparo Mobile"
-            description="Troca de telas, baterias e reparos em placas de iPhones e Androids com peças originais."
+            description="Troca de telas, baterias e reparos em iPhones e Androids em Santa Maria. Peças originais e garantia inclusa."
           />
           <ServiceCard
             icon={<Wrench className="w-8 h-8 sm:w-10 sm:h-10 text-neon-blue" />}
             title="Manutenção de Consoles"
-            description="Limpeza completa, troca de pasta térmica e reparo de hardware para PS5, Xbox e Switch."
+            description="Assistência técnica em PS5, Xbox e Nintendo Switch em Santa Maria. Limpeza, troca de pasta térmica e reparo de hardware."
           />
           <ServiceCard
             icon={<ShieldCheck className="w-8 h-8 sm:w-10 sm:h-10 text-cta-gold" />}
-            title="Upgrade & PC Gamer"
-            description="Montagem, otimização e upgrades para extrair o máximo de FPS do seu computador."
+            title="Montagem de PC Gamer"
+            description="Montagem e upgrades de PC Gamer em Santa Maria. Otimize seu setup para extrair o máximo de FPS."
           />
         </div>
       </div>

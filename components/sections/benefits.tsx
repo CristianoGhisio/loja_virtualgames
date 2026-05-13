@@ -5,26 +5,26 @@ import { Wrench, ShieldCheck, Headphones, Search } from 'lucide-react';
 const BENEFITS = [
   {
     icon: Wrench,
-    title: 'Especialistas Qualificados',
-    description: 'Nossa equipe técnica possui anos de experiência no reparo de consoles e computadores.',
+    title: 'Técnicos Especializados em Santa Maria',
+    description: 'Equipe técnica com anos de experiência em manutenção de consoles e PC Gamer em Santa Maria, RS.',
     color: 'text-neon-blue',
   },
   {
     icon: ShieldCheck,
     title: 'Garantia de Serviço',
-    description: 'Todos os reparos contam com garantia de funcionamento e peças originais ou de alta qualidade.',
+    description: 'Todos os reparos em consoles e celulares contam com garantia de funcionamento e peças originais.',
     color: 'text-neon-purple',
   },
   {
     icon: Headphones,
-    title: 'Atendimento Dedicado',
-    description: 'Suporte transparente, com explicações claras sobre o problema do seu aparelho.',
+    title: 'Atendimento Dedicado em Santa Maria',
+    description: 'Suporte transparente em nossa loja, com explicações claras sobre o reparo do seu equipamento.',
     color: 'text-cta-gold',
   },
   {
     icon: Search,
-    title: 'Acompanhamento Online',
-    description: 'Consulte o status do seu serviço a qualquer momento, diretamente pelo nosso site.',
+    title: 'Acompanhamento Online da OS',
+    description: 'Consulte o status do seu serviço de assistência técnica a qualquer momento pelo nosso site.',
     color: 'text-cta-orange',
   },
 ];
