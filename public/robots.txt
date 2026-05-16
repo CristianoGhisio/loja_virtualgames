@@ -1,0 +1,20 @@
+# robots.txt - Virtual Games
+User-agent: *
+Allow: /
+Allow: /api/health
+
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /api/auth/
+Disallow: /*?*
+
+Sitemap: https://virtualgames.com.br/sitemap.xml
+
+# Diretivas específicas para Google
+User-agent: Googlebot
+Crawl-delay: 1
+
+# Bloquear indexação de assets estáticos do Next.js
+User-agent: Googlebot-Image
+Disallow: /_next/static/media/*

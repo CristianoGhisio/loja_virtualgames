@@ -24,7 +24,10 @@ export default auth((req: NextRequest & { auth?: unknown }) => {
     pathname.startsWith('/_next/static') ||
     pathname.startsWith('/_next/image') ||
     pathname.endsWith('.png') ||
-    pathname.endsWith('.ico')
+    pathname.endsWith('.ico') ||
+    pathname.endsWith('.xml') ||
+    pathname === '/sitemap.xml' ||
+    pathname === '/robots.txt'
   ) {
     return NextResponse.next();
   }

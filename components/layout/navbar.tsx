@@ -71,7 +71,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav aria-label="Navegação principal" className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}

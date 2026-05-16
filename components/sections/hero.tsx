@@ -128,6 +128,10 @@ export function Hero() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="max-w-3xl"
               >
+                <h1 className="sr-only">
+                  Manutenção de Consoles PS5 Xbox Switch, PC Gamer e Celulares em Santa Maria | Virtual Games
+                </h1>
+
                 <motion.span
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -138,13 +142,13 @@ export function Hero() {
                   {currentSlide.tag}
                 </motion.span>
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 sm:mb-6 leading-[1.1]">
+                <div aria-hidden="true" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 sm:mb-6 leading-[1.1]">
                   {currentSlide.title1}{' '}
                   <br className="hidden sm:block" />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-[#00f5ff] to-neon-purple drop-shadow-[0_0_20px_rgba(0,212,255,0.3)]">
                     {currentSlide.title2}
                   </span>
-                </h1>
+                </div>
 
                 <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-xl mb-8 sm:mb-10 leading-relaxed">
                   {currentSlide.description}

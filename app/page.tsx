@@ -14,25 +14,13 @@ export const revalidate = 60;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://virtualgames.com.br';
 
 export const metadata = {
-  title: 'Virtual Games | Manutenção de Consoles e PC Gamer em Santa Maria, RS',
-  description: 'Assistência técnica especializada em PS5, Xbox, Switch, PC Gamer e celulares em Santa Maria, RS. Reparo com garantia e atendimento rápido. Fale agora pelo WhatsApp!',
-  keywords: [
-    'manutenção PS5 Santa Maria',
-    'reparo Xbox Santa Maria',
-    'assistência técnica videogame Santa Maria',
-    'manutenção de consoles Santa Maria',
-    'PC gamer Santa Maria',
-    'troca de tela iPhone Santa Maria',
-    'assistência técnica celular Santa Maria',
-    'montagem PC gamer Santa Maria',
-    'assistência técnica PS5',
-    'reparo Nintendo Switch',
-    'manutenção PS4',
-    'assistência técnica Xbox',
-    'loja de videogame Santa Maria',
-    'PC Gamer RS',
-    'assistência técnica celulares'
-  ],
+  title: 'Manutenção de Consoles PS5 Xbox em Santa Maria | Virtual Games',
+  description: 'Assistência técnica gamer em Santa Maria: PS5, Xbox, Switch, PC Gamer e celulares. Diagnóstico grátis, garantia de 90 dias. Orçamento via WhatsApp em 24h!',
+  // keywords removidas — Google não indexa meta keywords desde 2009
+// Manter lista abaixo apenas como referência de foco de conteúdo:
+// manutenção PS5 Santa Maria, reparo Xbox Santa Maria, conserto Switch Santa Maria,
+// assistência técnica gamer Santa Maria, montagem PC gamer Santa Maria,
+// troca de tela celular Santa Maria, controle PS5 com drift Santa Maria
   authors: [{ name: 'Virtual Games' }],
   creator: 'Virtual Games',
   publisher: 'Virtual Games',
@@ -40,23 +28,24 @@ export const metadata = {
     type: 'website',
     locale: 'pt_BR',
     url: siteUrl,
-    siteName: 'Virtual Games - Santa Maria, RS',
-    title: 'Virtual Games | Manutenção de Consoles e PC Gamer em Santa Maria, RS',
-    description: 'Assistência técnica especializada em PS5, Xbox, Switch, PC Gamer e celulares em Santa Maria, RS. Reparo com garantia e atendimento rápido.',
+    siteName: 'Virtual Games - Assistência Técnica Gamer',
+    title: 'Manutenção PS5 Xbox Switch PC Gamer Santa Maria | Virtual Games',
+    description: 'Assistência técnica gamer em Santa Maria com diagnóstico grátis. PS5, Xbox, Nintendo Switch, PC Gamer. Garantia 90 dias. Solicite orçamento via WhatsApp!',
     images: [
       {
-        url: `${siteUrl}/og-image.jpg`,
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: 'Virtual Games - Assistência Técnica em Consoles e PC Gamer em Santa Maria, RS',
+        type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Virtual Games | Manutenção de Consoles e PC Gamer em Santa Maria, RS',
-    description: 'Assistência técnica especializada em PS5, Xbox, Switch, PC Gamer e celulares em Santa Maria, RS. Fale agora pelo WhatsApp!',
-    images: [`${siteUrl}/og-image.jpg`],
+    title: 'Manutenção PS5 Xbox Switch PC Gamer Santa Maria | Virtual Games',
+    description: 'Assistência técnica gamer em Santa Maria com diagnóstico grátis. Garantia 90 dias. Solicite orçamento pelo WhatsApp!',
+    images: [`${siteUrl}/og-image.png`],
     site: '@virtualgames',
     creator: '@virtualgames',
   },
@@ -146,27 +135,183 @@ export default async function Home() {
   }
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Store',
-    name: 'Virtual Games',
-    url: siteUrl,
-    description: 'Loja especializada em videogames, assistência técnica, venda e campeonatos de eSports.',
-    telephone: storeInfo.phone,
-    email: storeInfo.email,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: storeInfo.address,
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Virtual Games",
+    "image": `${siteUrl}/og-image.png`,
+    "url": siteUrl,
+    "telephone": storeInfo.phone,
+    "email": storeInfo.email,
+    "priceRange": "$$",
+    "description": "Assistência técnica especializada em consoles, PC Gamer e celulares em Santa Maria/RS. Diagnóstico gratuito e garantia de 90 dias em todos os serviços.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Venâncio Aires, 1434, Torre Divindade, Sala 106 D-2",
+      "addressLocality": "Santa Maria",
+      "addressRegion": "RS",
+      "postalCode": "97010-002",
+      "addressCountry": "BR"
     },
-    openingHoursSpecification: [
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-29.6881",
+      "longitude": "-53.8091"
+    },
+    "openingHoursSpecification": [
       {
-        '@type': 'OpeningHoursSpecification',
-        description: storeInfo.serviceHours,
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday"],
+        "opens": "09:00",
+        "closes": "13:00"
       }
     ],
-    sameAs: [
-      'https://instagram.com/virtualgames',
-      'https://facebook.com/virtualgames',
+    "areaServed": {
+      "@type": "City",
+      "name": "Santa Maria"
+    },
+    "sameAs": [
+      "https://instagram.com/virtualgames",
+      "https://facebook.com/virtualgames"
     ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços de Assistência Técnica Gamer",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Manutenção de Consoles",
+            "description": "Reparo especializado em PS5, Xbox Series X/S, Nintendo Switch e demais consoles"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Montagem e Upgrade de PC Gamer",
+            "description": "Montagem personalizada e upgrades de PCs para jogos em Santa Maria/RS"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Reparo de Celular",
+            "description": "Troca de tela, bateria e reparo em iPhone e Android"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Reparo de Controles",
+            "description": "Conserto de drift, analógicos e botões em controles de PS5, Xbox e Switch"
+          }
+        }
+      ]
+    }
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quanto tempo leva para consertar um PS5 em Santa Maria?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O conserto de PS5 na Virtual Games em Santa Maria leva em média de 2 a 5 dias úteis, dependendo do tipo de defeito e disponibilidade de peças. O diagnóstico é gratuito."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A Virtual Games oferece garantia nos serviços?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, todos os serviços realizados na Virtual Games possuem garantia de 90 dias para peças e mão de obra."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como acompanhar o status do meu equipamento na Virtual Games?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Você pode acompanhar o status do seu equipamento em tempo real pelo número da OS (Ordem de Serviço) diretamente no site da Virtual Games, no campo de busca disponível na seção de serviços."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O diagnóstico do console é gratuito?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, a Virtual Games realiza o diagnóstico de consoles, PC Gamer e celulares de forma totalmente gratuita. Você só paga se autorizar o serviço de reparo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A Virtual Games conserta controle com drift de PS5 ou Xbox?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, realizamos reparo de drift em controles de PS5 (DualSense) e Xbox. O serviço inclui substituição dos analógicos e calibragem. Entre em contato via WhatsApp para solicitar orçamento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Onde fica a Virtual Games em Santa Maria?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Virtual Games está localizada na Rua Venâncio Aires, 1434, Torre Divindade, Sala 106 D-2, em Santa Maria/RS. Funcionamos de segunda a sexta das 09h às 18h30 e aos sábados das 09h às 13h."
+        }
+      }
+    ]
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Virtual Games",
+    "alternateName": "VG Games",
+    "url": siteUrl,
+    "logo": `${siteUrl}/og-image.png`,
+    "telephone": storeInfo.phone,
+    "email": storeInfo.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Venâncio Aires, 1434, Torre Divindade, Sala 106 D-2",
+      "addressLocality": "Santa Maria",
+      "addressRegion": "RS",
+      "postalCode": "97010-002",
+      "addressCountry": "BR"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Santa Maria",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Rio Grande do Sul"
+      }
+    },
+    "knowsAbout": [
+      "Manutenção de consoles",
+      "Reparo de PS5",
+      "Reparo de Xbox",
+      "Reparo de Nintendo Switch",
+      "Montagem de PC Gamer",
+      "Assistência técnica mobile",
+      "Reparo de controle com drift"
+    ],
+    "sameAs": [
+      "https://instagram.com/virtualgames",
+      "https://facebook.com/virtualgames"
+    ]
   };
 
   return (
@@ -174,6 +319,14 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
         <a href="#main-content" className="skip-to-content">
