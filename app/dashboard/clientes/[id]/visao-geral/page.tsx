@@ -26,6 +26,7 @@ interface Client {
 
 function getStageLabel(label: Record<string, string>, key: string | null | undefined): string | null {
   if (!key) return null;
+  // eslint-disable-next-line security/detect-object-injection
   return label[key] ?? key;
 }
 

@@ -11,7 +11,7 @@ type StoreContactSettings = {
 
 export function Footer({ settings }: { settings?: StoreContactSettings | null }) {
   return (
-    <footer id="contato" className="bg-[#0d0d14] border-t border-white/5 pt-16 sm:pt-20 pb-8 sm:pb-10">
+    <footer className="bg-[#0d0d14] border-t border-white/5 pt-16 sm:pt-20 pb-8 sm:pb-10">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12 sm:mb-16">
           <div className="sm:col-span-2 lg:col-span-1">
@@ -24,19 +24,19 @@ export function Footer({ settings }: { settings?: StoreContactSettings | null })
               </span>
             </Link>
             <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-              Sua loja definitiva para o universo gamer. Equipamentos de elite para quem joga sério.
+              Assistência Técnica Gamer em Santa Maria, RS. Especialistas em PS5, Xbox, Nintendo Switch e PC Gamer.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-neon-purple hover:text-white transition-all duration-300 hover:scale-110" aria-label="Instagram">
+              <a href="https://instagram.com/virtualgames" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-neon-purple hover:text-white transition-all duration-300 hover:scale-110" aria-label="Instagram">
                 <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-neon-blue hover:text-white transition-all duration-300 hover:scale-110" aria-label="Twitter">
+              <a href="https://twitter.com/virtualgames" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-neon-blue hover:text-white transition-all duration-300 hover:scale-110" aria-label="Twitter">
                 <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 hover:scale-110" aria-label="Facebook">
+              <a href="https://facebook.com/virtualgames" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 hover:scale-110" aria-label="Facebook">
                 <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all duration-300 hover:scale-110" aria-label="Youtube">
+              <a href="https://youtube.com/@virtualgames" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all duration-300 hover:scale-110" aria-label="Youtube">
                 <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
             </div>
@@ -46,38 +46,45 @@ export function Footer({ settings }: { settings?: StoreContactSettings | null })
             <h4 className="font-orbitron font-bold text-white mb-5 sm:mb-6 text-sm sm:text-base">Navegação</h4>
             <ul className="space-y-3 sm:space-y-4">
               <li><Link href="/" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Início</Link></li>
-              <li><Link href="#equipe" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Equipe</Link></li>
-              <li><Link href="#servicos" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Consulta de Serviço</Link></li>
-              <li><Link href="#contato" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Contato</Link></li>
+              <li><Link href="/sobre" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Sobre</Link></li>
+              <li><Link href="/servicos" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Serviços</Link></li>
+              <li><Link href="/blog" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Blog</Link></li>
+              <li><Link href="/contato" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Contato</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-orbitron font-bold text-white mb-5 sm:mb-6 text-sm sm:text-base">Serviços</h4>
             <ul className="space-y-3 sm:space-y-4">
-              <li><Link href="#servicos" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Acompanhar OS</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Garantias</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Termos de Serviço</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Privacidade</Link></li>
+              <li><Link href="/servicos/manutencao-ps5" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Manutenção PS5</Link></li>
+              <li><Link href="/servicos/manutencao-xbox" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Reparo Xbox</Link></li>
+              <li><Link href="/servicos/montagem-pc-gamer" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Montagem PC Gamer</Link></li>
+              <li><Link href="/garantia" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Garantia</Link></li>
+              <li><Link href="/faq" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">FAQ</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-orbitron font-bold text-white mb-5 sm:mb-6 text-sm sm:text-base">Contato</h4>
+            <h4 className="font-orbitron font-bold text-white mb-5 sm:mb-6 text-sm sm:text-base">Legal</h4>
             <ul className="space-y-3 sm:space-y-4">
-              <li className="flex items-start gap-3 text-gray-400">
-                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue shrink-0 mt-0.5" />
-                <span className="text-sm whitespace-pre-line">{settings?.address?.split(' - CEP').join('\nCEP')}</span>
-              </li>
-              <li className="flex items-center gap-3 text-gray-400">
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue shrink-0" />
-                <span className="text-sm">{settings?.phone || '(55) 99725-2786'}</span>
-              </li>
-              <li className="flex items-center gap-3 text-gray-400">
-                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue shrink-0" />
-                <span className="text-sm">{settings?.email || 'contato@virtualgames.com'}</span>
-              </li>
+              <li><Link href="/termos" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Termos de Serviço</Link></li>
+              <li><Link href="/privacidade" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Privacidade</Link></li>
+              <li><Link href="/acompanhar-reparo" className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm">Acompanhar Reparo</Link></li>
             </ul>
+            <div className="mt-6 space-y-3">
+              <div className="flex items-start gap-3 text-gray-400">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue shrink-0 mt-0.5" />
+                <span className="text-xs whitespace-pre-line">{settings?.address?.split(' - CEP').join('\nCEP') || 'Rua Venâncio Aires, 1434\nTorre Divindade, Sala 106 D-2\nSanta Maria, RS — CEP 97010-002'}</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-400">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue shrink-0" />
+                <span className="text-xs">{settings?.phone || '(55) 99725-2786'}</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-400">
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue shrink-0" />
+                <span className="text-xs">{settings?.email || 'contato@virtualgames.com'}</span>
+              </div>
+            </div>
           </div>
         </div>
 

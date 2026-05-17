@@ -11,6 +11,15 @@ interface TeamMember {
   fotoUrl: string | null;
 }
 
+function AvatarPlaceholder({ name }: { name: string }) {
+  const initial = name.charAt(0).toUpperCase();
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neon-blue/30 to-neon-purple/30 rounded-full">
+      <span className="text-neon-blue font-bold text-xl">{initial}</span>
+    </div>
+  );
+}
+
 export function Team({ teamMembers }: { teamMembers?: TeamMember[] }) {
   const members = teamMembers && teamMembers.length > 0 ? teamMembers : [];
 
@@ -19,7 +28,7 @@ export function Team({ teamMembers }: { teamMembers?: TeamMember[] }) {
   }
 
   return (
-    <section id="equipe" className="py-16 sm:py-20 lg:py-24 bg-background relative overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 bg-background relative overflow-hidden">
       <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
@@ -39,13 +48,17 @@ export function Team({ teamMembers }: { teamMembers?: TeamMember[] }) {
                 <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4 sm:mb-5">
                   <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
                   <div className="absolute inset-0.5 rounded-full bg-background" />
-                  <Image
-                    src={member.fotoUrl || `https://ui-avatars.com/api/?name=${member.nomeCompleto}&background=0a0a0f&color=00d4ff&size=128`}
-                    alt={member.nomeCompleto}
-                    fill
-                    className="object-cover rounded-full relative z-10 ring-2 ring-white/10 group-hover:ring-neon-blue/50 transition-all duration-500"
-                    sizes="128px"
-                  />
+                  {member.fotoUrl ? (
+                    <Image
+                      src={member.fotoUrl}
+                      alt={member.nomeCompleto}
+                      fill
+                      className="object-cover rounded-full relative z-10 ring-2 ring-white/10 group-hover:ring-neon-blue/50 transition-all duration-500"
+                      sizes="128px"
+                    />
+                  ) : (
+                    <AvatarPlaceholder name={member.nomeCompleto} />
+                  )}
                 </div>
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-neon-blue transition-colors duration-300">{member.nomeCompleto}</h3>

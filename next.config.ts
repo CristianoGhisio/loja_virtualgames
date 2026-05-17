@@ -60,6 +60,20 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/login',
+        destination: '/acompanhar-reparo',
+        permanent: true,
+      },
+      {
+        source: '/garantias',
+        destination: '/garantia',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

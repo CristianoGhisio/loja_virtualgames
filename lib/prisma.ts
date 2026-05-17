@@ -35,6 +35,7 @@ function getClient(): PrismaClient {
 const prismaHandler: ProxyHandler<object> = {
   get(_target, prop: string) {
     const client = getClient();
+    // eslint-disable-next-line security/detect-object-injection
     const value = (client as unknown as Record<string, unknown>)[prop];
     if (typeof value === 'function') {
       return value.bind(client);

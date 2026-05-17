@@ -12,13 +12,6 @@ function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('pt-BR').format(date);
 }
 
-function summarizeNames(names: string[]): string {
-  const cleaned = names.map((item) => item.trim()).filter(Boolean);
-  if (cleaned.length === 0) return '';
-  if (cleaned.length <= 2) return cleaned.join(', ');
-  return `${cleaned.slice(0, 2).join(', ')} +${cleaned.length - 2}`;
-}
-
 export async function GET(
   _request: NextRequest,
   context: { params: Promise<{ id: string }> }

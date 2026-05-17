@@ -127,11 +127,11 @@ export async function checkAuth() {
   const isLocalIp = forwardedFor.includes('127.0.0.1') || forwardedFor.includes('::1') ||
     realIp.includes('127.0.0.1') || realIp.includes('::1') || realIp.includes('::ffff:127.0.0.1');
 
+  /* eslint-disable security/detect-object-injection */
   if (isDevelopment && mockEnabled && isLocalhost && isLocalIp && mockRole && MOCK_USERS[mockRole]) {
-    // eslint-disable-next-line security/detect-object-injection
     const mockUser = MOCK_USERS[mockRole];
-    // eslint-disable-next-line security/detect-object-injection
     const mockPermissions = (PERMISSIONS[mockRole] || []).map((resource) => resource.toLowerCase());
+    /* eslint-enable security/detect-object-injection */
     const user = {
       id: mockUser.id,
       role: mockUser.role,

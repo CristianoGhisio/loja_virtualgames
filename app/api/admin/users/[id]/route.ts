@@ -11,7 +11,7 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { authorized, response, user } = await checkAuth();
+    const { authorized, response } = await checkAuth();
     if (!authorized) return response;
 
     const { id } = await context.params;

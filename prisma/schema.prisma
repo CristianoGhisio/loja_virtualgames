@@ -858,3 +858,38 @@ enum EmployeeStatus {
   ATIVO
   INATIVO
 }
+
+model BlogAuthor {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  role      String
+  bio       String?  @db.Text
+  image     String?
+  imageAlt  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     BlogPost[]
+}
+
+model BlogPost {
+  id              String     @id @default(cuid())
+  title           String
+  slug            String     @unique
+  metaTitle       String?
+  metaDescription String?
+  featuredImage   String?
+  featuredImageAlt String?
+  categoria       String
+  publishedAt     DateTime?
+  updatedAt       DateTime   @updatedAt
+  createdAt       DateTime   @default(now())
+  authorId        String
+  excerpt         String?    @db.Text
+  body            Json
+  faqs            Json?
+  relatedService  String?
+  readingTime     Int?
+  published       Boolean    @default(false)
+  author          BlogAuthor @relation(fields: [authorId], references: [id])
+}

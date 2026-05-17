@@ -1,7 +1,6 @@
 'use client';
 
 import { Trophy, Medal, Swords, Target } from 'lucide-react';
-import Image from 'next/image';
 
 const CURIOSITIES = [
   {
@@ -26,7 +25,7 @@ const CURIOSITIES = [
 
 export function Championships() {
   return (
-    <section id="campeonatos" className="py-16 sm:py-20 lg:py-24 bg-background border-b border-white/5 relative overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 bg-background border-b border-white/5 relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
@@ -44,13 +43,9 @@ export function Championships() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="relative h-[300px] sm:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,212,255,0.1)] group">
-            <Image
-              src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2000&auto=format&fit=crop"
-              alt="Torneio de eSports"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/30 via-neon-purple/20 to-background flex items-center justify-center">
+              <Trophy className="w-20 h-20 sm:w-28 sm:h-28 text-neon-blue/40" />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6">
               <span className="text-white/80 text-sm font-bold bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-sm">

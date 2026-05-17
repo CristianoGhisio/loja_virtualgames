@@ -362,3 +362,25 @@ textarea:focus-visible {
     display: none !important;
   }
 }
+
+/* =============================================
+   SKIP TO CONTENT — ACCESSIBILITY
+   ============================================= */
+
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 20px;
+  background: var(--neon-blue);
+  color: #000;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  transition: top 200ms ease;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}

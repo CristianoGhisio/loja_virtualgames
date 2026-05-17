@@ -6,11 +6,29 @@ import { Gamepad2, Menu, X, User, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
-const NAV_LINKS = [
-  { href: '#equipe', label: 'Equipe' },
-  { href: '#servicos', label: 'Serviços' },
-  { href: '#campeonatos', label: 'Campeonatos' },
-  { href: '#contato', label: 'Contato' },
+const SERVICES_LINKS = [
+  { href: '/servicos/manutencao-ps5', label: 'Manutenção PS5' },
+  { href: '/servicos/manutencao-xbox', label: 'Reparo Xbox' },
+  { href: '/servicos/manutencao-nintendo-switch', label: 'Reparo Switch' },
+  { href: '/servicos/montagem-pc-gamer', label: 'Montagem PC Gamer' },
+  { href: '/servicos/reparo-controle-drift', label: 'Reparo de Controle' },
+  { href: '/servicos/reparo-celular', label: 'Reparo Celular' },
+  { href: '/servicos/limpeza-preventiva', label: 'Limpeza Preventiva' },
+  { href: '/servicos/reparo-hdmi-ps5', label: 'Reparo HDMI PS5' },
+  { href: '/servicos/upgrade-ssd-ps5', label: 'Upgrade SSD PS5' },
+];
+
+const TOP_LINKS = [
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/campeonatos', label: 'Campeonatos' },
+  { href: '/contato', label: 'Contato' },
+];
+
+const ALL_NAV_LINKS = [
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/servicos', label: 'Serviços', hasDropdown: true },
+  { href: '/campeonatos', label: 'Campeonatos' },
+  { href: '/contato', label: 'Contato' },
 ];
 
 const containerVariants = {
@@ -34,6 +52,7 @@ const itemVariants = {
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 40);
@@ -72,16 +91,55 @@ export function Navbar() {
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="relative px-4 py-2 text-sm lg:text-base text-gray-400 hover:text-neon-blue transition-colors duration-300 font-medium group"
-            >
-              {link.label}
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-neon-blue transition-all duration-300 group-hover:w-3/4 rounded-full" />
-            </Link>
-          ))}
+          {ALL_NAV_LINKS.map((link) =>
+            link.hasDropdown ? (
+              <div
+                key={link.href}
+                className="relative"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
+                <Link
+                  href={link.href}
+                  className="relative flex items-center gap-1 px-4 py-2 text-sm lg:text-base text-gray-400 hover:text-neon-blue transition-colors duration-300 font-medium group"
+                >
+                  {link.label}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-neon-blue transition-all duration-300 group-hover:w-3/4 rounded-full" />
+                </Link>
+                {isServicesOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-[rgba(10,10,15,0.97)] backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] py-2 z-50">
+                    {SERVICES_LINKS.map((s) => (
+                      <Link
+                        key={s.href}
+                        href={s.href}
+                        className="block px-4 py-2.5 text-sm text-gray-400 hover:text-neon-blue hover:bg-white/5 transition-colors"
+                      >
+                        {s.label}
+                      </Link>
+                    ))}
+                    <div className="border-t border-white/5 mt-1 pt-1">
+                      <Link
+                        href="/servicos"
+                        className="block px-4 py-2.5 text-sm text-neon-blue hover:text-neon-blue-dark transition-colors font-medium"
+                      >
+                        Ver Todos os Serviços →
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="relative px-4 py-2 text-sm lg:text-base text-gray-400 hover:text-neon-blue transition-colors duration-300 font-medium group"
+              >
+                {link.label}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-neon-blue transition-all duration-300 group-hover:w-3/4 rounded-full" />
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
@@ -121,7 +179,7 @@ export function Navbar() {
             exit="exit"
             className="md:hidden fixed top-16 left-0 right-0 bottom-0 bg-[rgba(10,10,15,0.97)] backdrop-blur-2xl border-t border-[rgba(255,255,255,0.06)] p-6 flex flex-col gap-2 overflow-y-auto"
           >
-            {NAV_LINKS.map((link) => (
+            {TOP_LINKS.map((link) => (
               <motion.div key={link.href} variants={itemVariants}>
                 <Link
                   href={link.href}
@@ -133,6 +191,29 @@ export function Navbar() {
                 </Link>
               </motion.div>
             ))}
+
+            <motion.div variants={itemVariants}>
+              <Link
+                href="/servicos"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-between px-4 py-4 text-lg text-neon-blue hover:text-neon-blue-dark hover:bg-white/5 rounded-xl transition-all duration-300 font-medium border border-neon-blue/20"
+              >
+                Serviços
+                <ChevronDown className="w-4 h-4 text-neon-blue rotate-[-90deg]" />
+              </Link>
+            </motion.div>
+            <div className="pl-4 space-y-1 border-l border-neon-blue/20 ml-4">
+              {SERVICES_LINKS.map((s) => (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-4 py-2 text-sm text-gray-400 hover:text-neon-blue hover:bg-white/5 rounded-lg transition-all duration-300"
+                >
+                  {s.label}
+                </Link>
+              ))}
+            </div>
 
             <motion.div variants={itemVariants} className="mt-auto pt-6 border-t border-white/10">
               <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>

@@ -1,7 +1,6 @@
 'use client';
 
 import { Quote, Star } from 'lucide-react';
-import Image from 'next/image';
 
 const TESTIMONIALS = [
   {
@@ -9,23 +8,29 @@ const TESTIMONIALS = [
     name: 'Carlos "Kratos" Silva',
     role: 'Cliente de Reparo (PS5)',
     content: 'Meu PS5 parou de dar vídeo. Levei em várias assistências e não resolveram. A equipe da Virtual Games resolveu o problema na placa em 2 dias. Atendimento sensacional!',
-    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
   },
   {
     id: 2,
     name: 'Ana "Jinx" Souza',
     role: 'Cliente de Manutenção (PC Gamer)',
     content: 'Fiz a limpeza preventiva e troca de pasta térmica do meu PC com eles. A temperatura baixou 15 graus e o desempenho melhorou muito. Profissionais de verdade.',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop',
   },
   {
     id: 3,
     name: 'Pedro Oliveira',
     role: 'Cliente de Reparo (Controle)',
     content: 'Meus controles estavam com drift severo. A troca dos analógicos foi feita com peças de alta qualidade e ficaram como novos. Recomendo demais!',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000&auto=format&fit=crop',
   },
 ];
+
+function AvatarInitial({ name }: { name: string }) {
+  const initial = name.charAt(0).toUpperCase();
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-full">
+      <span className="text-neon-blue font-bold text-lg">{initial}</span>
+    </div>
+  );
+}
 
 export function Testimonials() {
   return (
@@ -35,7 +40,7 @@ export function Testimonials() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            CLIENTES <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">SATISFEITOS</span>
+            O QUE NOSSOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">CLIENTES DIZEM</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
             Veja o que dizem os clientes que confiaram seus equipamentos à nossa equipe técnica.
@@ -52,16 +57,10 @@ export function Testimonials() {
 
               <div className="flex items-center gap-4 mb-5">
                 <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden ring-2 ring-neon-blue/30 group-hover:ring-neon-blue/60 transition-all duration-500">
-                  <Image
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                    sizes="56px"
-                  />
+                  <AvatarInitial name={testimonial.name} />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-sm sm:text-base">{testimonial.name}</h4>
+                  <h3 className="text-white font-bold text-sm sm:text-base">{testimonial.name}</h3>
                   <p className="text-xs sm:text-sm text-gray-400">{testimonial.role}</p>
                 </div>
               </div>

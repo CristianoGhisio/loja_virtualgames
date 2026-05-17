@@ -213,6 +213,7 @@ export async function POST(request: NextRequest) {
           '2': { type: 'SERVICE', label: 'Serviços' },
           '3': { type: 'BOLETO', label: 'Boleto Bancário' },
         };
+        // eslint-disable-next-line security/detect-object-injection
         const choice = interestMap[message];
         const interestType = choice.type;
         const interestLabel = choice.label;

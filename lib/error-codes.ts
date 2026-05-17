@@ -29,5 +29,6 @@ const STATUS_TO_CODE: Record<number, ErrorCode> = {
 };
 
 export function statusToCode(status: number): ErrorCode {
+  // eslint-disable-next-line security/detect-object-injection
   return STATUS_TO_CODE[status] || ErrorCodes.INTERNAL_ERROR;
 }

@@ -43,7 +43,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           'font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 tracking-wide cursor-pointer select-none',
           'focus-visible:outline-2 focus-visible:outline-neon-blue focus-visible:outline-offset-2',
           'disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100',
+          // eslint-disable-next-line security/detect-object-injection
           variantStyles[variant],
+          // eslint-disable-next-line security/detect-object-injection
           sizeStyles[size],
           {
             'rounded-lg': shape === 'default',

@@ -12,7 +12,7 @@ const SLIDES = [
     title1: 'RECUPERE O SEU',
     title2: 'EQUIPAMENTO',
     description: 'Assistência técnica especializada em PS5, Xbox, Switch e PC Gamer em Santa Maria, RS. Profissionalismo, rapidez e garantia total no seu reparo.',
-    image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2670&auto=format&fit=crop',
+    gradient: 'from-neon-blue/20 via-background to-neon-purple/20',
     buttons: [
       { text: 'SOLICITAR ORÇAMENTO', action: () => document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' }), primary: true, icon: ChevronRight },
       { text: 'CONHEÇA A EQUIPE', action: () => document.getElementById('equipe')?.scrollIntoView({ behavior: 'smooth' }), primary: false }
@@ -24,7 +24,7 @@ const SLIDES = [
     title1: 'O SEU PRÓXIMO',
     title2: 'UPGRADE',
     description: 'Compra, venda e troca de consoles e PC Gamer. Encontre as melhores ofertas em Santa Maria e faça um excelente negócio.',
-    image: 'https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?q=80&w=2670&auto=format&fit=crop',
+    gradient: 'from-neon-purple/20 via-background to-cta-gold/20',
     buttons: [
       { text: 'FALAR COM VENDAS', action: () => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' }), primary: true, icon: ChevronRight }
     ]
@@ -35,7 +35,7 @@ const SLIDES = [
     title1: 'EXPANDA SUA',
     title2: 'COLEÇÃO',
     description: 'Action figures, edições limitadas e itens exclusivos para apaixonados por cultura geek e gamer em Santa Maria.',
-    image: 'https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?q=80&w=2670&auto=format&fit=crop',
+    gradient: 'from-cta-gold/20 via-background to-neon-blue/20',
     buttons: [
       { text: 'VER COLECIONÁVEIS', action: () => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' }), primary: true, icon: ChevronRight }
     ]
@@ -46,7 +46,7 @@ const SLIDES = [
     title1: 'PARTICIPE DOS',
     title2: 'CAMPEONATOS',
     description: 'Mostre suas habilidades nos nossos torneios locais. Prêmios incríveis e muita diversão com a comunidade gamer de Santa Maria.',
-    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2670&auto=format&fit=crop',
+    gradient: 'from-cta-orange/20 via-background to-neon-purple/20',
     buttons: [
       { text: 'SABER MAIS', action: () => document.getElementById('campeonatos')?.scrollIntoView({ behavior: 'smooth' }), primary: true, icon: ChevronRight }
     ]
@@ -91,6 +91,7 @@ export function Hero() {
     return () => clearInterval(id);
   }, [isHovered, paginate]);
 
+  // eslint-disable-next-line security/detect-object-injection
   const currentSlide = SLIDES[currentIndex];
 
   return (
@@ -114,8 +115,7 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/40 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/20 z-10" />
             <div
-              className="absolute inset-0 bg-cover bg-center opacity-50 sm:opacity-60 scale-105"
-              style={{ backgroundImage: `url('${currentSlide.image})` }}
+              className={`absolute inset-0 bg-gradient-to-br ${currentSlide.gradient} opacity-50 sm:opacity-60 scale-105`}
             />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,212,255,0.08),transparent_70%)] z-10" />
           </div>

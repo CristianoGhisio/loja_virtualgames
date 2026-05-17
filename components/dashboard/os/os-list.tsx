@@ -78,6 +78,7 @@ export function OSList({ statusFilter }: OSListProps) {
       setLoading(true);
       let apiStatus = '';
       for (const s of statuses) {
+        // eslint-disable-next-line security/detect-object-injection
         if (STATUS_MAP[s]) { apiStatus = STATUS_MAP[s]; break; }
       }
       const response = await api.get(`/os${apiStatus ? `?status=${apiStatus}` : ''}`);
