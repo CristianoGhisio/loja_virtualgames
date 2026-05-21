@@ -24,7 +24,7 @@ export default function DashboardLayout({
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-3">
         <Loader2 className="w-8 h-8 animate-spin text-neon-blue" />
-        <p className="text-sm text-gray-500">Carregando sessão...</p>
+        <p className="text-sm text-gray-400">Carregando sessão...</p>
       </div>
     );
   }

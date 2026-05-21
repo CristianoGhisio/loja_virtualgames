@@ -89,7 +89,7 @@ export function Topbar() {
               <span className="font-orbitron text-base sm:text-lg font-bold tracking-wider text-white leading-none">
                 VIRTUAL<span className="text-neon-blue">GAMES</span>
               </span>
-              <span className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider leading-none mt-0.5">
+              <span className="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider leading-none mt-0.5">
                 ERP System v2.4
               </span>
             </div>

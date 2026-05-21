@@ -274,7 +274,7 @@ export default function PermissoesPage() {
                         <td className="py-3 px-4 pl-10 border-l-2 border-transparent hover:border-neon-blue/30">
                           <div className="flex flex-col">
                             <span className="font-bold text-gray-300 uppercase text-xs">{ACTION_LABELS[perm.action] || perm.action}</span>
-                            <span className="text-gray-500 text-[10px]">{perm.description || `Ação ${perm.action} em ${perm.resource}`}</span>
+                            <span className="text-gray-400 text-[10px]">{perm.description || `Ação ${perm.action} em ${perm.resource}`}</span>
                           </div>
                         </td>
                         {data.roles.map((role) => {

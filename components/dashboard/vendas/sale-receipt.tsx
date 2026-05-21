@@ -166,11 +166,11 @@ export function SaleReceipt({
 
             <div className="flex justify-between items-end border-b border-black py-4">
               <div>
-                <p className="text-[10px] text-gray-500 uppercase font-bold mb-1">Venda</p>
+                <p className="text-[10px] text-gray-400 uppercase font-bold mb-1">Venda</p>
                 <p className="text-4xl font-black tracking-normal" style={{ fontFamily: 'Arial, sans-serif' }}>#{sale.id.slice(-8).toUpperCase()}</p>
               </div>
               <div className="text-right">
-                <p className="text-[10px] text-gray-500 uppercase font-bold mb-1">Data</p>
+                <p className="text-[10px] text-gray-400 uppercase font-bold mb-1">Data</p>
                 <p className="font-bold text-lg">{new Date(sale.date).toLocaleString('pt-BR')}</p>
               </div>
             </div>
@@ -179,15 +179,15 @@ export function SaleReceipt({
               <h3 className="font-bold uppercase text-[11px] mb-4 bg-black text-white px-2 py-1 inline-block tracking-wide">Dados do Cliente</h3>
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                 <div>
-                  <span className="block text-[10px] text-gray-500 uppercase font-bold mb-1">Nome</span>
+                  <span className="block text-[10px] text-gray-400 uppercase font-bold mb-1">Nome</span>
                   <span className="font-bold text-sm block leading-tight">{sale.customer.name || 'Não informado'}</span>
                 </div>
                 <div>
-                  <span className="block text-[10px] text-gray-500 uppercase font-bold mb-1">CPF/CNPJ</span>
+                  <span className="block text-[10px] text-gray-400 uppercase font-bold mb-1">CPF/CNPJ</span>
                   <span className="font-mono text-sm">{sale.customer.document || '-'}</span>
                 </div>
                 <div className="col-span-2">
-                  <span className="block text-[10px] text-gray-500 uppercase font-bold mb-1">Telefone / WhatsApp</span>
+                  <span className="block text-[10px] text-gray-400 uppercase font-bold mb-1">Telefone / WhatsApp</span>
                   <span className="font-mono text-sm">{sale.customer.phone || 'Não informado'}</span>
                 </div>
               </div>
@@ -244,7 +244,7 @@ export function SaleReceipt({
             </div>
 
             <div className="text-center pt-4">
-              <p className="text-xs text-gray-500">Obrigado pela preferência!</p>
+              <p className="text-xs text-gray-400">Obrigado pela preferência!</p>
             </div>
           </div>
         </div>

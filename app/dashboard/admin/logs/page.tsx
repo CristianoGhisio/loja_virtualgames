@@ -66,7 +66,7 @@ export default function LogsPage() {
             <TableBody>
               {logs.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-10 text-gray-500">
+                  <TableCell colSpan={5} className="text-center py-10 text-gray-400">
                     Nenhum log encontrado.
                   </TableCell>
                 </TableRow>
@@ -78,13 +78,13 @@ export default function LogsPage() {
                     </TableCell>
                     <TableCell>
                       <div className="font-medium text-white">{log.user?.name || 'Sistema'}</div>
-                      <div className="text-[10px] text-gray-500">{log.user?.email || ''}</div>
+                      <div className="text-[10px] text-gray-400">{log.user?.email || ''}</div>
                     </TableCell>
                     <TableCell className="text-sm text-gray-300">{log.action}</TableCell>
                     <TableCell>
                       <Badge variant="neon" className="text-[10px] uppercase">{log.module}</Badge>
                     </TableCell>
-                    <TableCell className="text-right font-mono text-xs text-gray-500">{log.ip || 'Local'}</TableCell>
+                    <TableCell className="text-right font-mono text-xs text-gray-400">{log.ip || 'Local'}</TableCell>
                   </TableRow>
                 ))
               )}

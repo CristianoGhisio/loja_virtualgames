@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const config = {
   slug: "reparo-hdmi-ps5",
   h1: "Reparo da Porta HDMI do PS5 em Santa Maria, RS",
-  metaTitle: "Reparo HDMI PS5 em Santa Maria | Virtual Games",
+  metaTitle: "Reparo HDMI PS5 em Santa Maria",
   metaDescription: "Especialistas em reparo da porta HDMI do PS5 em Santa Maria. Solda de precisão, peças de qualidade. Diagnóstico grátis, garantia 90 dias. Orçamento em 24h!",
   introParagraphs: [
     "O reparo da porta HDMI é o serviço mais procurado para PS5 da Virtual Games, em Santa Maria. Se seu console não dá imagem ou o sinal fica piscando, provavelmente a porta HDMI está danificada — problema muito comum no PS5.",
@@ -26,11 +26,11 @@ const config = {
     "Especialistas em reparo HDMI do PS5 — dezenas de consoles reparados por mês",
     "Solda profissional com estação de retrabalho — nada de ferro de solda caseiro",
     "Diagnóstico preciso — diferenciamos defeito de porta, trilha e chip",
-    "Garantia de 90 dias — se a porta HDMI falhar, trocamos de novo sem custo",
+    "Garantia de 90 dias — se a porta HDMI falhar, trocamos de novo",
   ],
   faqs: [
     { question: "Como saber se a porta HDMI do PS5 está com problema?", answer: "Sintomas: tela preta, imagem piscando, 'sem sinal' na TV, ou imagem com artefatos. Se o console liga mas não dá vídeo, o problema provavelmente está na porta HDMI." },
-    { question: "Quanto custa o reparo da porta HDMI do PS5?", answer: "A troca da porta HDMI custa entre R$ 250 e R$ 400, dependendo se há danos nas trilhas da placa. O diagnóstico é gratuito e você recebe o valor exato antes do reparo começar." },
+    { question: "Como saber se é a porta HDMI ou outro problema?", answer: "Fazemos um diagnóstico completo para identificar se o defeito é no conector, na trilha ou no chip de vídeo. O diagnóstico é gratuito e você recebe o orçamento antes do reparo." },
     { question: "Quanto tempo leva o reparo da porta HDMI?", answer: "O reparo de porta HDMI é concluído em 1 a 3 dias úteis. Casos com trilha rompida podem levar até 5 dias." },
     { question: "Vocês oferecem atendimento de emergência para HDMI?", answer: "Sim, em casos urgentes podemos priorizar seu reparo. Consulte disponibilidade via WhatsApp (55) 99725-2786." },
     { question: "A nova porta HDMI tem garantia?", answer: "Sim, garantia de 90 dias na porta HDMI trocada e na mão de obra. Se houver qualquer problema no período, trocamos novamente sem custo." },

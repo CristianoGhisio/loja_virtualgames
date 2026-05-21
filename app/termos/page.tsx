@@ -14,17 +14,17 @@ export default function TermosPage() {
         <Breadcrumbs items={[{ name: "Início", href: "/" }, { name: "Termos de Serviço" }]} />
         <h1 className="text-3xl sm:text-4xl font-bold text-white mt-4 mb-6">Termos de Serviço</h1>
         <div className="prose prose-invert max-w-none space-y-4 text-gray-300 leading-relaxed text-sm">
-          <p><strong>Última atualização:</strong> Maio de 2026</p>
+          <p><strong>Última atualização:</strong> maio de 2026</p>
           <p>Ao deixar seu equipamento na Virtual Games, você concorda com estes termos.</p>
 
           <h2 className="text-xl font-bold text-white mt-6">1. Diagnóstico</h2>
-          <p>O diagnóstico é gratuito. Após avaliação, informamos o valor e prazo do reparo. O serviço só é iniciado após sua aprovação expressa (via WhatsApp ou presencial).</p>
+          <p>O diagnóstico é gratuito. Após avaliação, informamos o orçamento e prazo do reparo. O serviço só é iniciado após sua aprovação expressa (via WhatsApp ou presencial).</p>
 
           <h2 className="text-xl font-bold text-white mt-6">2. Prazo de Reparo</h2>
           <p>Os prazos informados são estimativas baseadas na complexidade do defeito e disponibilidade de peças. A maioria dos reparos é concluída em 2 a 5 dias úteis.</p>
 
-          <h2 className="text-xl font-bold text-white mt-6">3. Orçamento e Pagamento</h2>
-          <p>O valor do orçamento é válido por 5 dias. Formas de pagamento: dinheiro, PIX, cartão de crédito e débito. O pagamento é realizado na retirada do equipamento.</p>
+          <h2 className="text-xl font-bold text-white mt-6">3. Orçamento</h2>
+          <p>O orçamento tem validade de 5 dias. O pagamento é realizado na retirada do equipamento.</p>
 
           <h2 className="text-xl font-bold text-white mt-6">4. Garantia</h2>
           <p>Todos os reparos têm garantia de 90 dias em peças e mão de obra. A garantia cobre defeitos relacionados ao serviço realizado. Não cobre danos físicos, mau uso ou intervenção de terceiros.</p>

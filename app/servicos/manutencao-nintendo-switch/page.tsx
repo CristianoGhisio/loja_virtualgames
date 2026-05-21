@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const config = {
   slug: "manutencao-nintendo-switch",
   h1: "Assistência Técnica Nintendo Switch em Santa Maria",
-  metaTitle: "Conserto Nintendo Switch em Santa Maria | Virtual Games",
+  metaTitle: "Conserto Nintendo Switch em Santa Maria",
   metaDescription: "Assistência técnica Nintendo Switch em Santa Maria: tela quebrada, bateria, drift no Joy-Con. Diagnóstico grátis, garantia 90 dias. Orçamento em 24h!",
   introParagraphs: [
     "A Virtual Games é especializada em reparo de Nintendo Switch, Switch Lite e Switch OLED em Santa Maria, RS. Seja tela rachada, bateria viciada, drift no Joy-Con ou console que não liga, nossa equipe resolve.",
@@ -31,10 +31,10 @@ const config = {
   ],
   faqs: [
     { question: "Vocês consertam Nintendo Switch com tela quebrada?", answer: "Sim, trocamos telas de Switch, Switch Lite e Switch OLED. O serviço inclui a substituição completa do display com teste de touchscreen e qualidade de imagem." },
-    { question: "Quanto custa consertar um Nintendo Switch?", answer: "O diagnóstico é gratuito. Troca de tela: a partir de R$ 350 (varia por modelo). Reparo de Joy-Con com drift: a partir de R$ 120 por controle. O valor exato depende do defeito." },
+    { question: "Vale a pena consertar o Nintendo Switch?", answer: "Sim, na maioria dos casos o reparo é mais vantajoso que comprar um console novo. O diagnóstico é gratuito e você recebe o orçamento antes de autorizar." },
     { question: "Vocês consertam Nintendo Switch Lite e OLED?", answer: "Sim, trabalhamos com todos os modelos: Switch V1/V2, Switch Lite e Switch OLED. Cada modelo tem particularidades que nossa equipe domina." },
     { question: "O que fazer quando o Switch não carrega?", answer: "Pode ser problema na porta USB-C, bateria ou circuito de carga. Traga para diagnóstico gratuito. Identificamos a causa e apresentamos o orçamento." },
-    { question: "Qual a garantia do reparo do Switch?", answer: "90 dias de garantia em peças e mão de obra. Se houver qualquer problema relacionado ao serviço realizado, reavaliamos sem custo." },
+    { question: "Qual a garantia do reparo do Switch?", answer: "90 dias de garantia em peças e mão de obra. Se houver qualquer problema relacionado ao serviço realizado, reavaliamos." },
   ],
   testimonials: [
     { name: "Marina A.", role: "Cliente Switch OLED", text: "Derramei água no meu Switch OLED. Acharam oxidação na placa e recuperaram! Perdi só a bateria que foi trocada. Atendimento incrível." },

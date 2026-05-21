@@ -131,7 +131,7 @@ export default function NovaVendaPage() {
                   </TableBody>
                 </Table>
               )}
-              {cart.length === 0 && <p className="text-sm text-gray-500 text-center py-4">Carrinho vazio. Adicione produtos.</p>}
+              {cart.length === 0 && <p className="text-sm text-gray-400 text-center py-4">Carrinho vazio. Adicione produtos.</p>}
             </CardContent>
           </Card>
 
@@ -148,7 +148,7 @@ export default function NovaVendaPage() {
             <CardHeader><CardTitle>Cliente</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="text-[10px] uppercase font-bold text-gray-500 tracking-wider ml-1">Cliente</label>
+                <label className="text-[10px] uppercase font-bold text-gray-400 tracking-wider ml-1">Cliente</label>
                 <select value={selectedClient} onChange={(e) => setSelectedClient(e.target.value)}
                   className="w-full h-10 rounded-md border border-[rgba(255,255,255,0.1)] bg-black/20 px-3 text-sm text-white focus:border-neon-blue mt-1">
                   <option value="">Selecione...</option>
@@ -163,7 +163,7 @@ export default function NovaVendaPage() {
             <CardHeader><CardTitle>Pagamento</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="text-[10px] uppercase font-bold text-gray-500 tracking-wider ml-1">Forma de Pagamento</label>
+                <label className="text-[10px] uppercase font-bold text-gray-400 tracking-wider ml-1">Forma de Pagamento</label>
                 <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}
                   className="w-full h-10 rounded-md border border-[rgba(255,255,255,0.1)] bg-black/20 px-3 text-sm text-white focus:border-neon-blue mt-1">
                   <option value="">Selecione...</option>

@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
-import { Gamepad2, Menu, X, User, ChevronDown } from 'lucide-react';
+import { Gamepad2, Menu, X, ChevronDown, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
@@ -21,6 +21,8 @@ const SERVICES_LINKS = [
 const TOP_LINKS = [
   { href: '/sobre', label: 'Sobre' },
   { href: '/campeonatos', label: 'Campeonatos' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/faq', label: 'FAQ' },
   { href: '/contato', label: 'Contato' },
 ];
 
@@ -28,6 +30,8 @@ const ALL_NAV_LINKS = [
   { href: '/sobre', label: 'Sobre' },
   { href: '/servicos', label: 'Serviços', hasDropdown: true },
   { href: '/campeonatos', label: 'Campeonatos' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/faq', label: 'FAQ' },
   { href: '/contato', label: 'Contato' },
 ];
 
@@ -63,16 +67,56 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const mobileMenu = mobileMenuRef.current;
+    if (!mobileMenu) return;
+
+    const focusableElements = mobileMenu.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
+
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        return;
+      }
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable?.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable?.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleTabKey);
+    firstFocusable?.focus();
+
+    return () => document.removeEventListener('keydown', handleTabKey);
   }, [isMobileMenuOpen]);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[var(--z-navbar)] transition-all duration-500 ${
         isScrolled
-          ? 'bg-[rgba(10,10,15,0.85)] backdrop-blur-xl border-b border-[rgba(255,255,255,0.06)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
+          ? 'bg-[rgba(10,10,15,0.85)] backdrop-blur-xl border-b border-[rgba(255,255,255,0.06)] shadow-lg'
           : 'bg-transparent'
       }`}
     >
@@ -81,7 +125,7 @@ export function Navbar() {
           <motion.div
             whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
             transition={{ duration: 0.4 }}
-            className="p-1.5 sm:p-2 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl shadow-[0_0_15px_rgba(0,212,255,0.2)]"
+            className="p-1.5 sm:p-2 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl shadow-neon-blue-sm"
           >
             <Gamepad2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </motion.div>
@@ -101,6 +145,8 @@ export function Navbar() {
               >
                 <Link
                   href={link.href}
+                  aria-haspopup="true"
+                  aria-expanded={isServicesOpen}
                   className="relative flex items-center gap-1 px-4 py-2 text-sm lg:text-base text-gray-400 hover:text-neon-blue transition-colors duration-300 font-medium group"
                 >
                   {link.label}
@@ -108,7 +154,7 @@ export function Navbar() {
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-neon-blue transition-all duration-300 group-hover:w-3/4 rounded-full" />
                 </Link>
                 {isServicesOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-[rgba(10,10,15,0.97)] backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-[rgba(10,10,15,0.97)] backdrop-blur-xl border border-white/10 rounded-xl shadow-lg py-2 z-50">
                     {SERVICES_LINKS.map((s) => (
                       <Link
                         key={s.href}
@@ -143,16 +189,27 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <Link href="/login">
+          <Link href="/acompanhar-reparo">
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
-              className="border-neon-blue/30 text-neon-blue hover:bg-neon-blue/10 hover:border-neon-blue/60 transition-all duration-300 text-sm"
+              className="text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300 text-sm"
             >
-              <User className="w-4 h-4 mr-1.5" />
-              Acessar Sistema
+              <Search className="w-4 h-4 mr-1.5" />
+              Acompanhar Reparo
             </Button>
           </Link>
+          <a
+            href="https://wa.me/55997252786?text=Olá!%20Gostaria%20de%20um%20orçamento."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-4 py-2 rounded-xl text-sm transition-all duration-300 hover:scale-105 shadow-whatsapp hover:shadow-whatsapp-hover"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
+            </svg>
+            Solicitar Orçamento
+          </a>
         </div>
 
         <button
@@ -173,6 +230,8 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            ref={mobileMenuRef}
+            data-mobile-menu
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -215,13 +274,25 @@ export function Navbar() {
               ))}
             </div>
 
-            <motion.div variants={itemVariants} className="mt-auto pt-6 border-t border-white/10">
-              <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full bg-neon-blue hover:bg-neon-blue-dark text-black font-bold py-6 text-base">
-                  <User className="w-5 h-5 mr-2" />
-                  Acessar o Sistema
+            <motion.div variants={itemVariants} className="mt-auto pt-6 border-t border-white/10 space-y-3">
+              <Link href="/acompanhar-reparo" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button className="w-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white font-medium py-6 text-base border border-white/10">
+                  <Search className="w-5 h-5 mr-2" />
+                  Acompanhar Reparo
                 </Button>
               </Link>
+              <a
+                href="https://wa.me/55997252786?text=Olá!%20Gostaria%20de%20um%20orçamento."
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 rounded-xl text-base transition-all duration-300"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
+                </svg>
+                Solicitar Orçamento
+              </a>
             </motion.div>
           </motion.div>
         )}

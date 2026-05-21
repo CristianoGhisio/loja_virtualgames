@@ -1,22 +1,28 @@
-import { Navbar } from '@/components/layout/navbar';
 import { Hero } from '@/components/sections/hero';
 import { Team } from '@/components/sections/team';
-import { ServicesSection } from '@/components/landing/services-section';
-import { Testimonials } from '@/components/sections/testimonials';
-import { Championships } from '@/components/sections/championships';
+import { ServicesGrid } from '@/components/landing/services-grid';
 import { Contact } from '@/components/sections/contact';
-import { Footer } from '@/components/layout/footer';
 import { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { ShieldCheck, Search, Clock, Wrench } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { SectionSkeleton } from '@/components/ui/skeleton';
+
+const Testimonials = dynamic(() => import('@/components/sections/testimonials').then(m => ({ default: m.Testimonials })), {
+  loading: () => <SectionSkeleton />,
+});
+
+const Championships = dynamic(() => import('@/components/sections/championships').then(m => ({ default: m.Championships })), {
+  loading: () => <SectionSkeleton />,
+});
 
 export const revalidate = 60;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://virtualgames.com.br';
 
 export const metadata = {
-  title: 'Assistência Técnica em Consoles e PC Gamer em Santa Maria | Virtual Games',
+  title: 'Assistência Técnica Gamer em Santa Maria | Virtual Games',
   description: 'Assistência técnica gamer em Santa Maria: PS5, Xbox, Switch, PC Gamer e celulares. Diagnóstico grátis, garantia de 90 dias. Orçamento via WhatsApp em 24h!',
   authors: [{ name: 'Virtual Games' }],
   creator: 'Virtual Games',
@@ -26,22 +32,22 @@ export const metadata = {
     locale: 'pt_BR',
     url: siteUrl,
     siteName: 'Virtual Games - Assistência Técnica Gamer',
-    title: 'Assistência Técnica em Consoles e PC Gamer em Santa Maria | Virtual Games',
-    description: 'Assistência técnica gamer em Santa Maria com diagnóstico grátis. PS5, Xbox, Nintendo Switch, PC Gamer. Garantia 90 dias. Solicite orçamento via WhatsApp!',
+    title: 'Assistência Técnica Gamer em Santa Maria | Virtual Games',
+    description: 'Assistência técnica gamer em Santa Maria com diagnóstico grátis. PS5, Xbox, Nintendo Switch, PC Gamer. Garantia 90 dias. Solicite orçamento!',
     images: [
       {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Virtual Games - Assistência Técnica em Consoles e PC Gamer em Santa Maria, RS',
+        alt: 'Virtual Games - Assistência Técnica Gamer em Santa Maria, RS',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Assistência Técnica em Consoles e PC Gamer em Santa Maria | Virtual Games',
-    description: 'Assistência técnica gamer em Santa Maria com diagnóstico grátis. Garantia 90 dias. Solicite orçamento pelo WhatsApp!',
+    title: 'Assistência Técnica Gamer em Santa Maria | Virtual Games',
+    description: 'Assistência técnica gamer em Santa Maria. Diagnóstico grátis, garantia 90 dias. Solicite orçamento!',
     images: [`${siteUrl}/og-image.png`],
     site: '@virtualgames',
     creator: '@virtualgames',
@@ -78,9 +84,9 @@ function isDatabaseOfflineError(error: unknown): boolean {
 }
 
 const TRUST_SIGNALS = [
-  { icon: Search, label: 'Diagnóstico Gratuito', desc: 'Avaliação completa do seu equipamento sem custo algum' },
+  { icon: Search, label: 'Diagnóstico Gratuito', desc: 'Avaliação completa do seu equipamento sem compromisso' },
   { icon: ShieldCheck, label: 'Garantia de 90 Dias', desc: 'Todos os nossos reparos têm garantia em peças e mão de obra' },
-  { icon: Clock, label: 'Orçamento em 24h', desc: 'Resposta rápida pelo WhatsApp com valor e prazo do reparo' },
+  { icon: Clock, label: 'Orçamento em 24h', desc: 'Resposta rápida pelo WhatsApp com prazo do reparo' },
   { icon: Wrench, label: 'Especialistas Gamers', desc: 'Equipe técnica que entende e joga — feito por gamers para gamers' },
 ];
 
@@ -145,58 +151,6 @@ export default async function Home() {
   } catch {
     // Blog may not be seeded yet
   }
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Virtual Games',
-    image: `${siteUrl}/og-image.png`,
-    url: siteUrl,
-    telephone: storeInfo.phone,
-    email: storeInfo.email,
-    priceRange: '$$',
-    description:
-      'Assistência técnica especializada em consoles, PC Gamer e celulares em Santa Maria/RS. Diagnóstico gratuito e garantia de 90 dias em todos os serviços.',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Rua Venâncio Aires, 1434, Torre Divindade, Sala 106 D-2',
-      addressLocality: 'Santa Maria',
-      addressRegion: 'RS',
-      postalCode: '97010-002',
-      addressCountry: 'BR',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: '-29.6881',
-      longitude: '-53.8091',
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
-        closes: '18:30',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Saturday'],
-        opens: '09:00',
-        closes: '13:00',
-      },
-    ],
-    areaServed: { '@type': 'City', name: 'Santa Maria' },
-    sameAs: ['https://instagram.com/virtualgames', 'https://facebook.com/virtualgames'],
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Serviços de Assistência Técnica Gamer',
-      itemListElement: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Manutenção de Consoles', description: 'Reparo especializado em PS5, Xbox Series X/S, Nintendo Switch e demais consoles' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Montagem e Upgrade de PC Gamer', description: 'Montagem personalizada e upgrades de PCs para jogos em Santa Maria/RS' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Reparo de Celular', description: 'Troca de tela, bateria e reparo em iPhone e Android' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Reparo de Controles', description: 'Conserto de drift, analógicos e botões em controles de PS5, Xbox e Switch' } },
-      ],
-    },
-  };
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -284,19 +238,7 @@ export default async function Home() {
       'Assistência técnica mobile',
       'Reparo de controle com drift',
     ],
-    sameAs: ['https://instagram.com/virtualgames', 'https://facebook.com/virtualgames'],
-  };
-
-  const webSiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    url: siteUrl,
-    name: 'Virtual Games',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${siteUrl}/blog?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
-    },
+    sameAs: ['https://www.instagram.com/virtual.gamess/', 'https://www.youtube.com/@Virtual.gamessm'],
   };
 
   const breadcrumbSchema = {
@@ -315,12 +257,35 @@ export default async function Home() {
     worstRating: '1',
   };
 
+  const reviewSchemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Carlos S.' },
+      reviewBody: 'Meu PS5 parou de dar vídeo. Levei em várias assistências e não resolveram. A equipe da Virtual Games resolveu o problema na placa em 2 dias. Atendimento sensacional!',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      itemReviewed: { '@type': 'LocalBusiness', name: 'Virtual Games' },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Ana S.' },
+      reviewBody: 'Fiz a limpeza preventiva e troca de pasta térmica do meu PC com eles. A temperatura baixou 15 graus e o desempenho melhorou muito. Profissionais de verdade.',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      itemReviewed: { '@type': 'LocalBusiness', name: 'Virtual Games' },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Pedro Oliveira' },
+      reviewBody: 'Meus controles estavam com drift severo. A troca dos analógicos foi feita com peças de alta qualidade e ficaram como novos. Recomendo demais!',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      itemReviewed: { '@type': 'LocalBusiness', name: 'Virtual Games' },
+    },
+  ];
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -331,19 +296,20 @@ export default async function Home() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({ ...aggregateRatingSchema, itemReviewed: { '@type': 'LocalBusiness', name: 'Virtual Games' } }) }}
       />
+      {reviewSchemas.map((reviewSchema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+        />
+      ))}
       <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
-        <Navbar />
-
         <div id="main-content">
           <Hero />
 
@@ -375,7 +341,7 @@ export default async function Home() {
           </section>
 
           <article aria-label="Serviços oferecidos">
-            <ServicesSection />
+            <ServicesGrid />
           </article>
 
           <section className="py-16 sm:py-20 lg:py-24 bg-background-secondary/50 relative overflow-hidden">
@@ -419,6 +385,14 @@ export default async function Home() {
 
           <article aria-label="Nossa equipe">
             <Team teamMembers={teamMembers} />
+            {teamMembers.length > 0 && (
+              <div className="text-center -mt-8 pb-12">
+                <Link href="/sobre" className="inline-flex items-center gap-2 text-neon-blue hover:text-white font-medium transition-colors duration-300 text-sm border border-neon-blue/20 rounded-xl px-5 py-2.5 hover:bg-neon-blue/10">
+                  Conheça toda a equipe
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                </Link>
+              </div>
+            )}
           </article>
 
           <section className="py-16 sm:py-20 lg:py-24 bg-background relative overflow-hidden">
@@ -443,7 +417,7 @@ export default async function Home() {
                   <details key={i} className="group bg-[rgba(255,255,255,0.02)] border border-white/5 rounded-xl overflow-hidden">
                     <summary className="px-6 py-4 cursor-pointer text-white font-medium hover:text-neon-blue transition-colors list-none flex items-center justify-between">
                       <span>{faq.q}</span>
-                      <span className="text-neon-blue text-lg group-open:rotate-45 transition-transform">+</span>
+                      <span className="text-neon-blue text-lg group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
                     </summary>
                     <p className="px-6 pb-4 text-gray-400 text-sm leading-relaxed">{faq.a}</p>
                   </details>
@@ -505,8 +479,6 @@ export default async function Home() {
             <Contact settings={storeInfo} />
           </article>
         </div>
-
-        <Footer settings={storeInfo} />
       </main>
     </>
   );

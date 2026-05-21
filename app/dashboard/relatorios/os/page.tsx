@@ -14,7 +14,7 @@ export default function OSReportPage() {
           <CardDescription>OSs concluídas vs em aberto por técnico</CardDescription>
         </CardHeader>
         <CardContent className="h-64 flex items-center justify-center bg-black/20 rounded-md m-6 border border-white/5 border-dashed">
-          <p className="text-gray-500 text-sm">[Gráfico de Pizza: Distribuição por Técnico]</p>
+          <p className="text-gray-400 text-sm">[Gráfico de Pizza: Distribuição por Técnico]</p>
         </CardContent>
       </Card>
     </div>

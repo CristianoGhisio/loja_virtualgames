@@ -14,7 +14,7 @@ export default function PrivacidadePage() {
         <Breadcrumbs items={[{ name: "Início", href: "/" }, { name: "Privacidade" }]} />
         <h1 className="text-3xl sm:text-4xl font-bold text-white mt-4 mb-6">Política de Privacidade</h1>
         <div className="prose prose-invert max-w-none space-y-4 text-gray-300 leading-relaxed text-sm">
-          <p><strong>Última atualização:</strong> Maio de 2026</p>
+          <p><strong>Última atualização:</strong> maio de 2026</p>
           <p>A Virtual Games, inscrita no CNPJ sob o nome fantasia Virtual Games, com sede em Rua Venâncio Aires, 1434, Torre Divindade, Sala 106 D-2, Santa Maria/RS, CEP 97010-002, respeita a sua privacidade e está comprometida com a proteção dos seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018).</p>
 
           <h2 className="text-xl font-bold text-white mt-6">1. Dados Coletados</h2>

@@ -143,7 +143,7 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <div className="mt-10 flex items-center justify-center gap-3 text-xs text-gray-500 font-mono">
+          <div className="mt-10 flex items-center justify-center gap-3 text-xs text-gray-400 font-mono">
             <div className="flex items-center gap-1.5">
               <Shield className="w-3.5 h-3.5 text-green-500" />
               <span className="text-green-500">HTTPS</span>
@@ -173,7 +173,7 @@ export default function LoginPage() {
         >
           <Link
             href="/"
-            className="text-gray-500 hover:text-white flex items-center gap-2 transition-colors text-xs sm:text-sm group"
+            className="text-gray-400 hover:text-white flex items-center gap-2 transition-colors text-xs sm:text-sm group"
           >
             <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-x-1 transition-transform" />
             Voltar para Loja
@@ -206,12 +206,12 @@ export default function LoginPage() {
                   <div className="flex justify-center py-8 sm:py-10">
                     <div className="flex flex-col items-center gap-3">
                       <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 animate-spin text-neon-blue" />
-                      <span className="text-xs text-gray-500">Carregando usuários...</span>
+                      <span className="text-xs text-gray-400">Carregando usuários...</span>
                     </div>
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <label className="text-[10px] sm:text-xs uppercase font-bold text-gray-500 tracking-wider ml-1">
+                    <label className="text-[10px] sm:text-xs uppercase font-bold text-gray-400 tracking-wider ml-1">
                       USUÁRIOS DISPONÍVEIS
                     </label>
                     <div className="grid grid-cols-1 gap-2 max-h-[280px] overflow-y-auto pr-1 custom-scrollbar">
@@ -271,7 +271,7 @@ export default function LoginPage() {
                   className="space-y-4 pt-4 sm:pt-5 border-t border-white/5"
                 >
                   <div className="space-y-2">
-                    <label className="text-[10px] sm:text-xs uppercase font-bold text-gray-500 tracking-wider ml-1">
+                    <label className="text-[10px] sm:text-xs uppercase font-bold text-gray-400 tracking-wider ml-1">
                       SENHA DE ACESSO
                     </label>
                     <div className="relative">
@@ -292,12 +292,12 @@ export default function LoginPage() {
                             : 'border-white/10 focus-visible:border-neon-blue'
                         } pr-10 text-sm sm:text-base`}
                         autoFocus
-                        icon={<Lock className="w-4 h-4 text-gray-500" />}
+                        icon={<Lock className="w-4 h-4 text-gray-400" />}
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
                         tabIndex={-1}
                         aria-label={showPassword ? 'Esconder senha' : 'Mostrar senha'}
                       >

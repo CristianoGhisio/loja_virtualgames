@@ -7,43 +7,51 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br
 
 const allFaqs = {
   "Sobre os Serviços": [
-    { q: "O diagnóstico é realmente gratuito?", a: "Sim, realizamos o diagnóstico completo sem custo. Você só paga se autorizar o reparo após receber o orçamento." },
+    { q: "O diagnóstico é realmente gratuito?", a: "Sim, realizamos o diagnóstico completo sem custo. Você autoriza o reparo após receber o orçamento." },
     { q: "Como solicitar um orçamento?", a: "Envie uma mensagem pelo WhatsApp (55) 99725-2786 descrevendo o problema do seu equipamento. Respondemos com o orçamento em até 24h." },
     { q: "Quanto tempo leva um reparo?", a: "A maioria dos reparos é concluída em 2 a 5 dias úteis. Reparos simples como limpeza são feitos em 24h. Casos complexos podem levar até 10 dias." },
     { q: "Vocês buscam o equipamento em casa?", a: "Atendemos presencialmente em nossa loja em Santa Maria. Para clientes de outras cidades, aceitamos envio via correio. Consulte-nos pelo WhatsApp." },
   ],
   "PS5": [
-    { q: "Quanto custa consertar um PS5?", a: "Depende do defeito. Reparo de porta HDMI: R$ 250-400. Limpeza com troca de pasta térmica: a partir de R$ 150. Diagnóstico gratuito." },
     { q: "Meu PS5 está superaquecendo, o que pode ser?", a: "Pode ser acúmulo de poeira, pasta térmica seca ou falha no cooler. Nossa limpeza preventiva resolve na maioria dos casos." },
     { q: "PS5 não dá vídeo — é a porta HDMI?", a: "Na maioria dos casos sim, mas pode ser trilha rompida ou chip de vídeo. Diagnosticamos gratuitamente." },
     { q: "Vocês fazem upgrade de SSD no PS5?", a: "Sim, instalamos SSD NVMe compatível, configuramos o sistema e testamos a velocidade de leitura." },
+    { q: "O reparo do PS5 tem garantia?", a: "Sim, todos os reparos de PS5 têm garantia de 90 dias em peças e mão de obra." },
   ],
   "Xbox": [
     { q: "Vocês consertam todos os modelos de Xbox?", a: "Sim, Xbox Series X, Series S, Xbox One, One S e One X. Temos experiência com toda a linha." },
-    { q: "Quanto custa o reparo do Xbox?", a: "O diagnóstico é gratuito. Reparo de HDMI: a partir de R$ 250. Limpeza: a partir de R$ 150. O valor exato depende do defeito." },
+    { q: "O que fazer quando o Xbox não liga?", a: "Verifique primeiro o cabo de força e a tomada. Se o problema persistir, traga para diagnóstico gratuito em nossa loja." },
   ],
   "Nintendo Switch": [
-    { q: "Troca de tela do Switch tem conserto?", a: "Sim, trocamos telas de Switch, Switch Lite e OLED. O valor varia conforme o modelo." },
+    { q: "Troca de tela do Switch tem conserto?", a: "Sim, trocamos telas de Switch, Switch Lite e OLED. Consulte-nos pelo WhatsApp para mais informações sobre o serviço." },
     { q: "Drift no Joy-Con tem solução definitiva?", a: "Sim, a troca dos analógicos com calibragem profissional resolve o drift de forma definitiva." },
   ],
   "PC Gamer": [
     { q: "Vocês montam PC Gamer do zero?", a: "Sim, oferecemos consultoria para escolha das peças e montagem completa com testes de desempenho." },
-    { q: "Quanto custa montar um PC Gamer?", a: "A mão de obra da montagem é a partir de R$ 200. O valor das peças depende da configuração escolhida." },
+    { q: "Vocês fazem upgrade de PC Gamer existente?", a: "Sim, realizamos upgrades de placa de vídeo, processador, memória e armazenamento. Consulte-nos para avaliar seu setup." },
   ],
   "Pagamento e Garantia": [
     { q: "Quais formas de pagamento?", a: "Aceitamos dinheiro, PIX, cartão de crédito e débito. O pagamento é feito na retirada do equipamento." },
-    { q: "Qual a garantia dos reparos?", a: "Todos os reparos têm garantia de 90 dias em peças e mão de obra. Se o problema voltar, corrigimos sem custo." },
+    { q: "Qual a garantia dos reparos?", a: "Todos os reparos têm garantia de 90 dias em peças e mão de obra. Se o problema voltar, corrigimos dentro do prazo." },
     { q: "A garantia cobre danos físicos?", a: "A garantia cobre apenas defeitos relacionados ao serviço realizado. Danos por queda, líquido ou mau uso após a retirada não são cobertos." },
-    { q: "Como acionar a garantia?", a: "Entre em contato pelo WhatsApp informando o número da OS. Reavaliamos o equipamento e, se for caso de garantia, corrigimos sem custo." },
+    { q: "Como acionar a garantia?", a: "Entre em contato pelo WhatsApp informando o número da OS. Reavaliamos o equipamento e, se for caso de garantia, corrigimos." },
   ],
 };
 
 const flatFaqs = Object.values(allFaqs).flat();
 
 export const metadata: Metadata = {
-  title: "Perguntas Frequentes — Assistência Técnica Gamer | Virtual Games",
+  title: "Perguntas Frequentes — Reparo de Consoles em Santa Maria",
   description: "Tire todas as dúvidas sobre reparo de consoles, PC Gamer e celulares. Diagnóstico, prazos, garantia, preços e mais.",
   alternates: { canonical: `${siteUrl}/faq` },
+  openGraph: {
+    title: "Perguntas Frequentes — Reparo de Consoles em Santa Maria",
+    description: "Tire todas as dúvidas sobre reparo de consoles, PC Gamer e celulares em Santa Maria, RS.",
+    url: `${siteUrl}/faq`,
+    siteName: "Virtual Games",
+    locale: "pt_BR",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FAQ Virtual Games" }],
+  },
 };
 
 export default function FaqPage() {

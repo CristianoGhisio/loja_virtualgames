@@ -51,8 +51,8 @@ export const localBusinessSchema: Record<string, unknown> = {
     },
   },
   sameAs: [
-    "https://www.instagram.com/virtualgames",
-    "https://www.facebook.com/virtualgames",
+    "https://www.instagram.com/virtual.gamess/",
+    "https://www.youtube.com/@Virtual.gamessm",
   ],
   hasMap: "https://maps.google.com/?q=Rua+Venâncio+Aires+1434+Santa+Maria+RS",
 };
@@ -136,3 +136,57 @@ export const aggregateRatingSchema: Record<string, unknown> = {
   bestRating: "5",
   worstRating: "1",
 };
+
+export const websiteSchema: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: "Virtual Games",
+  publisher: { "@id": `${siteUrl}/#empresa` },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
+export const createHowToSchema = (
+  steps: { title: string; description: string }[],
+): Record<string, unknown> => ({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Processo de Reparo",
+  description: "Etapas do processo de reparo na Virtual Games",
+  estimatedCost: {
+    "@type": "MonetaryAmount",
+    currency: "BRL",
+    description: "Diagnóstico gratuito",
+  },
+  step: steps.map((step, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    name: step.title,
+    text: step.description,
+  })),
+});
+
+export const createReviewSchema = (
+  reviews: { name: string; role: string; text: string }[],
+): Record<string, unknown>[] => reviews.map((review, index) => ({
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "@id": `${siteUrl}/#review-${index + 1}`,
+  author: { "@type": "Person", name: review.name },
+  reviewBody: review.text,
+  reviewRating: {
+    "@type": "Rating",
+    ratingValue: "5",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  itemReviewed: { "@id": `${siteUrl}/#empresa` },
+}));

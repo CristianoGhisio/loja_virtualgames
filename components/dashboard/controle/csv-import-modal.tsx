@@ -174,7 +174,7 @@ export function CsvImportModal({ isOpen, onClose, onSuccess }: CsvImportModalPro
       <div className="space-y-4">
         {!data.length ? (
             <div className="border-2 border-dashed border-white/20 rounded-xl p-8 text-center hover:bg-white/5 transition-colors cursor-pointer" onClick={() => fileInputRef.current?.click()}>
-                <Upload className="w-12 h-12 text-gray-500 mx-auto mb-4" />
+                <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-400 font-bold">Clique para selecionar arquivo CSV</p>
                 <p className="text-xs text-gray-600 mt-2">Formato: Nome, Preço, Custo, Categoria, Fabricante, CódigoBarras</p>
                 <input 
@@ -200,7 +200,7 @@ export function CsvImportModal({ isOpen, onClose, onSuccess }: CsvImportModalPro
                                 <TableRow key={idx}>
                                     <TableCell>{row.name}</TableCell>
                                     <TableCell>
-                                        {row.status === 'pending' && <span className="text-gray-500">Pendente</span>}
+                                        {row.status === 'pending' && <span className="text-gray-400">Pendente</span>}
                                         {row.status === 'success' && <span className="text-neon-green flex items-center gap-1"><Check className="w-3 h-3"/> OK</span>}
                                         {row.status === 'error' && <span className="text-red-400 flex items-center gap-1" title={row.message}><AlertCircle className="w-3 h-3"/> Erro</span>}
                                     </TableCell>

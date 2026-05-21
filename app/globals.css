@@ -5,13 +5,18 @@
   --background-secondary: #0f0f16;
   --foreground: #f0f0f5;
 
-  --neon-blue: #00d4ff;
-  --neon-blue-dark: #0099cc;
-  --neon-purple: #b44dff;
-  --neon-purple-dark: #8a2be2;
-  --cta-orange: #ff6b35;
-  --cta-gold: #ffd700;
-  --cta-green: #25D366;
+  --neon-blue: oklch(0.72 0.18 240);
+  --neon-blue-dark: oklch(0.58 0.16 240);
+  --neon-purple: oklch(0.58 0.22 295);
+  --neon-purple-dark: oklch(0.48 0.20 295);
+  --cta-orange: oklch(0.68 0.20 45);
+  --cta-gold: oklch(0.84 0.18 85);
+  --cta-green: oklch(0.72 0.20 145);
+
+  --color-success: oklch(0.65 0.20 145);
+  --color-warning: oklch(0.75 0.18 85);
+  --color-danger: oklch(0.60 0.22 30);
+  --color-info: oklch(0.72 0.18 240);
 
   --card-bg: rgba(18, 18, 26, 0.8);
   --card-border: rgba(255, 255, 255, 0.06);
@@ -33,6 +38,20 @@
   --z-navbar: 100;
   --z-modal: 200;
   --z-tooltip: 300;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --shadow-neon-blue-sm: 0 0 10px rgba(0, 212, 255, 0.2);
+  --shadow-neon-blue-md: 0 0 20px rgba(0, 212, 255, 0.3);
+  --shadow-neon-blue-lg: 0 0 30px rgba(0, 212, 255, 0.4);
+  --shadow-neon-blue-xl: 0 0 40px rgba(0, 212, 255, 0.5);
+  --shadow-neon-purple-sm: 0 0 10px rgba(180, 77, 255, 0.2);
+  --shadow-neon-purple-md: 0 0 20px rgba(180, 77, 255, 0.3);
+  --shadow-card-hover: 0 0 30px rgba(0, 212, 255, 0.08);
+  --shadow-whatsapp: 0 0 15px rgba(37, 211, 102, 0.2);
+  --shadow-whatsapp-hover: 0 0 25px rgba(37, 211, 102, 0.4);
 }
 
 @theme inline {
@@ -42,14 +61,44 @@
   --color-neon-blue: var(--neon-blue);
   --color-neon-blue-dark: var(--neon-blue-dark);
   --color-neon-purple: var(--neon-purple);
+  --color-neon-purple-dark: var(--neon-purple-dark);
   --color-cta-orange: var(--cta-orange);
   --color-cta-gold: var(--cta-gold);
   --color-cta-green: var(--cta-green);
   --color-card-bg: var(--card-bg);
   --color-card-border: var(--card-border);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-info: var(--color-info);
 
   --font-orbitron: var(--font-orbitron);
   --font-exo2: var(--font-exo2);
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3.125rem;
+  --font-size-6xl: 3.815rem;
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-neon-blue-sm: var(--shadow-neon-blue-sm);
+  --shadow-neon-blue-md: var(--shadow-neon-blue-md);
+  --shadow-neon-blue-lg: var(--shadow-neon-blue-lg);
+  --shadow-neon-blue-xl: var(--shadow-neon-blue-xl);
+  --shadow-neon-purple-sm: var(--shadow-neon-purple-sm);
+  --shadow-neon-purple-md: var(--shadow-neon-purple-md);
+  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-whatsapp: var(--shadow-whatsapp);
+  --shadow-whatsapp-hover: var(--shadow-whatsapp-hover);
 }
 
 *,
@@ -170,6 +219,31 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1);
   }
 }
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes slideOutLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+}
+
+.hero-slide-enter-right { animation: slideInRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.hero-slide-enter-left { animation: slideInLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.hero-slide-exit-right { animation: slideOutRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.hero-slide-exit-left { animation: slideOutLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 
 /* =============================================
    UTILITÁRIOS DE EFEITOS
@@ -304,6 +378,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =============================================
+   ACESSIBILIDADE - ALTO CONTRASTE
+   ============================================= */
+
+@media (prefers-contrast: more) {
+  .glass {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .text-gray-400 {
+    color: #d1d5db !important;
+  }
+  [class*="border-white"] {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+  }
+  [class*="bg-\\[rgba"] {
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+}
+
+/* =============================================
    SKIP TO MAIN CONTENT (Acessibilidade)
    ============================================= */
 
@@ -339,6 +433,14 @@ h1, h2, h3, h4, h5, h6 {
   animation: shimmer 1.5s infinite;
   border-radius: 8px;
 }
+
+/* =============================================
+   CONTAINER QUERIES
+   ============================================= */
+
+.services-grid { container-type: inline-size; container-name: services; }
+.team-grid { container-type: inline-size; container-name: team; }
+.testimonials-grid { container-type: inline-size; container-name: testimonials; }
 
 /* =============================================
    FOCUS VISIBLE GLOBAL
@@ -383,4 +485,97 @@ textarea:focus-visible {
 
 .skip-to-content:focus {
   top: 0;
+}
+
+/* =============================================
+   VIEW TRANSITIONS API
+   ============================================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  animation: reveal 0.6s ease-out forwards;
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+}
+
+::view-transition-old(root) {
+  animation: 200ms ease-out both fadeOut;
+}
+
+::view-transition-new(root) {
+  animation: 300ms ease-out both fadeIn;
+}
+
+/* =============================================
+   CSS SUBGRID — Alinhamento entre cards
+   ============================================= */
+
+.services-grid,
+.team-grid,
+.testimonials-grid {
+  display: grid;
+}
+
+/* =============================================
+   @STARTING-STYLE — Microinterações nativas
+   ============================================= */
+
+@starting-style {
+  .dropdown-open {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.dropdown-open {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* =============================================
+   LIGHT MODE
+   ============================================= */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #f4f4f9;
+    --background-secondary: #e8e8f0;
+    --foreground: #1a1a2e;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+  }
+
+  .text-gray-400 {
+    color: #6b7280;
+  }
+
+  [class*="bg-\\[rgba"] {
+    background: rgba(0, 0, 0, 0.03) !important;
+  }
 }

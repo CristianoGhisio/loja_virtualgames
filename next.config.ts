@@ -16,6 +16,7 @@ const securityHeaders = [
       "img-src 'self' data: https:",
       "font-src 'self' data:",
       "connect-src 'self'",
+      "frame-src https://www.google.com",
       "frame-ancestors 'none'",
       "form-action 'self'",
       "base-uri 'self'",
@@ -62,11 +63,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: '/login',
-        destination: '/acompanhar-reparo',
-        permanent: true,
-      },
       {
         source: '/garantias',
         destination: '/garantia',

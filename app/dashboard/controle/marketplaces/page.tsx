@@ -16,7 +16,7 @@ export default function MarketplacesPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="p-8 text-center text-gray-500 border border-dashed border-white/10 rounded-lg">
+        <div className="p-8 text-center text-gray-400 border border-dashed border-white/10 rounded-lg">
           Em desenvolvimento...
         </div>
       </CardContent>

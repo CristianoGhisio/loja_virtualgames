@@ -46,7 +46,7 @@ export default function ClientOSPage({ params }: { params: Promise<{ id: string 
           <TableBody>
             {osList.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-8 text-gray-500">Nenhuma OS registrada.</TableCell>
+                <TableCell colSpan={6} className="text-center py-8 text-gray-400">Nenhuma OS registrada.</TableCell>
               </TableRow>
             ) : (
               osList.map((os) => (

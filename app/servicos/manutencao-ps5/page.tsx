@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const config = {
   slug: "manutencao-ps5",
   h1: "Manutenção e Reparo de PS5 em Santa Maria, RS",
-  metaTitle: "Manutenção e Reparo de PS5 em Santa Maria | Virtual Games",
+  metaTitle: "Manutenção e Reparo de PS5 em Santa Maria",
   metaDescription: "Assistência técnica especializada em PS5 em Santa Maria, RS. Diagnóstico grátis, garantia de 90 dias. Reparo de HDMI, superaquecimento, disco e mais. Orçamento em 24h!",
   introParagraphs: [
     "A Virtual Games é a assistência técnica especializada em manutenção de PS5 em Santa Maria, RS. Somos gamers e entendemos a frustração de ter seu console favorito parado. Por isso, oferecemos diagnóstico gratuito, orçamento transparente e garantia de 90 dias em todos os reparos.",
@@ -21,7 +21,7 @@ const config = {
   processSteps: [
     { title: "Traga ou envie seu PS5", desc: "Venha até nossa loja em Santa Maria ou solicite coleta via WhatsApp." },
     { title: "Diagnóstico gratuito em até 24h", desc: "Analisamos seu console completamente e informamos o problema e valor." },
-    { title: "Você aprova o orçamento", desc: "Transparência total: você sabe exatamente o que será feito e quanto custa." },
+    { title: "Você aprova o orçamento", desc: "Transparência total: você sabe exatamente o que será feito." },
     { title: "Reparo com garantia de 90 dias", desc: "Executamos o serviço com peças de qualidade e você retira funcionando." },
   ],
   whyChooseItems: [
@@ -32,11 +32,11 @@ const config = {
     "Orçamento em até 24h via WhatsApp — resposta rápida e transparente",
   ],
   faqs: [
-    { question: "Quanto custa consertar um PS5?", answer: "O valor depende do defeito. Um reparo de porta HDMI custa entre R$ 250 e R$ 400. Limpeza preventiva com troca de pasta térmica a partir de R$ 150. O diagnóstico é gratuito e você recebe o orçamento antes de autorizar." },
+    { question: "Vale a pena consertar o PS5?", answer: "Sim, na maioria dos casos o reparo é mais vantajoso que comprar um console novo. O diagnóstico é gratuito e você recebe o orçamento antes de autorizar qualquer serviço." },
     { question: "Quanto tempo leva o reparo de PS5?", answer: "A maioria dos reparos de PS5 é concluída em 2 a 5 dias úteis. Reparos simples como limpeza são feitos em 24h. Serviços mais complexos como reparo de placa podem levar até 10 dias." },
     { question: "A Virtual Games usa peças originais no PS5?", answer: "Utilizamos peças de alta qualidade e, quando disponível, originais. Para portas HDMI e componentes eletrônicos, usamos peças de fornecedores homologados com especificações idênticas às originais." },
     { question: "Meu PS5 está superaquecendo, o que pode ser?", answer: "Superaquecimento geralmente é causado por acúmulo de poeira no dissipador, pasta térmica seca ou falha no cooler. No diagnóstico, abrimos o console, fazemos limpeza profunda e trocamos a pasta térmica. O problema é resolvido na maioria dos casos." },
-    { question: "Qual a garantia do reparo do PS5?", answer: "Todos os reparos de PS5 têm garantia de 90 dias para peças e mão de obra. Se o mesmo problema voltar dentro desse período, reavaliamos e corrigimos sem custo adicional." },
+    { question: "Qual a garantia do reparo do PS5?", answer: "Todos os reparos de PS5 têm garantia de 90 dias para peças e mão de obra. Se o mesmo problema voltar dentro desse período, reavaliamos e corrigimos." },
   ],
   testimonials: [
     { name: "Lucas M.", role: "Cliente de Reparo PS5", text: "Meu PS5 não dava vídeo. Levei na Virtual Games e em 2 dias estava pronto. Porta HDMI trocada e funcionando perfeitamente. Atendimento nota 10!" },

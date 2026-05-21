@@ -86,7 +86,7 @@ export default function GarantiasPage() {
               <TableBody>
                 {filteredWarranties.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} className="text-center py-8 text-gray-500">Nenhuma garantia encontrada.</TableCell>
+                    <TableCell colSpan={5} className="text-center py-8 text-gray-400">Nenhuma garantia encontrada.</TableCell>
                   </TableRow>
                 ) : (
                   filteredWarranties.map((warranty) => (

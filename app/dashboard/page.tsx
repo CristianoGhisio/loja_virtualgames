@@ -289,7 +289,7 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className="space-y-2 pt-3 px-3 pb-3">
                   {summary.serviceOrders.length === 0 ? (
-                    <p className="text-sm text-gray-500 text-center py-8">Nenhuma ordem de serviço recente.</p>
+                    <p className="text-sm text-gray-400 text-center py-8">Nenhuma ordem de serviço recente.</p>
                   ) : (
                     summary.serviceOrders.map((item) => (
                       <div key={item.id} className="rounded-lg border border-[rgba(255,255,255,0.06)] bg-white/[0.02] p-2.5 flex items-center justify-between gap-2 hover:bg-neon-blue/5 transition-colors">
@@ -301,7 +301,7 @@ export default function DashboardPage() {
                           <Badge variant={(OS_STATUS_BADGE[item.status] || 'default') as 'default' | 'destructive' | 'success' | 'warning' | 'purple'} className="text-[9px] uppercase px-1.5 py-0.5 h-auto">
                             {OS_STATUS_LABELS[item.status] || item.status}
                           </Badge>
-                          <p className="text-[9px] sm:text-[10px] text-gray-500 mt-0.5 flex items-center justify-end gap-1">
+                          <p className="text-[9px] sm:text-[10px] text-gray-400 mt-0.5 flex items-center justify-end gap-1">
                             <Clock className="w-2.5 h-2.5" /> {formatRelative(item.createdAt)}
                           </p>
                         </div>
@@ -325,7 +325,7 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className="space-y-2 pt-3 px-3 pb-3">
                   {summary.sales.length === 0 ? (
-                    <p className="text-sm text-gray-500 text-center py-8">Nenhuma venda recente.</p>
+                    <p className="text-sm text-gray-400 text-center py-8">Nenhuma venda recente.</p>
                   ) : (
                     summary.sales.map((item) => (
                       <div key={item.id} className="rounded-lg border border-[rgba(255,255,255,0.06)] bg-white/[0.02] p-2.5 flex items-center justify-between gap-2 hover:bg-neon-blue/5 transition-colors">
@@ -337,7 +337,7 @@ export default function DashboardPage() {
                           <Badge variant="neon" className="text-[9px] uppercase px-1.5 py-0.5 h-auto">
                             {item.paymentMethod}
                           </Badge>
-                          <p className="text-[9px] sm:text-[10px] text-gray-500 mt-0.5">{formatDateTime(item.createdAt)}</p>
+                          <p className="text-[9px] sm:text-[10px] text-gray-400 mt-0.5">{formatDateTime(item.createdAt)}</p>
                         </div>
                       </div>
                     ))
@@ -356,7 +356,7 @@ export default function DashboardPage() {
                   <div className="text-right flex gap-2 items-center">
                     <div className="text-right">
                       <p className="text-xl sm:text-2xl font-bold text-white leading-none">{summary.pendingContacts.count}</p>
-                      <p className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider mt-0.5">pendentes</p>
+                      <p className="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">pendentes</p>
                     </div>
                     <div className="p-2 rounded-xl bg-neon-blue/10 border border-neon-blue/20">
                       <Headset className="w-4 h-4 text-neon-blue" />
@@ -365,13 +365,13 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className="space-y-2 pt-3 px-3 pb-3">
                   {summary.pendingContacts.items.length === 0 ? (
-                    <p className="text-sm text-gray-500 text-center py-8">Não há contatos pendentes no momento.</p>
+                    <p className="text-sm text-gray-400 text-center py-8">Não há contatos pendentes no momento.</p>
                   ) : (
                     summary.pendingContacts.items.map((item) => (
                       <div key={item.id} className="rounded-lg border border-[rgba(255,255,255,0.06)] bg-white/[0.02] p-2.5 flex flex-col justify-between gap-1 hover:bg-neon-blue/5 transition-colors">
                         <div className="flex items-center justify-between">
                           <p className="text-xs sm:text-sm font-bold text-white truncate">{item.customerName}</p>
-                          <p className="text-[9px] sm:text-[10px] text-gray-500 shrink-0">{formatDateTime(item.createdAt)}</p>
+                          <p className="text-[9px] sm:text-[10px] text-gray-400 shrink-0">{formatDateTime(item.createdAt)}</p>
                         </div>
                         <p className="text-[10px] sm:text-xs text-gray-400 truncate flex items-center gap-1">
                           <span className="w-1.5 h-1.5 rounded-full bg-neon-blue/50 shrink-0" />
@@ -390,7 +390,7 @@ export default function DashboardPage() {
       {cards.length === 0 && !loading && (
         <Card>
           <CardContent className="py-12">
-            <p className="text-gray-500 text-center">Sem módulos liberados para exibição do dashboard.</p>
+            <p className="text-gray-400 text-center">Sem módulos liberados para exibição do dashboard.</p>
           </CardContent>
         </Card>
       )}

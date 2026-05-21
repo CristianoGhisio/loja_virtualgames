@@ -5,13 +5,13 @@ import { Quote, Star } from 'lucide-react';
 const TESTIMONIALS = [
   {
     id: 1,
-    name: 'Carlos "Kratos" Silva',
+    name: 'Carlos S.',
     role: 'Cliente de Reparo (PS5)',
     content: 'Meu PS5 parou de dar vídeo. Levei em várias assistências e não resolveram. A equipe da Virtual Games resolveu o problema na placa em 2 dias. Atendimento sensacional!',
   },
   {
     id: 2,
-    name: 'Ana "Jinx" Souza',
+    name: 'Ana S.',
     role: 'Cliente de Manutenção (PC Gamer)',
     content: 'Fiz a limpeza preventiva e troca de pasta térmica do meu PC com eles. A temperatura baixou 15 graus e o desempenho melhorou muito. Profissionais de verdade.',
   },
@@ -47,11 +47,11 @@ export function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 testimonials-grid">
           {TESTIMONIALS.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="group relative bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] p-6 sm:p-8 rounded-2xl hover:border-neon-blue/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,212,255,0.06)] hover:-translate-y-1"
+              className="group relative bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] p-6 sm:p-8 rounded-2xl hover:border-neon-blue/30 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1"
             >
               <Quote className="absolute top-6 right-6 w-10 h-10 text-white/[0.03] group-hover:text-neon-blue/5 transition-colors duration-500" />
 

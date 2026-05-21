@@ -139,11 +139,11 @@ export default async function VisaoGeralPage({ searchParams }: PageProps) {
           <h3 className="text-sm font-bold uppercase text-neon-blue mb-4">Tendência diária (Entradas x Saídas x Comissão)</h3>
           <div className="space-y-2">
             {trendData.length === 0 ? (
-              <div className="text-sm text-gray-500 py-4">Sem movimentações pagas no período selecionado.</div>
+              <div className="text-sm text-gray-400 py-4">Sem movimentações pagas no período selecionado.</div>
             ) : (
               trendData.map((item) => (
                 <div key={item.date} className="grid grid-cols-[56px_1fr_1fr_1fr] gap-2 items-center">
-                  <span className="text-xs text-gray-500">{item.date}</span>
+                  <span className="text-xs text-gray-400">{item.date}</span>
                   <div className="h-3 rounded bg-white/[0.04] overflow-hidden border border-[rgba(255,255,255,0.06)]">
                     <div className="h-3 bg-emerald-400 rounded" style={{ width: `${(item.in / maxTrend) * 100}%` }} />
                   </div>

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 type FaqJson = Array<{ question: string; answer: string }>;
 
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     });
     if (!post) return { title: "Artigo não encontrado" };
     return {
-      title: post.metaTitle || `${post.title} | Virtual Games`,
+      title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt?.slice(0, 160) || "",
       alternates: { canonical: `${siteUrl}/blog/${slug}` },
       openGraph: {

@@ -21,7 +21,7 @@ export function ProductTable({ products }: { products: typeof MOCK_PRODUCTS }) {
       <TableBody>
         {products.length === 0 ? (
           <TableRow>
-            <TableCell colSpan={6} className="text-center py-8 text-gray-500">
+            <TableCell colSpan={6} className="text-center py-8 text-gray-400">
               Nenhum item encontrado.
             </TableCell>
           </TableRow>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SchemaOrg } from "@/components/seo/SchemaOrg";
-import { createServiceSchema, createFAQPageSchema, aggregateRatingSchema, localBusinessSchema } from "@/lib/schemas";
+import { createServiceSchema, createFAQPageSchema, aggregateRatingSchema, localBusinessSchema, createHowToSchema, createReviewSchema } from "@/lib/schemas";
 
 interface ServicePageConfig {
   slug: string;
@@ -61,6 +61,14 @@ export function ServicePage({ config }: { config: ServicePageConfig }) {
     config.faqs.map((f) => ({ question: f.question, answer: f.answer })),
   );
 
+  const howToSchema = createHowToSchema(
+    config.processSteps.map((step) => ({ title: step.title, description: step.desc })),
+  );
+
+  const reviewSchemas = config.testimonials.length > 0
+    ? createReviewSchema(config.testimonials)
+    : [];
+
   const breadcrumbItems = [
     { name: "Início", href: "/" },
     { name: "Serviços", href: "/servicos" },
@@ -72,7 +80,11 @@ export function ServicePage({ config }: { config: ServicePageConfig }) {
       <SchemaOrg schema={localBusinessSchema} />
       <SchemaOrg schema={serviceSchema} />
       <SchemaOrg schema={faqSchema} />
+      <SchemaOrg schema={howToSchema} />
       <SchemaOrg schema={aggregateRatingSchema} />
+      {reviewSchemas.map((schema, i) => (
+        <SchemaOrg key={i} schema={schema} />
+      ))}
       <main className="min-h-screen bg-background text-foreground">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16 lg:py-20">
           <Breadcrumbs items={breadcrumbItems} />
@@ -127,7 +139,7 @@ export function ServicePage({ config }: { config: ServicePageConfig }) {
               Todos os serviços da Virtual Games possuem garantia de 90 dias para peças e mão de obra.
               Nossa garantia cobre defeitos relacionados ao serviço realizado. Danos físicos após a retirada,
               mau uso e intervenção de terceiros não são cobertos. Caso identifique qualquer problema, entre
-              em contato pelo WhatsApp e retorne o equipamento — reavaliamos sem custo.
+              em contato pelo WhatsApp e retorne o equipamento — reavaliamos sem custos adicionais.
             </p>
           </section>
 
@@ -149,9 +161,9 @@ export function ServicePage({ config }: { config: ServicePageConfig }) {
               {config.faqs.map((faq, i) => (
                 <details key={i} className="group bg-[rgba(255,255,255,0.02)] border border-white/5 rounded-xl overflow-hidden">
                   <summary className="px-6 py-4 cursor-pointer text-white font-medium hover:text-neon-blue transition-colors list-none flex items-center justify-between">
-                    <span>{faq.question}</span>
-                    <span className="text-neon-blue text-lg group-open:rotate-45 transition-transform">+</span>
-                  </summary>
+                      <span>{faq.question}</span>
+                      <span className="text-neon-blue text-lg group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+                    </summary>
                   <p className="px-6 pb-4 text-gray-400 text-sm leading-relaxed">{faq.answer}</p>
                 </details>
               ))}

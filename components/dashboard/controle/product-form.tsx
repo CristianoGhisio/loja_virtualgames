@@ -1132,7 +1132,7 @@ export function ProductForm({ initialData, onSave, onCancel }: ProductFormProps)
                                         );
                                     })}
                                     {technicalAttributes.length === 0 && (
-                                        <p className="col-span-2 text-sm text-gray-500 italic">
+                                        <p className="col-span-2 text-sm text-gray-400 italic">
                                             Nenhum atributo técnico disponível para edição.
                                         </p>
                                     )}

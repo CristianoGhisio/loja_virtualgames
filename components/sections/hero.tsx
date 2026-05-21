@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, ChevronLeft, Sparkles } from 'lucide-react';
 
@@ -53,21 +52,6 @@ const SLIDES = [
   }
 ];
 
-const slideVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? '100%' : '-100%',
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction: number) => ({
-    x: direction < 0 ? '100%' : '-100%',
-    opacity: 0,
-  }),
-};
-
 export function Hero() {
   const [[currentIndex, direction], setPage] = useState([0, 0]);
   const [isHovered, setIsHovered] = useState(false);
@@ -100,85 +84,70 @@ export function Hero() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <AnimatePresence initial={false} custom={direction} mode="wait">
-        <motion.div
-          key={currentIndex}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-          className="absolute inset-0"
-        >
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/40 z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/20 z-10" />
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${currentSlide.gradient} opacity-50 sm:opacity-60 scale-105`}
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,212,255,0.08),transparent_70%)] z-10" />
-          </div>
+      <h1 className="sr-only">
+        Assistência Técnica em PS5, Xbox, Nintendo Switch e PC Gamer em Santa Maria, RS — Virtual Games
+      </h1>
 
-          <div className="relative z-20 h-full flex items-center">
-            <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="max-w-3xl"
+      <div
+        key={currentIndex}
+        className={`absolute inset-0 hero-slide-enter-${direction > 0 ? 'right' : 'left'}`}
+      >
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/20 z-10" />
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${currentSlide.gradient} opacity-50 sm:opacity-60 scale-105`}
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,212,255,0.08),transparent_70%)] z-10" />
+        </div>
+
+        <div className="relative z-20 h-full flex items-center animate-fadeInUp">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
+            <div className="max-w-3xl animate-fadeInUp" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+              <span
+                className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 mb-4 sm:mb-6 rounded-full border border-neon-blue/30 bg-neon-blue/10 text-neon-blue font-bold tracking-widest text-xs sm:text-sm uppercase backdrop-blur-md"
+                style={{ animation: 'scaleIn 0.5s ease-out 0.3s both' }}
               >
-                <h1 className="sr-only">
-                  Manutenção de Consoles PS5 Xbox Switch, PC Gamer e Celulares em Santa Maria | Virtual Games
-                </h1>
+                <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
+                {currentSlide.tag}
+              </span>
 
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 mb-4 sm:mb-6 rounded-full border border-neon-blue/30 bg-neon-blue/10 text-neon-blue font-bold tracking-widest text-xs sm:text-sm uppercase backdrop-blur-md"
-                >
-                  <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
-                  {currentSlide.tag}
-                </motion.span>
+              <div aria-hidden="true" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 sm:mb-6 leading-[1.1]">
+                {currentSlide.title1}{' '}
+                <br className="hidden sm:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-[#00f5ff] to-neon-purple drop-shadow-[0_0_20px_rgba(0,212,255,0.3)]">
+                  {currentSlide.title2}
+                </span>
+              </div>
 
-                <div aria-hidden="true" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 sm:mb-6 leading-[1.1]">
-                  {currentSlide.title1}{' '}
-                  <br className="hidden sm:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-[#00f5ff] to-neon-purple drop-shadow-[0_0_20px_rgba(0,212,255,0.3)]">
-                    {currentSlide.title2}
-                  </span>
-                </div>
+              <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-xl mb-8 sm:mb-10 leading-relaxed">
+                {currentSlide.description}
+              </p>
 
-                <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-xl mb-8 sm:mb-10 leading-relaxed">
-                  {currentSlide.description}
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-                  {currentSlide.buttons.map((btn, idx) => {
-                    const Icon = btn.icon;
-                    return (
-                      <Button
-                        key={idx}
-                        variant={btn.primary ? 'primary' : 'outline'}
-                        size={idx === 0 ? 'lg' : 'md'}
-                        className={`w-full sm:w-auto ${
-                          btn.primary
-                            ? 'bg-neon-blue hover:bg-neon-blue-dark text-black font-bold shadow-[0_0_25px_rgba(0,212,255,0.3)] hover:shadow-[0_0_40px_rgba(0,212,255,0.5)] transition-all duration-300'
-                            : 'border-neon-blue/40 text-neon-blue hover:bg-neon-blue/10 hover:border-neon-blue'
-                        }`}
-                        onClick={btn.action}
-                      >
-                        {btn.text} {Icon && <Icon className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />}
-                      </Button>
-                    );
-                  })}
-                </div>
-              </motion.div>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                {currentSlide.buttons.map((btn, idx) => {
+                  const Icon = btn.icon;
+                  return (
+                    <Button
+                      key={idx}
+                      variant={btn.primary ? 'primary' : 'outline'}
+                      size={idx === 0 ? 'lg' : 'md'}
+                      className={`w-full sm:w-auto ${
+                        btn.primary
+                          ? 'bg-neon-blue hover:bg-neon-blue-dark text-black font-bold shadow-neon-blue-md hover:shadow-neon-blue-xl transition-all duration-300'
+                          : 'border-neon-blue/40 text-neon-blue hover:bg-neon-blue/10 hover:border-neon-blue'
+                      }`}
+                      onClick={btn.action}
+                    >
+                      {btn.text} {Icon && <Icon className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />}
+                    </Button>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      </div>
 
       <div className="absolute z-30 bottom-4 sm:bottom-8 left-0 right-0 flex items-center justify-between px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <button

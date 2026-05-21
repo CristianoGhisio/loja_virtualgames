@@ -144,7 +144,7 @@ export function ServicesSection() {
           <div className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] p-1.5 sm:p-2 rounded-2xl flex gap-2 shadow-2xl shadow-neon-blue/5 backdrop-blur-sm focus-within:border-neon-blue/40 transition-all duration-300">
             <Input
               placeholder="Digite o número da sua OS (ex: IP7DJP)"
-              className="bg-transparent border-none text-white placeholder:text-gray-500 h-11 sm:h-12 text-base sm:text-lg focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="bg-transparent border-none text-white placeholder:text-gray-400 h-11 sm:h-12 text-base sm:text-lg focus-visible:ring-0 focus-visible:ring-offset-0"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -158,8 +158,8 @@ export function ServicesSection() {
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Search className="w-5 h-5" />}
             </Button>
           </div>
-          <p className="text-center text-xs text-gray-500 mt-3">
-            *O número da OS encontra-se no comprovante entregue na loja.
+          <p className="text-center text-xs text-gray-400 mt-3">
+            *O número da OS (Ordem de Serviço) encontra-se no comprovante entregue na loja.
           </p>
         </div>
 
@@ -200,17 +200,17 @@ export function ServicesSection() {
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-3 sm:gap-4 text-sm">
                       <div className="bg-white/5 p-3 rounded-xl">
-                        <p className="text-gray-500 text-xs uppercase font-bold mb-1">Equipamento</p>
+                        <p className="text-gray-400 text-xs uppercase font-bold mb-1">Equipamento</p>
                         <p className="font-medium text-white">{osData.device}</p>
                       </div>
                       <div className="bg-white/5 p-3 rounded-xl">
-                        <p className="text-gray-500 text-xs uppercase font-bold mb-1">Status Atual</p>
+                        <p className="text-gray-400 text-xs uppercase font-bold mb-1">Status Atual</p>
                         <p className="font-bold text-neon-blue text-sm">{STATUS_LABELS[osData.status] || osData.status}</p>
                       </div>
                     </div>
 
                     <div>
-                      <p className="text-gray-500 text-xs uppercase font-bold mb-2">Progresso do Serviço</p>
+                      <p className="text-gray-400 text-xs uppercase font-bold mb-2">Progresso do Serviço</p>
                       <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
                         <div
                           className="h-full bg-gradient-to-r from-neon-blue to-neon-purple rounded-full transition-all duration-700"
@@ -218,19 +218,19 @@ export function ServicesSection() {
                         />
                       </div>
                       <div className="flex justify-between mt-1.5">
-                        <span className="text-[10px] text-gray-500">Entrada</span>
-                        <span className="text-[10px] text-gray-500">Entrega</span>
+                        <span className="text-[10px] text-gray-400">Entrada</span>
+                        <span className="text-[10px] text-gray-400">Entrega</span>
                       </div>
                     </div>
 
                     <div>
-                      <p className="text-gray-500 text-xs uppercase font-bold mb-1">Defeito Relatado</p>
+                      <p className="text-gray-400 text-xs uppercase font-bold mb-1">Defeito Relatado</p>
                       <p className="text-sm text-gray-300 bg-white/5 p-3 rounded-xl border border-white/5">{osData.defect}</p>
                     </div>
 
                     {osData.technician && (
                       <div className="bg-white/5 p-3 rounded-xl">
-                        <p className="text-gray-500 text-xs uppercase font-bold mb-1">Técnico Responsável</p>
+                        <p className="text-gray-400 text-xs uppercase font-bold mb-1">Técnico Responsável</p>
                         <p className="text-sm font-medium text-white flex items-center gap-2">
                           <span className="w-2 h-2 bg-neon-blue rounded-full animate-pulse" />
                           {osData.technician.name}

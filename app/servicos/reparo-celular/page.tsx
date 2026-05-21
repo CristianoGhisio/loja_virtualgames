@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const config = {
   slug: "reparo-celular",
   h1: "Reparo de Celular em Santa Maria — iPhone e Android",
-  metaTitle: "Reparo de Celular em Santa Maria | Virtual Games",
+  metaTitle: "Reparo de Celular em Santa Maria",
   metaDescription: "Reparo de celular em Santa Maria: troca de tela iPhone e Android, bateria, carregador. Diagnóstico grátis, garantia 90 dias. Orçamento em 24h!",
   introParagraphs: [
     "A Virtual Games também oferece serviço de reparo de celular em Santa Maria, RS. Atendemos iPhones e smartphones Android com o mesmo padrão de qualidade e garantia de 90 dias que nos consoles.",
@@ -19,7 +19,7 @@ const config = {
   processSteps: [
     { title: "Traga seu celular", desc: "Venha até a loja em Santa Maria com o aparelho." },
     { title: "Diagnóstico grátis", desc: "Avaliamos o defeito em até 2h na maioria dos casos." },
-    { title: "Você aprova", desc: "Informamos valor e prazo exatos. Sem surpresas." },
+    { title: "Você aprova", desc: "Informamos o diagnóstico e prazo exatos. Sem surpresas." },
     { title: "Reparo com garantia", desc: "Serviço concluído com peças de qualidade. 90 dias de garantia." },
   ],
   whyChooseItems: [
@@ -36,7 +36,7 @@ const config = {
     { question: "Preciso deixar a senha do celular para o reparo?", answer: "Para testar a tela e funções após o reparo, solicitamos que desabilite a senha temporariamente. Seus dados não são acessados." },
   ],
   testimonials: [
-    { name: "Camila R.", role: "Cliente Troca de Tela", text: "Tela do iPhone rachada. Trocaram em 2h e ficou perfeita. Atendimento rápido e preço justo." },
+    { name: "Camila R.", role: "Cliente Troca de Tela", text: "Tela do iPhone rachada. Trocaram em 2h e ficou perfeita. Atendimento rápido e serviço de qualidade." },
     { name: "Diego F.", role: "Cliente Troca de Bateria", text: "Bateria do meu Android não durava nada. Trocaram e agora dura o dia todo. Recomendo!" },
   ],
   whatsappPreText: "Olá! Gostaria de um orçamento para reparo de celular.",

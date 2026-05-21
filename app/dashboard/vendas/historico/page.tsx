@@ -74,15 +74,15 @@ export default function HistoricoVendasPage() {
         <CardHeader className="pb-3">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-3">
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">De</label>
+              <label className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">De</label>
               <Input type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="w-full" />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Até</label>
+              <label className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Até</label>
               <Input type="date" value={to} onChange={(e) => setTo(e.target.value)} className="w-full" />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Status</label>
+              <label className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Status</label>
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value as 'ALL' | 'COMPLETED' | 'CANCELLED')}
@@ -94,7 +94,7 @@ export default function HistoricoVendasPage() {
               </select>
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Vendedor</label>
+              <label className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Vendedor</label>
               <select
                 value={vendorFilter}
                 onChange={(e) => setVendorFilter(e.target.value)}
@@ -105,7 +105,7 @@ export default function HistoricoVendasPage() {
               </select>
             </div>
             <div className="space-y-1 relative">
-              <label className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Busca</label>
+              <label className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Busca</label>
               <Search className="absolute left-3 top-[34px] w-4 h-4 text-gray-400" />
               <Input placeholder="Cliente ou ID..." className="pl-9" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             </div>
@@ -131,9 +131,9 @@ export default function HistoricoVendasPage() {
             </TableHeader>
             <TableBody>
               {loading ? (
-                <TableRow><TableCell colSpan={6} className="text-center py-8 text-gray-500">Carregando...</TableCell></TableRow>
+                <TableRow><TableCell colSpan={6} className="text-center py-8 text-gray-400">Carregando...</TableCell></TableRow>
               ) : filteredSales.length === 0 ? (
-                <TableRow><TableCell colSpan={6} className="text-center py-8 text-gray-500">Nenhuma venda encontrada.</TableCell></TableRow>
+                <TableRow><TableCell colSpan={6} className="text-center py-8 text-gray-400">Nenhuma venda encontrada.</TableCell></TableRow>
               ) : (
                 filteredSales.map((sale) => (
                   <TableRow key={sale.id}>

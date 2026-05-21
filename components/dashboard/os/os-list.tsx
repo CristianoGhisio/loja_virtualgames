@@ -121,7 +121,7 @@ export function OSList({ statusFilter }: OSListProps) {
   if (osList.length === 0) {
     return (
       <div className="text-center py-12 bg-white/[0.02] rounded-xl border border-dashed border-[rgba(255,255,255,0.08)]">
-        <p className="text-gray-500">Nenhuma OS nesta fila.</p>
+        <p className="text-gray-400">Nenhuma OS nesta fila.</p>
       </div>
     );
   }
@@ -154,12 +154,12 @@ export function OSList({ statusFilter }: OSListProps) {
               <TableCell className="text-gray-400 text-sm max-w-[200px] truncate">{os.defect}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
-                  <User className="w-3.5 h-3.5 text-gray-500" />
+                  <User className="w-3.5 h-3.5 text-gray-400" />
                   <span className="text-gray-300">{os.customer.name}</span>
                 </div>
               </TableCell>
               <TableCell className="text-gray-400 text-sm">{os.technician?.name || '-'}</TableCell>
-              <TableCell className="text-xs text-gray-500">{formatDate(os.entryDate)}</TableCell>
+              <TableCell className="text-xs text-gray-400">{formatDate(os.entryDate)}</TableCell>
               <TableCell className="text-right">
                 <div className="flex justify-end gap-1">
                   <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); setReceiptOS(os); }}

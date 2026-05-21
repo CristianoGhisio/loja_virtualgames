@@ -114,7 +114,7 @@ export default function SupplierInteractionsPage({ params }: { params: Promise<{
                   <span className="text-xs font-bold px-2 py-1 rounded bg-neon-blue/10 text-neon-blue uppercase">
                     {interaction.type}
                   </span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-400">
                     {new Date(interaction.createdAt).toLocaleString('pt-BR')}
                   </span>
                 </div>
@@ -124,7 +124,7 @@ export default function SupplierInteractionsPage({ params }: { params: Promise<{
           </Card>
         ))}
         {interactions.length === 0 && !loading && (
-          <p className="text-center text-gray-500 py-8">Nenhuma interação registrada.</p>
+          <p className="text-center text-gray-400 py-8">Nenhuma interação registrada.</p>
         )}
       </div>
     </div>

@@ -47,7 +47,7 @@ export default function ClientPurchasesPage({ params }: { params: Promise<{ id: 
           <TableBody>
             {sales.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-8 text-gray-500">Nenhuma compra registrada.</TableCell>
+                <TableCell colSpan={6} className="text-center py-8 text-gray-400">Nenhuma compra registrada.</TableCell>
               </TableRow>
             ) : (
               sales.map((sale) => (

@@ -75,11 +75,11 @@ export function MovementsTable({ type }: { type?: 'Entrada' | 'Saída' }) {
       <TableBody>
         {loading ? (
           <TableRow>
-            <TableCell colSpan={5} className="text-center py-8 text-gray-500">Carregando...</TableCell>
+            <TableCell colSpan={5} className="text-center py-8 text-gray-400">Carregando...</TableCell>
           </TableRow>
         ) : movements.length === 0 ? (
           <TableRow>
-            <TableCell colSpan={5} className="text-center py-8 text-gray-500">Nenhuma movimentação encontrada</TableCell>
+            <TableCell colSpan={5} className="text-center py-8 text-gray-400">Nenhuma movimentação encontrada</TableCell>
           </TableRow>
         ) : (
           movements.map((mov) => {

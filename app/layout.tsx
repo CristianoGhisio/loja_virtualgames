@@ -5,8 +5,9 @@ import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react";
 import { AuthProvider } from "@/contexts/auth-context";
 import { SchemaOrg } from "@/components/seo/SchemaOrg";
-import { localBusinessSchema } from "@/lib/schemas";
-import Script from "next/script";
+import { localBusinessSchema, websiteSchema } from "@/lib/schemas";
+import { CookieBanner } from "@/components/ui/cookie-banner";
+import { PublicLayoutWrapper } from "@/components/layout/public-layout-wrapper";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -90,25 +91,15 @@ export default function RootLayout({
               Pular para conteúdo principal
             </a>
             <SchemaOrg schema={localBusinessSchema} />
-            {children}
+            <SchemaOrg schema={websiteSchema} />
+            <PublicLayoutWrapper>
+              {children}
+            </PublicLayoutWrapper>
             <Toaster richColors position="top-right" theme="dark" />
             <WhatsAppFloat />
           </AuthProvider>
         </SessionProvider>
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`}
-            </Script>
-          </>
-        )}
+        <CookieBanner />
       </body>
     </html>
   );

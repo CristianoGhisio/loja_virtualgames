@@ -6,15 +6,22 @@ import { notFound } from "next/navigation";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ categoria: string }> }): Promise<Metadata> {
   const { categoria } = await params;
   const nomeCategoria = decodeURIComponent(categoria).replace(/-/g, " ");
   return {
-    title: `${nomeCategoria} | Blog Virtual Games`,
-    description: `Artigos sobre ${nomeCategoria} no Blog da Virtual Games. Dicas, guias e novidades.`,
+    title: `${nomeCategoria}`,
+    description: `Artigos sobre ${nomeCategoria} no Blog da Virtual Games. Dicas, guias e novidades do universo gamer em Santa Maria, RS.`,
     alternates: { canonical: `${siteUrl}/blog/categoria/${categoria}` },
+    openGraph: {
+      title: `${nomeCategoria} — Blog Virtual Games`,
+      description: `Artigos sobre ${nomeCategoria} no Blog da Virtual Games.`,
+      url: `${siteUrl}/blog/categoria/${categoria}`,
+      siteName: "Virtual Games",
+      locale: "pt_BR",
+    },
   };
 }
 
@@ -55,7 +62,7 @@ export default async function BlogCategoriaPage({ params }: { params: Promise<{ 
               </div>
               <h2 className="text-white font-bold text-xl mb-2 group-hover:text-neon-blue transition-colors">{post.title}</h2>
               <p className="text-gray-400 text-sm line-clamp-2">{post.excerpt}</p>
-              <p className="text-gray-500 text-xs mt-3">Por {post.author.name}</p>
+              <p className="text-gray-400 text-xs mt-3">Por {post.author.name}</p>
             </Link>
           ))}
         </div>

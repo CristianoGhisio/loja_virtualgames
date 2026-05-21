@@ -23,7 +23,7 @@ export default function ModulePage({
       </div>
       
       <div className="bg-card-bg border border-white/5 rounded-xl p-8 text-center py-20">
-        <p className="text-gray-500 text-lg">Módulo em Desenvolvimento</p>
+        <p className="text-gray-400 text-lg">Módulo em Desenvolvimento</p>
         <p className="text-gray-600 text-sm mt-2">Funcionalidade mockada para demonstração de navegação.</p>
       </div>
     </div>

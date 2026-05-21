@@ -204,15 +204,15 @@ export const OSReceipt = ({ os, onClose }: OSReceiptProps) => {
                 <div className="border-b border-black py-1">
                     <div className="grid grid-cols-3 gap-3">
                         <div>
-                            <p className="text-[9px] text-gray-500 uppercase font-bold mb-0.5">Nº da OS</p>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold mb-0.5">Nº da OS</p>
                             <p className="text-[12px] font-bold">#{osNumber}</p>
                         </div>
                         <div>
-                            <p className="text-[9px] text-gray-500 uppercase font-bold mb-0.5">Abertura da OS</p>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold mb-0.5">Abertura da OS</p>
                             <p className="font-bold text-[12px]">{new Date(os.entryDate).toLocaleString('pt-BR')}</p>
                         </div>
                         <div>
-                            <p className="text-[9px] text-gray-500 uppercase font-bold mb-0.5">Técnico</p>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold mb-0.5">Técnico</p>
                             <p className="font-bold text-[12px]">{technicianName}</p>
                         </div>
                     </div>
@@ -238,37 +238,37 @@ export const OSReceipt = ({ os, onClose }: OSReceiptProps) => {
                     <div className="space-y-1">
                         <div className="grid grid-cols-3 gap-y-1 gap-x-3">
                             <div>
-                                <span className="block text-[9px] text-gray-500 uppercase font-bold mb-0.5">Equipamento</span>
+                                <span className="block text-[9px] text-gray-400 uppercase font-bold mb-0.5">Equipamento</span>
                                 <span className="font-bold text-[12px] block">{os.device}</span>
                             </div>
                             <div>
-                                <span className="block text-[9px] text-gray-500 uppercase font-bold mb-0.5">Nº de Série</span>
+                                <span className="block text-[9px] text-gray-400 uppercase font-bold mb-0.5">Nº de Série</span>
                                 <span className="text-[12px]">{os.serial || 'N/A'}</span>
                             </div>
                             <div>
-                                <span className="block text-[9px] text-gray-500 uppercase font-bold mb-0.5">Prioridade</span>
+                                <span className="block text-[9px] text-gray-400 uppercase font-bold mb-0.5">Prioridade</span>
                                 <span className="text-[12px]">{priorityLabel}</span>
                             </div>
                         </div>
 
                         <div>
-                            <span className="block text-[9px] text-gray-500 uppercase font-bold mb-0.5">Defeito Relatado</span>
+                            <span className="block text-[9px] text-gray-400 uppercase font-bold mb-0.5">Defeito Relatado</span>
                             <p className="text-[12px]">{os.defect || 'Sem defeito informado'}</p>
                         </div>
 
                         <div className="grid grid-cols-2 gap-3">
                             <div>
-                                <span className="block text-[9px] text-gray-500 uppercase font-bold mb-0.5">Acessórios Deixados</span>
+                                <span className="block text-[9px] text-gray-400 uppercase font-bold mb-0.5">Acessórios Deixados</span>
                                 <p className="text-[12px]">{extractedAccessories || 'Nenhum informado'}</p>
                             </div>
                             <div>
-                                <span className="block text-[9px] text-gray-500 uppercase font-bold mb-0.5">Estado de Conservação</span>
+                                <span className="block text-[9px] text-gray-400 uppercase font-bold mb-0.5">Estado de Conservação</span>
                                 <p className="text-[12px]">{extractedCondition || 'Não informado'}</p>
                             </div>
                         </div>
 
                         <div>
-                            <span className="block text-[9px] text-gray-500 uppercase font-bold mb-0.5">Observações Gerais</span>
+                            <span className="block text-[9px] text-gray-400 uppercase font-bold mb-0.5">Observações Gerais</span>
                             <p className="text-[12px] whitespace-pre-wrap">{extractedGeneralNotes || 'Sem observações adicionais'}</p>
                         </div>
                     </div>
@@ -284,7 +284,7 @@ export const OSReceipt = ({ os, onClose }: OSReceiptProps) => {
                             <span className="text-right">Valor Total</span>
                         </div>
                         {serviceItems.length === 0 ? (
-                          <div className="px-2 py-2 text-[11px] text-gray-500">Nenhum serviço lançado na entrada.</div>
+                          <div className="px-2 py-2 text-[11px] text-gray-400">Nenhum serviço lançado na entrada.</div>
                         ) : (
                           serviceItems.map((item, index) => (
                             <div key={`${item.name}-${index}`} className="grid grid-cols-[1fr_60px_90px_90px] gap-2 px-2 py-1.5 border-t border-gray-200 text-[11px]">
@@ -324,23 +324,23 @@ export const OSReceipt = ({ os, onClose }: OSReceiptProps) => {
                     <h3 className="font-bold uppercase text-[10px] mb-2 bg-black text-white px-2 py-1 inline-block tracking-wide">Resumo Financeiro da Entrada</h3>
                     <div className="grid grid-cols-4 gap-1.5 text-[11px]">
                         <div className="border border-gray-300 rounded p-2">
-                            <p className="text-[9px] text-gray-500 uppercase font-bold mb-0.5">Valor Serviços</p>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold mb-0.5">Valor Serviços</p>
                             <p className="font-bold">
                               {servicesSubtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                             </p>
                         </div>
                         <div className="border border-gray-300 rounded p-2">
-                            <p className="text-[9px] text-gray-500 uppercase font-bold mb-0.5">Forma de Pagamento</p>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold mb-0.5">Forma de Pagamento</p>
                             <p className="font-bold">{paymentMethod}</p>
                         </div>
                         <div className="border border-gray-300 rounded p-2">
-                            <p className="text-[9px] text-gray-500 uppercase font-bold mb-0.5">Pago na Abertura</p>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold mb-0.5">Pago na Abertura</p>
                             <p className="font-bold text-green-700">
                               {paidValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                             </p>
                         </div>
                         <div className="border border-gray-300 rounded p-2">
-                            <p className="text-[9px] text-gray-500 uppercase font-bold mb-0.5">Saldo após Abertura</p>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold mb-0.5">Saldo após Abertura</p>
                             <p className="font-bold">
                               {remainingValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                             </p>
@@ -351,7 +351,7 @@ export const OSReceipt = ({ os, onClose }: OSReceiptProps) => {
                 <div className="border-b border-gray-300 py-1">
                     <h3 className="font-bold uppercase text-[10px] mb-2 bg-black text-white px-2 py-1 inline-block tracking-wide">Laudo Técnico</h3>
                     <div>
-                        <span className="block text-[9px] text-gray-500 uppercase font-bold mb-0.5">Descrição</span>
+                        <span className="block text-[9px] text-gray-400 uppercase font-bold mb-0.5">Descrição</span>
                         <p className="text-[12px] whitespace-pre-wrap">{extractedGeneralNotes || 'Sem laudo registrado na abertura.'}</p>
                     </div>
                     <div className="grid grid-cols-2 gap-2 mt-1 text-[12px]">
@@ -391,13 +391,13 @@ export const OSReceipt = ({ os, onClose }: OSReceiptProps) => {
                     <div className="text-center">
                         <div className="border-t border-black pt-1.5">
                             <p className="font-bold text-[9px] uppercase tracking-wide">{storeName || 'VIRTUAL GAMES'}</p>
-                            <p className="text-[9px] text-gray-500 uppercase">Assinatura da Loja / Técnico</p>
+                            <p className="text-[9px] text-gray-400 uppercase">Assinatura da Loja / Técnico</p>
                         </div>
                     </div>
                     <div className="text-center">
                         <div className="border-t border-black pt-1.5">
                             <p className="font-bold text-[9px] uppercase tracking-wide truncate px-2">{os.customer.name}</p>
-                            <p className="text-[9px] text-gray-500 uppercase">Assinatura do Cliente</p>
+                            <p className="text-[9px] text-gray-400 uppercase">Assinatura do Cliente</p>
                         </div>
                     </div>
                 </div>
@@ -413,13 +413,13 @@ export const OSReceipt = ({ os, onClose }: OSReceiptProps) => {
                     <div className="text-center">
                         <div className="border-t border-black pt-1.5">
                             <p className="font-bold text-[9px] uppercase tracking-wide">{storeName || 'VIRTUAL GAMES'}</p>
-                            <p className="text-[9px] text-gray-500 uppercase">Assinatura da Loja</p>
+                            <p className="text-[9px] text-gray-400 uppercase">Assinatura da Loja</p>
                         </div>
                     </div>
                     <div className="text-center">
                         <div className="border-t border-black pt-1.5">
                             <p className="font-bold text-[9px] uppercase tracking-wide truncate px-2">{os.customer.name}</p>
-                            <p className="text-[9px] text-gray-500 uppercase">Assinatura do Cliente (Retirada)</p>
+                            <p className="text-[9px] text-gray-400 uppercase">Assinatura do Cliente (Retirada)</p>
                         </div>
                     </div>
                 </div>

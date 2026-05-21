@@ -43,5 +43,10 @@ if [ $? -ne 0 ]; then
 fi
 log "Migrations OK"
 
+log "=== Ajustando permissoes dos diretorios de cache ==="
+mkdir -p /app/.next/cache/images /app/.next/cache/webpack
+chown -R nextjs:nodejs /app/.next/cache /app/.npm 2>/dev/null || log "Aviso: nao foi possivel ajustar permissoes (pode ser normal se ja estiver correto)"
+chmod -R 775 /app/.next/cache /app/.npm 2>/dev/null || true
+
 log "=== Iniciando Next.js (producao) ==="
 exec node server.js

@@ -6,12 +6,21 @@ import Link from "next/link";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
 
 export const metadata: Metadata = {
-  title: "Blog Gamer | Virtual Games",
+  title: "Blog Gamer — Dicas, Guias e Novidades",
   description: "Dicas, guias e novidades do universo gamer. Manutenção de consoles, PC Gamer, comparativos e mais. Blog da Virtual Games em Santa Maria.",
   alternates: { canonical: `${siteUrl}/blog` },
+  openGraph: {
+    title: "Blog Gamer — Dicas, Guias e Novidades",
+    description: "Dicas, guias e novidades do universo gamer. Manutenção de consoles, PC Gamer, comparativos e mais.",
+    url: `${siteUrl}/blog`,
+    siteName: "Virtual Games",
+    locale: "pt_BR",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Blog Virtual Games" }],
+  },
 };
 
-export const revalidate = 3600;
+export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 export default async function BlogPage() {
   let posts: Array<{
@@ -67,7 +76,7 @@ export default async function BlogPage() {
         {posts.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-gray-400 text-lg mb-4">Nenhum artigo publicado ainda.</p>
-            <p className="text-gray-500 text-sm">Em breve, conteúdo exclusivo sobre games, consoles e manutenção.</p>
+            <p className="text-gray-400 text-sm">Em breve, conteúdo exclusivo sobre games, consoles e manutenção.</p>
           </div>
         ) : (
           <div className="grid gap-6">
@@ -85,7 +94,7 @@ export default async function BlogPage() {
                 </div>
                 <h2 className="text-white font-bold text-xl mb-2 group-hover:text-neon-blue transition-colors">{post.title}</h2>
                 <p className="text-gray-400 text-sm line-clamp-2">{post.excerpt}</p>
-                <p className="text-gray-500 text-xs mt-3">Por {post.author.name}</p>
+                <p className="text-gray-400 text-xs mt-3">Por {post.author.name}</p>
               </Link>
             ))}
           </div>

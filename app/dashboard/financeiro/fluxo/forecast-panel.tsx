@@ -78,7 +78,7 @@ export function ForecastPanel() {
             ))}
           </TableBody>
         </Table>
-        <div className="mt-3 text-xs text-gray-500">
+        <div className="mt-3 text-xs text-gray-400">
           * A previsão inteligente aplica um fator de atraso com base no histórico de pagamentos para estimar as entradas reais.
         </div>
       </CardContent>

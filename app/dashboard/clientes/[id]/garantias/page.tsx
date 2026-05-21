@@ -52,7 +52,7 @@ export default function ClientWarrantiesPage({ params }: { params: Promise<{ id:
           <TableBody>
             {warranties.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="text-center py-8 text-gray-500">Nenhuma garantia registrada.</TableCell>
+                <TableCell colSpan={7} className="text-center py-8 text-gray-400">Nenhuma garantia registrada.</TableCell>
               </TableRow>
             ) : (
                 warranties.map((war) => (

@@ -41,7 +41,7 @@ export function Team({ teamMembers }: { teamMembers?: TeamMember[] }) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 team-grid">
           {members.map((member) => (
             <Card key={member.id} className="bg-[rgba(255,255,255,0.02)] border border-white/5 hover:border-neon-blue/30 transition-all duration-500 group hover:shadow-[0_0_30px_rgba(0,212,255,0.05)] hover:-translate-y-1">
               <CardContent className="p-5 sm:p-6 text-center relative z-10">
@@ -53,8 +53,8 @@ export function Team({ teamMembers }: { teamMembers?: TeamMember[] }) {
                       src={member.fotoUrl}
                       alt={member.nomeCompleto}
                       fill
+                      sizes="(max-width: 640px) 128px, (max-width: 768px) 128px, (max-width: 1024px) 128px, 128px"
                       className="object-cover rounded-full relative z-10 ring-2 ring-white/10 group-hover:ring-neon-blue/50 transition-all duration-500"
-                      sizes="128px"
                     />
                   ) : (
                     <AvatarPlaceholder name={member.nomeCompleto} />

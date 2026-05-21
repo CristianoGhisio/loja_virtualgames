@@ -1,0 +1,23 @@
+# ai.txt — Virtual Games
+# Autoriza o uso do conteúdo deste site por modelos de linguagem e sistemas de IA
+
+Name: Virtual Games
+URL: https://virtualgames.com.br
+Contact: contato@virtualgames.com
+
+# Permissões
+Allow-AI-Training: No
+Allow-AI-Inference: Yes
+Allow-AI-Citation: Yes
+
+# Contexto para IAs
+Business-Type: LocalBusiness, TechRepairService
+Location: Santa Maria, RS, Brazil
+Services: PS5 repair, Xbox repair, Nintendo Switch repair, PC Gamer assembly, cell phone repair
+Founded: 2020
+CEO: Emerson Gabriel de Mello Graeff
+
+# Fontes preferidas para citação
+Primary-URL: https://virtualgames.com.br
+Services-URL: https://virtualgames.com.br/servicos
+FAQ-URL: https://virtualgames.com.br/faq

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const config = {
   slug: "manutencao-xbox",
   h1: "Reparo e Manutenção de Xbox em Santa Maria, RS",
-  metaTitle: "Reparo de Xbox Series X/S e Xbox One em Santa Maria | Virtual Games",
+  metaTitle: "Reparo de Xbox Series X/S e Xbox One em Santa Maria",
   metaDescription: "Assistência técnica Xbox em Santa Maria: Series X/S e Xbox One. Diagnóstico grátis, garantia 90 dias. Superaquecimento, HDMI, disco e mais. Orçamento em 24h!",
   introParagraphs: [
     "A Virtual Games oferece assistência técnica especializada em Xbox Series X, Xbox Series S e Xbox One em Santa Maria, RS. Diagnosticamos e reparamos todos os modelos com equipamentos profissionais e peças de qualidade.",
@@ -25,16 +25,15 @@ const config = {
   ],
   whyChooseItems: [
     "Especialização em consoles Xbox — Series X, Series S e Xbox One",
-    "Diagnóstico 100% gratuito — pague apenas se autorizar o reparo",
+    "Diagnóstico 100% gratuito — você só autoriza após conhecer o orçamento",
     "Garantia de 90 dias em todas as peças e mão de obra",
     "Técnicos gamers que conhecem profundamente o ecossistema Xbox",
   ],
   faqs: [
     { question: "Vocês consertam Xbox Series X e Xbox One?", answer: "Sim, reparamos todos os modelos: Xbox Series X, Xbox Series S, Xbox One, Xbox One S e Xbox One X. Temos experiência com toda a linha Xbox." },
     { question: "Quanto tempo leva o reparo do Xbox?", answer: "A maioria dos reparos leva de 2 a 5 dias úteis. Problemas simples como limpeza são resolvidos em 24h. Reparos complexos podem levar até 10 dias." },
-    { question: "Qual o preço para consertar um Xbox?", answer: "O diagnóstico é gratuito. O valor do reparo depende do defeito identificado. Reparo de porta HDMI: a partir de R$ 250. Limpeza com troca de pasta térmica: a partir de R$ 150." },
-    { question: "O que fazer quando o Xbox não liga?", answer: "Verifique primeiro o cabo de força e a tomada. Se o problema persistir, traga para diagnóstico. Pode ser fonte, placa-mãe ou curto em componente. Diagnosticamos sem custo." },
-    { question: "Qual a garantia do reparo do Xbox?", answer: "Todos os reparos têm 90 dias de garantia em peças e mão de obra. Se o mesmo problema retornar, reavaliamos e corrigimos sem custo adicional." },
+    { question: "O que fazer quando o Xbox não liga?", answer: "Verifique primeiro o cabo de força e a tomada. Se o problema persistir, traga para diagnóstico gratuito. Pode ser fonte, placa-mãe ou curto em componente." },
+    { question: "Qual a garantia do reparo do Xbox?", answer: "Todos os reparos têm 90 dias de garantia em peças e mão de obra. Se o mesmo problema retornar, reavaliamos e corrigimos." },
   ],
   testimonials: [
     { name: "Bruno C.", role: "Cliente de Reparo Xbox Series X", text: "Meu Series X não ligava depois de uma queda de energia. Acharam o curto na placa e consertaram em 3 dias. Voltou perfeito!" },

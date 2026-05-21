@@ -214,7 +214,7 @@ export function SubcategoriesManager({ initialSubcategories, categories }: Subca
             
             {sortedCategories.length === 0 && (
               <TableRow>
-                <TableCell colSpan={4} className="text-center text-gray-500 py-8">
+                <TableCell colSpan={4} className="text-center text-gray-400 py-8">
                   Nenhuma subcategoria encontrada
                 </TableCell>
               </TableRow>

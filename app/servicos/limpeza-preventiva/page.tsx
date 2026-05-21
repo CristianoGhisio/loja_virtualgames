@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const config = {
   slug: "limpeza-preventiva",
   h1: "Limpeza Preventiva de Console em Santa Maria, RS",
-  metaTitle: "Limpeza Preventiva de Console em Santa Maria | Virtual Games",
+  metaTitle: "Limpeza Preventiva de Console em Santa Maria",
   metaDescription: "Limpeza preventiva de PS5, Xbox e PC Gamer em Santa Maria. Troca de pasta térmica, remoção de poeira e otimização. Garantia 90 dias. Orçamento em 24h!",
   introParagraphs: [
     "A limpeza preventiva é o serviço mais negligenciado e mais importante para a vida útil do seu console ou PC Gamer. Na Virtual Games, em Santa Maria, realizamos limpeza interna completa com troca de pasta térmica de alta performance.",
@@ -31,9 +31,8 @@ const config = {
   faqs: [
     { question: "Com que frequência devo fazer limpeza preventiva?", answer: "Recomendamos a cada 12 meses, ou antes se você notar ruído excessivo do cooler ou desligamentos. Ambientes com poeira ou fumantes exigem limpeza mais frequente." },
     { question: "A limpeza preventiva resolve superaquecimento?", answer: "Na maioria dos casos, sim. Poeira acumulada e pasta térmica seca são as causas mais comuns de superaquecimento. Nossa limpeza resolve o problema em aproximadamente 90% dos casos." },
-    { question: "Quanto custa a limpeza de PS5 ou Xbox?", answer: "Limpeza completa com troca de pasta térmica a partir de R$ 150 para consoles. PC Gamer a partir de R$ 200. O valor inclui a desmontagem, limpeza, pasta térmica de qualidade e testes." },
     { question: "Quanto tempo demora a limpeza preventiva?", answer: "A limpeza de console leva de 2 a 4 horas. PCs podem levar de 4 a 8 horas dependendo da complexidade. Na maioria dos casos entregamos no mesmo dia." },
-    { question: "Vale a pena fazer limpeza preventiva?", answer: "Sim, a limpeza preventiva custa muito menos que um reparo por superaquecimento (que pode danificar componentes). É o investimento mais inteligente para prolongar a vida do seu console." },
+    { question: "Vale a pena fazer limpeza preventiva?", answer: "Sim, a limpeza preventiva é essencial para prolongar a vida do seu console e evitar danos permanentes causados por superaquecimento." },
   ],
   testimonials: [
     { name: "Felipe M.", role: "Cliente Limpeza PS5", text: "Meu PS5 desligava sozinho depois de 30 min. Limpeza + pasta térmica nova resolveu. Temperatura caiu 12 graus. Essencial!" },

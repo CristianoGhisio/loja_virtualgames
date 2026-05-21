@@ -12,7 +12,7 @@ export function AccessDenied() {
       <div className="space-y-2">
         <h1 className="text-3xl font-bold text-white font-orbitron tracking-wider">ACESSO NEGADO</h1>
         <p className="text-gray-400 max-w-md mx-auto">
-          Você não tem permissão para acessar este módulo. Contate o administrador do sistema se acreditar que isso é um erro.
+          Você não tem permissão para acessar este módulo. Entre em contato com o administrador do sistema se acreditar que isto é um erro.
         </p>
       </div>
 

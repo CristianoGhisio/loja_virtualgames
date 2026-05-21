@@ -17,11 +17,11 @@ const services = [
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
 
 export const metadata: Metadata = {
-  title: "Serviços de Assistência Técnica Gamer | Virtual Games",
+  title: "Serviços de Assistência Técnica Gamer em Santa Maria",
   description: "Conheça todos os serviços da Virtual Games em Santa Maria: manutenção de PS5, Xbox, Switch, montagem PC Gamer, reparo de controle, celular e mais.",
   alternates: { canonical: `${siteUrl}/servicos` },
   openGraph: {
-    title: "Serviços de Assistência Técnica Gamer | Virtual Games",
+    title: "Serviços de Assistência Técnica Gamer em Santa Maria",
     description: "Conheça todos os serviços da Virtual Games em Santa Maria: manutenção de consoles, PC Gamer e celulares.",
     url: `${siteUrl}/servicos`,
     siteName: "Virtual Games",

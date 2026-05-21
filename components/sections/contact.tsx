@@ -1,6 +1,7 @@
 'use client';
 
 import { MessageCircle, MapPin, Clock, Phone } from 'lucide-react';
+import Link from 'next/link';
 
 type StoreContactSettings = {
   address?: string | null;
@@ -88,6 +89,16 @@ export function Contact({ settings }: { settings?: StoreContactSettings | null }
               <span className="text-sm sm:text-base">ABRIR WHATSAPP</span>
             </a>
           </div>
+        </div>
+
+        <div className="text-center mt-8">
+          <Link
+            href="/contato"
+            className="inline-flex items-center gap-2 text-neon-blue hover:text-white font-medium transition-colors duration-300 text-sm border border-neon-blue/20 rounded-xl px-5 py-2.5 hover:bg-neon-blue/10"
+          >
+            Ver localização completa e horários
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </Link>
         </div>
       </div>
     </section>

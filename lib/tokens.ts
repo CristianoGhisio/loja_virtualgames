@@ -1,0 +1,68 @@
+export const tokens = {
+  color: {
+    neonBlue: 'oklch(0.72 0.18 240)',
+    neonBlueDark: 'oklch(0.58 0.16 240)',
+    neonPurple: 'oklch(0.58 0.22 295)',
+    neonPurpleDark: 'oklch(0.48 0.20 295)',
+    ctaOrange: 'oklch(0.68 0.20 45)',
+    ctaGold: 'oklch(0.84 0.18 85)',
+    ctaGreen: 'oklch(0.72 0.20 145)',
+    background: '#0a0a0f',
+    backgroundSecondary: '#0f0f16',
+    foreground: '#f0f0f5',
+    success: 'oklch(0.65 0.20 145)',
+    warning: 'oklch(0.75 0.18 85)',
+    danger: 'oklch(0.60 0.22 30)',
+    info: 'oklch(0.72 0.18 240)',
+  },
+  spacing: {
+    xs: '4px',
+    sm: '8px',
+    md: '16px',
+    lg: '24px',
+    xl: '32px',
+    '2xl': '48px',
+    '3xl': '64px',
+    '4xl': '96px',
+  },
+  typography: {
+    fontFamily: {
+      heading: 'var(--font-orbitron)',
+      body: 'var(--font-exo2)',
+    },
+    fontSize: {
+      xs: '0.75rem',
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+      '2xl': '1.5rem',
+      '3xl': '2rem',
+      '4xl': '2.5rem',
+      '5xl': '3.125rem',
+      '6xl': '3.815rem',
+    },
+  },
+  radius: {
+    sm: '8px',
+    md: '12px',
+    lg: '16px',
+    xl: '24px',
+  },
+  shadow: {
+    sm: '0 1px 3px rgba(0, 0, 0, 0.3)',
+    md: '0 4px 12px rgba(0, 0, 0, 0.4)',
+    lg: '0 8px 32px rgba(0, 0, 0, 0.5)',
+    xl: '0 16px 48px rgba(0, 0, 0, 0.6)',
+    neonBlue: '0 0 15px rgba(0, 212, 255, 0.3)',
+    neonPurple: '0 0 15px rgba(180, 77, 255, 0.3)',
+  },
+  zIndex: {
+    navbar: 100,
+    modal: 200,
+    tooltip: 300,
+    toast: 400,
+  },
+} as const;
+
+export type DesignToken = keyof typeof tokens;

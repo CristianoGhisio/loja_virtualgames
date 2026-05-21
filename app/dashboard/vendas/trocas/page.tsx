@@ -121,9 +121,9 @@ export default function TrocasDevolucoesPage() {
             </TableHeader>
             <TableBody>
               {loading ? (
-                <TableRow><TableCell colSpan={6} className="text-center py-8 text-gray-500">Carregando...</TableCell></TableRow>
+                <TableRow><TableCell colSpan={6} className="text-center py-8 text-gray-400">Carregando...</TableCell></TableRow>
               ) : filteredRecords.length === 0 ? (
-                <TableRow><TableCell colSpan={6} className="text-center py-8 text-gray-500">Nenhum registro encontrado.</TableCell></TableRow>
+                <TableRow><TableCell colSpan={6} className="text-center py-8 text-gray-400">Nenhum registro encontrado.</TableCell></TableRow>
               ) : (
                 filteredRecords.map((ret) => (
                   <TableRow key={ret.id}>

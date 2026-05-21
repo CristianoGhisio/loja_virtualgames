@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const config = {
   slug: "reparo-controle-drift",
   h1: "Reparo de Controle com Drift em Santa Maria, RS",
-  metaTitle: "Reparo de Controle com Drift em Santa Maria | Virtual Games",
+  metaTitle: "Reparo de Controle com Drift em Santa Maria",
   metaDescription: "Conserto de drift em controles PS5, Xbox e Nintendo Switch em Santa Maria. Troca de analógicos com calibragem profissional. Garantia 90 dias. Orçamento em 24h!",
   introParagraphs: [
     "Seu controle está com drift? O analógico se move sozinho e atrapalha a gameplay? A Virtual Games é especializada em reparo de controles com drift em Santa Maria, RS. Atendemos DualSense (PS5), controle Xbox Series e Joy-Con do Nintendo Switch.",
@@ -20,7 +20,7 @@ const config = {
   processSteps: [
     { title: "Traga seu controle", desc: "Venha até a loja em Santa Maria com o controle defeituoso." },
     { title: "Diagnóstico gratuito", desc: "Testamos o drift e identificamos quais analógicos precisam de troca." },
-    { title: "Orçamento e aprovação", desc: "Informamos o valor e prazo. Você aprova antes do reparo." },
+    { title: "Orçamento e aprovação", desc: "Informamos o diagnóstico e prazo. Você aprova antes do reparo." },
     { title: "Reparo com garantia", desc: "Trocamos os analógicos, calibramos e testamos. Garantia de 90 dias." },
   ],
   whyChooseItems: [
@@ -35,7 +35,7 @@ const config = {
     { question: "Qual o preço para trocar analógico do controle PS5?", answer: "A troca de analógico do DualSense custa a partir de R$ 120 por analógico. Se ambos estiverem com drift, o valor é a partir de R$ 200. O diagnóstico é gratuito." },
     { question: "Vocês consertam controles Xbox e Nintendo?", answer: "Sim, reparamos controles de Xbox (Series X/S, One) e Joy-Con do Nintendo Switch. Cada modelo tem seu processo específico que dominamos." },
     { question: "Quanto tempo leva o reparo do controle?", answer: "A maioria dos reparos de controle é feita em 24h. Se houver alta demanda, em até 2 dias úteis. Você pode esperar ou retirar depois." },
-    { question: "Qual a garantia do reparo de controles?", answer: "90 dias de garantia em peças e mão de obra. Se o drift voltar nesse período, trocamos o analógico novamente sem custo." },
+    { question: "Qual a garantia do reparo de controles?", answer: "90 dias de garantia em peças e mão de obra. Se o drift voltar nesse período, trocamos o analógico novamente." },
   ],
   testimonials: [
     { name: "Pedro H.", role: "Cliente DualSense Drift", text: "Meu DualSense estava injogável de tanto drift. Trocaram os dois analógicos e ficou zero! Nem parece o mesmo controle." },

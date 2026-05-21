@@ -262,7 +262,7 @@ export default function DREPage() {
                             <td className="px-3 py-2 text-right text-sm text-rose-300">
                               {formatCurrency(-Math.abs(detail.value))}
                             </td>
-                            <td className="px-3 py-2 text-right text-sm text-gray-500">-</td>
+                            <td className="px-3 py-2 text-right text-sm text-gray-400">-</td>
                           </tr>
                         ))
                         : []),

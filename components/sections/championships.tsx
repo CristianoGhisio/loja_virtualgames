@@ -42,7 +42,7 @@ export function Championships() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="relative h-[300px] sm:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,212,255,0.1)] group">
+          <div className="relative h-[300px] sm:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,212,255,0.1)] group" style={{ aspectRatio: '16 / 9' }}>
             <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/30 via-neon-purple/20 to-background flex items-center justify-center">
               <Trophy className="w-20 h-20 sm:w-28 sm:h-28 text-neon-blue/40" />
             </div>
