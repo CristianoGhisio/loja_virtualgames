@@ -1,6 +1,56 @@
-import { Sparkles } from 'lucide-react';
+'use client';
+
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+
+interface Flash {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+}
+
+const QUADRANTS = [
+  { xMin: 5, xMax: 30, yMin: 2, yMax: 25 },
+  { xMin: 5, xMax: 30, yMin: 25, yMax: 50 },
+  { xMin: 70, xMax: 95, yMin: 2, yMax: 25 },
+  { xMin: 70, xMax: 95, yMin: 25, yMax: 50 },
+];
+
+function randomBetween(min: number, max: number) {
+  return Math.random() * (max - min) + min;
+}
+
+function generateFlash(id: number): Flash {
+  const quadrant = QUADRANTS[Math.floor(Math.random() * QUADRANTS.length)];
+  return {
+    id,
+    x: randomBetween(quadrant.xMin, quadrant.xMax),
+    y: randomBetween(quadrant.yMin, quadrant.yMax),
+    size: randomBetween(8, 20),
+  };
+}
+
+let nextId = 0;
 
 export function Hero() {
+  const [flashes, setFlashes] = useState<Flash[]>([]);
+
+  const scheduleFlash = useCallback(() => {
+    const delay = randomBetween(800, 3500);
+    return setTimeout(() => {
+      const newFlash = generateFlash(nextId++);
+      setFlashes((prev) => [...prev.slice(-3), newFlash]);
+      scheduleFlash();
+    }, delay);
+  }, []);
+
+  useEffect(() => {
+    const timer = scheduleFlash();
+    return () => clearTimeout(timer);
+  }, [scheduleFlash]);
+
   return (
     <section className="relative h-dvh min-h-[600px] sm:min-h-[700px] flex items-center justify-center overflow-hidden">
       <h1 className="sr-only">
@@ -9,31 +59,43 @@ export function Hero() {
 
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,212,255,0.08),transparent_70%)]" />
 
-      <div className="relative z-20 h-full flex items-center pt-16 sm:pt-20">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
-          <div className="max-w-5xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 mb-4 sm:mb-6 rounded-full border border-neon-blue/30 bg-neon-blue/10 text-neon-blue font-bold tracking-widest text-xs sm:text-sm uppercase backdrop-blur-md">
-              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
-              O centro gamer de Santa Maria
-            </span>
+      <div className="absolute inset-0 pointer-events-none">
+        <AnimatePresence>
+          {flashes.map((flash) => (
+            <motion.div
+              key={flash.id}
+              initial={{ opacity: 0, scale: 0.3 }}
+              animate={{ opacity: [0, 0.9, 0.6, 0], scale: [0.3, 1.8, 1.2, 0.5] }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="absolute rounded-full bg-white"
+              style={{
+                left: `${flash.x}%`,
+                top: `${flash.y}%`,
+                width: `${flash.size}px`,
+                height: `${flash.size}px`,
+                boxShadow: `0 0 ${flash.size * 3}px ${flash.size * 1.5}px rgba(255,255,255,0.5), 0 0 ${flash.size * 6}px ${flash.size * 3}px rgba(255,255,255,0.2)`,
+              }}
+            />
+          ))}
+        </AnimatePresence>
+      </div>
 
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 leading-[1.1]">
-              <span className="sm:hidden">
-                TUDO NUM SÓ LUGAR
-              </span>
-              <span className="hidden sm:inline">
-                TUDO QUE O GAMER{' '}
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-[#00f5ff] to-neon-purple drop-shadow-[0_0_20px_rgba(0,212,255,0.3)]">
-                  PRECISA, NUM SÓ LUGAR
-                </span>
-              </span>
-            </div>
+      <div className="relative z-20 h-full flex flex-col pt-16 sm:pt-20">
+        <div className="flex-1">
+        </div>
 
-            <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-3xl leading-relaxed">
-              Consoles novos e usados, reparo especializado, acessórios, dicas, torneios. A Virtual Games é mais que assistência técnica — é o ponto de encontro de quem vive o game em Santa Maria, RS.
-            </p>
-          </div>
+        <div className="pb-8 sm:pb-10 flex justify-center">
+          <button
+            onClick={() => {
+              window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+            }}
+            aria-label="Rolar para ver mais conteúdo"
+            className="flex flex-col items-center gap-1 text-gray-500 hover:text-neon-blue transition-colors duration-300 group"
+          >
+            <span className="text-xs font-medium tracking-widest uppercase">Role para baixo</span>
+            <ChevronDown className="w-5 h-5 animate-bounce group-hover:text-neon-blue transition-colors duration-300" />
+          </button>
         </div>
       </div>
     </section>

@@ -7,16 +7,16 @@ import { X, ShieldCheck } from 'lucide-react';
 const STORAGE_KEY = 'cookie-consent';
 
 export function CookieBanner() {
-  const [visible, setVisible] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return !localStorage.getItem(STORAGE_KEY);
-  });
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!visible) {
+    const consent = localStorage.getItem(STORAGE_KEY);
+    if (!consent) {
+      setVisible(true);
+    } else {
       loadGtag();
     }
-  }, [visible]);
+  }, []);
 
   const acceptAll = () => {
     localStorage.setItem(STORAGE_KEY, 'accepted');
