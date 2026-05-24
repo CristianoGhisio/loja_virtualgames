@@ -107,9 +107,12 @@ export async function GET(req: NextRequest) {
       stock: p.stock?.quantity || 0,
       minStock: p.stock?.minStock || 0,
       costPrice: Number(p.stock?.averageCost || 0),
+      stockTotalValue: Number(p.stock?.totalValue || 0),
+      stockAverageCost: Number(p.stock?.averageCost || 0),
+      totalSaleValue: Number(p.price) * (p.stock?.quantity || 0),
       category: p.category,
       brand: p.manufacturer,
-      name: p.commercialName // Map commercialName to name for frontend compatibility
+      name: p.commercialName,
     }));
 
     return successResponse({

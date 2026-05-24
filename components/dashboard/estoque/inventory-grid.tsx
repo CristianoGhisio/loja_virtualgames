@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select } from '@/components/ui/native-select';
 import { Pagination } from '@/components/ui/pagination';
 import { MovementModal } from './movement-modal';
+import { StockKpiCards } from './stock-kpi-cards';
 import { api } from '@/lib/api';
 
 interface InventoryItem {
@@ -130,6 +131,8 @@ export function InventoryGrid() {
 
   return (
     <div className="space-y-4 text-slate-100">
+      <StockKpiCards items={filteredProducts} />
+
       <div className="flex flex-col md:flex-row md:items-end gap-4">
         <div className="w-full md:w-[420px] space-y-1">
             <label className="text-xs text-slate-400 uppercase tracking-wide">Buscar</label>
@@ -177,20 +180,22 @@ export function InventoryGrid() {
       </div>
 
       <div className="overflow-auto rounded-lg border border-cyan-400/20 bg-slate-950/40">
-        <Table className="w-full min-w-[900px] border-separate border-spacing-y-2">
+        <Table className="w-full min-w-[1100px] border-separate border-spacing-y-2">
           <TableHeader>
             <TableRow className="border-none hover:bg-transparent">
               <TableHead className="text-left text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Produto</TableHead>
               <TableHead className="text-left text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Categoria</TableHead>
-              <TableHead className="text-left text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Preço</TableHead>
-              <TableHead className="text-left text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Estoque</TableHead>
+              <TableHead className="text-left text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Vr. Custo</TableHead>
+              <TableHead className="text-left text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Vr. Venda</TableHead>
+              <TableHead className="text-left text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Valor Total</TableHead>
+              <TableHead className="text-left text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Quantidade</TableHead>
               <TableHead className="text-right text-xs uppercase tracking-wide text-cyan-300 px-3 py-3">Ações</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {loading ? (
                 <TableRow>
-                    <TableCell colSpan={5} className="px-3 py-8 text-center text-slate-400 border-b-0">
+                    <TableCell colSpan={7} className="px-3 py-8 text-center text-slate-400 border-b-0">
                       <div className="flex justify-center items-center gap-2 text-gray-400">
                         <Loader2 className="w-4 h-4 animate-spin" /> Carregando...
                       </div>
@@ -198,7 +203,7 @@ export function InventoryGrid() {
                 </TableRow>
             ) : filteredProducts.length === 0 ? (
                 <TableRow>
-                    <TableCell colSpan={5} className="px-3 py-8 text-center text-slate-400 border-b-0">Nenhum produto encontrado</TableCell>
+                    <TableCell colSpan={7} className="px-3 py-8 text-center text-slate-400 border-b-0">Nenhum produto encontrado</TableCell>
                 </TableRow>
             ) : (
             filteredProducts.map((item) => (
@@ -212,8 +217,14 @@ export function InventoryGrid() {
                     {typeof item.category === 'string' ? item.category : item.category?.name}
                   </Badge>
                 </TableCell>
+                <TableCell className="px-3 py-3 text-rose-400 font-mono border-b-0">
+                  {Number(item.costPrice || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                </TableCell>
                 <TableCell className="px-3 py-3 text-emerald-400 font-mono border-b-0">
-                  {item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                  {Number(item.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                </TableCell>
+                <TableCell className="px-3 py-3 text-emerald-400 font-mono border-b-0">
+                  {(item.stock * Number(item.price)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                 </TableCell>
                 <TableCell className="px-3 py-3 border-b-0">
                   <Badge
