@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
-import { Gamepad2, Menu, X, ChevronDown, PackageSearch } from 'lucide-react';
+import { Menu, X, ChevronDown, PackageSearch, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
@@ -22,10 +22,10 @@ const SERVICES_LINKS = [
 const ALL_NAV_LINKS = [
   { href: '/servicos', label: 'Serviços', hasDropdown: true },
   { href: '/blog', label: 'Blog' },
-  { href: '/faq', label: 'Dúvidas Frequentes' },
+  { href: '/faq', label: 'FAQ' },
   { href: '/campeonatos', label: 'Torneios' },
-  { href: '/sobre', label: 'Sobre Nós' },
-  { href: '/contato', label: 'Fale Conosco' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/contato', label: 'Contato' },
 ];
 
 const containerVariants = {
@@ -114,17 +114,13 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl h-16 sm:h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <motion.div
-            whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-            transition={{ duration: 0.4 }}
-            className="p-1.5 sm:p-2 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl shadow-[0_0_15px_rgba(0,212,255,0.2)]"
-          >
-            <Gamepad2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          </motion.div>
-          <span className="font-orbitron text-lg sm:text-xl lg:text-2xl font-bold tracking-wider text-white">
-            VIRTUAL<span className="text-neon-blue">GAMES</span>
-          </span>
+        <Link
+          href="/"
+          className="relative flex items-center gap-2 px-4 py-2 text-sm lg:text-base text-gray-400 hover:text-neon-blue transition-colors duration-300 font-medium group"
+        >
+          <Home className="w-4 h-4" />
+          <span>Home</span>
+          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-neon-blue transition-all duration-300 group-hover:w-3/4 rounded-full" />
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden md:flex items-center gap-1">
