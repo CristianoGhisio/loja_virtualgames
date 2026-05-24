@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/auth-context';
 import { Plus, Search, Truck, Phone, Loader2, Trash2 } from 'lucide-react';
@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Modal } from '@/components/ui/modal';
 import { DeleteConfirmationModal } from '@/components/ui/delete-confirmation-modal';
+import { Pagination } from '@/components/ui/pagination';
 import { api } from '@/lib/api';
 import { toast } from 'sonner';
 import { AccessDenied } from '@/components/ui/access-denied';
@@ -28,7 +29,12 @@ export default function FornecedoresPage() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
   
   // Modal States
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,20 +47,61 @@ export default function FornecedoresPage() {
   const [contact, setContact] = useState('');
   const [phone, setPhone] = useState('');
 
-  useEffect(() => {
-    fetchSuppliers();
-  }, []);
-
-  const fetchSuppliers = async () => {
+  const fetchSuppliers = useCallback(async (searchValue?: string) => {
     try {
-      const response = await api.get('/suppliers');
-      setSuppliers(response.data);
+      setLoading(true);
+      const params = new URLSearchParams();
+      params.set('page', String(page));
+      params.set('limit', String(limit));
+      const effectiveSearch = searchValue !== undefined ? searchValue : searchTerm;
+      if (effectiveSearch) params.set('q', effectiveSearch);
+
+      const response = await api.get(`/suppliers?${params.toString()}`);
+
+      if (response.data?.data?.data) {
+        setSuppliers(response.data.data.data);
+        const meta = response.data.data.meta;
+        if (meta) {
+          setTotal(meta.total);
+          setTotalPages(meta.pages);
+        }
+      } else if (Array.isArray(response.data?.data)) {
+        setSuppliers(response.data.data);
+      } else if (Array.isArray(response.data)) {
+        setSuppliers(response.data);
+      } else {
+        setSuppliers([]);
+      }
     } catch (error) {
       console.error('Error fetching suppliers:', error);
       toast.error('Erro ao carregar fornecedores');
     } finally {
       setLoading(false);
     }
+  }, [page, limit, searchTerm]);
+
+  useEffect(() => {
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    searchTimeoutRef.current = setTimeout(() => {
+      fetchSuppliers();
+    }, 400);
+    return () => {
+      if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    };
+  }, [searchTerm, page, limit, fetchSuppliers]);
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setPage(1);
+  };
+
+  const handleLimitChange = (newLimit: number) => {
+    setLimit(newLimit);
+    setPage(1);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
   };
 
   const handleOpenModal = () => {
@@ -128,11 +175,6 @@ export default function FornecedoresPage() {
 
   if (!hasPermission('stock')) return <AccessDenied />;
 
-  const filteredItems = suppliers.filter(item => 
-    item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (item.contact && item.contact.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-
   return (
     <div className="space-y-4 animate-in fade-in duration-500">
       <div className="flex flex-wrap justify-between items-center gap-4">
@@ -142,7 +184,7 @@ export default function FornecedoresPage() {
             <Input
               placeholder="Buscar fornecedores..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               className="pl-8"
             />
           </div>
@@ -152,11 +194,6 @@ export default function FornecedoresPage() {
         </Button>
       </div>
 
-      {loading ? (
-        <div className="py-8 text-center text-gray-400 flex justify-center items-center gap-2">
-          <Loader2 className="w-4 h-4 animate-spin" /> Carregando fornecedores...
-        </div>
-      ) : (
         <div className="overflow-auto rounded-lg">
             <Table className="w-full min-w-[900px] border-separate border-spacing-y-2">
               <TableHeader>
@@ -169,7 +206,21 @@ export default function FornecedoresPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredItems.map((item) => (
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="px-3 py-8 text-center border-b-0">
+                    <div className="flex justify-center items-center gap-2 text-gray-400">
+                      <Loader2 className="w-4 h-4 animate-spin" /> Carregando...
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ) : suppliers.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="px-3 py-8 text-center text-slate-400 border-b-0">
+                    Nenhum fornecedor encontrado
+                  </TableCell>
+                </TableRow>
+              ) : suppliers.map((item) => (
                 <TableRow
                   key={item.id}
                   className="cursor-pointer bg-slate-900/70 border-none hover:bg-slate-800/70 transition-colors"
@@ -208,16 +259,19 @@ export default function FornecedoresPage() {
                   </TableCell>
                 </TableRow>
               ))}
-              {filteredItems.length === 0 && (
-                <TableRow>
-                  <TableCell colSpan={5} className="px-3 py-8 text-center text-slate-400 border-b-0">
-                    Nenhum fornecedor encontrado
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </div>
+
+      {!loading && totalPages > 0 && (
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={total}
+          limit={limit}
+          onPageChange={handlePageChange}
+          onLimitChange={handleLimitChange}
+        />
       )}
 
       <Modal

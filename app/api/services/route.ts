@@ -12,24 +12,36 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const query = (searchParams.get('q') || '').trim();
     const onlyActive = searchParams.get('active') === 'true';
+    const page = Number(searchParams.get('page')) || 1;
+    const limit = Number(searchParams.get('limit')) || 20;
+    const skip = (page - 1) * limit;
 
-    const services = await prisma.service.findMany({
-      where: {
-        ...(onlyActive ? { active: true } : {}),
-        ...(query
-          ? {
-              OR: [
-                { name: { contains: query, mode: 'insensitive' } },
-                { internalCode: { contains: query, mode: 'insensitive' } },
-              ],
-            }
-          : {}),
-      },
-      orderBy: {
-        name: 'asc'
-      }
+    const where: Prisma.ServiceWhereInput = {
+      ...(onlyActive ? { active: true } : {}),
+      ...(query
+        ? {
+            OR: [
+              { name: { contains: query, mode: 'insensitive' } },
+              { internalCode: { contains: query, mode: 'insensitive' } },
+            ],
+          }
+        : {}),
+    };
+
+    const [total, services] = await Promise.all([
+      prisma.service.count({ where }),
+      prisma.service.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { name: 'asc' },
+      }),
+    ]);
+
+    return successResponse({
+      data: services,
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
     });
-    return successResponse(services);
   } catch (error) {
     console.error('API Error /services GET:', error);
     return errorResponse('Erro ao buscar serviços');

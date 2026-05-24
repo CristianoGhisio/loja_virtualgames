@@ -49,17 +49,24 @@ export function Topbar() {
   const { user, logout, hasPermission } = useAuth();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const displayName = user?.name?.trim() || 'Usuário';
   const displayRole = user?.role?.trim() || 'OPERADOR';
   const avatarUrl = user?.avatar?.trim() || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=0a0a0f&color=00d4ff&size=128`;
   const isSvgAvatar = avatarUrl.includes('ui-avatars.com');
 
-  const filteredItems = MENU_ITEMS.filter(item => hasPermission(item.permission ?? item.id));
+  const filteredItems = hydrated
+    ? MENU_ITEMS.filter(item => hasPermission(item.permission ?? item.id))
+    : MENU_ITEMS;
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') setIsMobileMenuOpen(false);

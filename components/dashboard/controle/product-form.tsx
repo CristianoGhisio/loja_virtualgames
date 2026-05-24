@@ -129,6 +129,12 @@ function extractArray<T>(payload: unknown): T[] {
         if (Array.isArray(data)) {
             return data as T[];
         }
+        if (data && typeof data === 'object' && 'data' in (data as Record<string, unknown>)) {
+            const nestedData = (data as { data?: unknown }).data;
+            if (Array.isArray(nestedData)) {
+                return nestedData as T[];
+            }
+        }
     }
     return [];
 }

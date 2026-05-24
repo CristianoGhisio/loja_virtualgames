@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Search, Plus, Edit, Trash2, Wrench, Clock } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Search, Plus, Edit, Trash2, Wrench, Clock, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/native-select';
+import { Pagination } from '@/components/ui/pagination';
 import { toast } from 'sonner';
 import { api } from '@/lib/api';
 
@@ -30,9 +31,14 @@ interface Service {
 export default function ServicosPage() {
   const [services, setServices] = useState<Service[]>([]);
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Service | null>(null);
   const [loading, setLoading] = useState(false);
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -48,25 +54,62 @@ export default function ServicosPage() {
     active: true,
   });
 
-  const loadData = async () => {
+  const loadData = useCallback(async (searchValue?: string) => {
     try {
-      const servicesRes = await api.get('/services');
-      setServices(servicesRes.data?.data || servicesRes.data || []);
+      setLoading(true);
+      const params = new URLSearchParams();
+      params.set('page', String(page));
+      params.set('limit', String(limit));
+      const effectiveSearch = searchValue !== undefined ? searchValue : search;
+      if (effectiveSearch) params.set('q', effectiveSearch);
+
+      const servicesRes = await api.get(`/services?${params.toString()}`);
+      const responseData = servicesRes.data;
+
+      if (responseData.data && Array.isArray(responseData.data.data)) {
+        setServices(responseData.data.data);
+        const meta = responseData.data.meta;
+        if (meta) {
+          setTotal(meta.total);
+          setTotalPages(meta.pages);
+        }
+      } else if (responseData.data && Array.isArray(responseData.data)) {
+        setServices(responseData.data);
+      } else if (Array.isArray(responseData.data)) {
+        setServices(responseData.data);
+      } else {
+        setServices(responseData.data || responseData || []);
+      }
     } catch (error) {
       console.error('Error loading services:', error);
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [page, limit, search]);
 
   useEffect(() => {
-    loadData();
-  }, []);
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    searchTimeoutRef.current = setTimeout(() => {
+      loadData();
+    }, 400);
+    return () => {
+      if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    };
+  }, [search, page, limit, loadData]);
 
-  const filteredServices = services.filter(s => {
-    const matchSearch = !search ||
-      s.name.toLowerCase().includes(search.toLowerCase()) ||
-      s.internalCode?.toLowerCase().includes(search.toLowerCase());
-    return matchSearch;
-  }).sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setPage(1);
+  };
+
+  const handleLimitChange = (newLimit: number) => {
+    setLimit(newLimit);
+    setPage(1);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
 
   const handleOpenModal = (service?: Service) => {
     if (service) {
@@ -169,7 +212,7 @@ export default function ServicosPage() {
             <Input
               placeholder="Buscar serviços..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               className="pl-8"
             />
           </div>
@@ -195,7 +238,21 @@ export default function ServicosPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredServices.map((s) => (
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={8} className="px-3 py-8 text-center border-b-0">
+                  <div className="flex justify-center items-center gap-2 text-gray-400">
+                    <Loader2 className="w-4 h-4 animate-spin" /> Carregando...
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : services.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={8} className="px-3 py-8 text-center text-slate-400 border-b-0">
+                  Nenhum serviço encontrado
+                </TableCell>
+              </TableRow>
+            ) : services.map((s) => (
               <TableRow key={s.id} className="bg-slate-900/70 border-none hover:bg-slate-800/70 transition-colors">
                 <TableCell className="px-3 py-3 border-b-0">
                   <div className="flex flex-col">
@@ -239,16 +296,20 @@ export default function ServicosPage() {
                 </TableCell>
               </TableRow>
             ))}
-            {filteredServices.length === 0 && (
-              <TableRow>
-                <TableCell colSpan={8} className="px-3 py-8 text-center text-slate-400 border-b-0">
-                  Nenhum serviço encontrado
-                </TableCell>
-              </TableRow>
-            )}
           </TableBody>
         </Table>
       </div>
+
+      {!loading && totalPages > 0 && (
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={total}
+          limit={limit}
+          onPageChange={handlePageChange}
+          onLimitChange={handleLimitChange}
+        />
+      )}
 
       {/* Modal */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>

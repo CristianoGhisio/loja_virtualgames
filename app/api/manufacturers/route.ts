@@ -24,22 +24,40 @@ export async function GET(req: NextRequest) {
 
     const { searchParams } = new URL(req.url);
     const categoryId = searchParams.get('categoryId');
+    const page = Number(searchParams.get('page')) || 1;
+    const limit = Number(searchParams.get('limit')) || 20;
+    const skip = (page - 1) * limit;
+    const query = (searchParams.get('q') || '').trim();
 
-    const where: Prisma.ManufacturerWhereInput = { active: true };
+    const where: Prisma.ManufacturerWhereInput = {};
     if (categoryId) {
       where.products = {
-        some: {
-          categoryId
-        }
+        some: { categoryId }
       };
     }
+    if (query) {
+      where.OR = [
+        { name: { contains: query, mode: 'insensitive' } },
+      ];
+    }
 
-    const manufacturers = await prisma.manufacturer.findMany({
-      where,
-      orderBy: { name: 'asc' },
+    const [total, manufacturers] = await Promise.all([
+      prisma.manufacturer.count({ where }),
+      prisma.manufacturer.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { name: 'asc' },
+        include: {
+          products: { select: { id: true } },
+        },
+      }),
+    ]);
+
+    return successResponse({
+      data: manufacturers,
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
     });
-
-    return successResponse(manufacturers);
   } catch (error) {
     return errorResponse(error);
   }

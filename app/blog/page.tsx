@@ -52,7 +52,7 @@ export default async function BlogPage() {
   const categorias = [...new Set(posts.map((p) => p.categoria))].sort();
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main id="main-content" className="min-h-screen text-foreground">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-12 sm:py-16 lg:py-20">
         <Breadcrumbs items={[{ name: "Início", href: "/" }, { name: "Blog" }]} />
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-4 mb-4">

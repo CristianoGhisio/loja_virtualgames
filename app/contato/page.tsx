@@ -23,7 +23,7 @@ export default function ContatoPage() {
   return (
     <>
       <SchemaOrg schema={contactSchema} />
-      <main className="min-h-screen bg-background text-foreground">
+      <main id="main-content" className="min-h-screen text-foreground">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16 lg:py-20">
           <Breadcrumbs items={[{ name: "Início", href: "/" }, { name: "Contato" }]} />
 

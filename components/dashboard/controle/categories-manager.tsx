@@ -1,14 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, Plus, Edit, Trash2 } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Search, Plus, Edit, Trash2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import { Pagination } from '@/components/ui/pagination';
 import { toast } from 'sonner';
+import { api } from '@/lib/api';
 
 interface Category {
   id: string;
@@ -18,23 +20,74 @@ interface Category {
   active: boolean;
 }
 
-interface CategoriesManagerProps {
-  initialCategories: Category[];
-}
-
-export function CategoriesManager({ initialCategories }: CategoriesManagerProps) {
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
+export function CategoriesManager() {
+  const [categories, setCategories] = useState<Category[]>([]);
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Category | null>(null);
+  const [formLoading, setFormLoading] = useState(false);
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
-  // Form states
   const [formData, setFormData] = useState({ name: '', description: '', active: true });
-  const [loading, setLoading] = useState(false);
 
-  const filteredCategories = categories.filter(c =>
-    c.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const fetchCategories = useCallback(async (searchValue?: string) => {
+    try {
+      setLoading(true);
+      const params = new URLSearchParams();
+      params.set('page', String(page));
+      params.set('limit', String(limit));
+      const effectiveSearch = searchValue !== undefined ? searchValue : search;
+      if (effectiveSearch) params.set('q', effectiveSearch);
+
+      const response = await api.get(`/categories?${params.toString()}`);
+      const responseData = response.data;
+
+      if (responseData.data?.data) {
+        setCategories(responseData.data.data);
+        const meta = responseData.data.meta;
+        if (meta) {
+          setTotal(meta.total);
+          setTotalPages(meta.pages);
+        }
+      } else {
+        setCategories([]);
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      toast.error('Erro ao carregar categorias');
+    } finally {
+      setLoading(false);
+    }
+  }, [page, limit, search]);
+
+  useEffect(() => {
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    searchTimeoutRef.current = setTimeout(() => {
+      fetchCategories();
+    }, 400);
+    return () => {
+      if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    };
+  }, [search, page, limit, fetchCategories]);
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setPage(1);
+  };
+
+  const handleLimitChange = (newLimit: number) => {
+    setLimit(newLimit);
+    setPage(1);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
 
   const handleOpenModal = (category?: Category) => {
     if (category) {
@@ -53,7 +106,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setFormLoading(true);
 
     try {
       const url = editingItem
@@ -73,21 +126,14 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
         throw new Error(error.error || 'Failed to save category');
       }
 
-      const savedCategory = await response.json();
-
-      if (editingItem) {
-        setCategories(categories.map(c => c.id === savedCategory.id ? savedCategory : c));
-        toast.success('Categoria atualizada com sucesso!');
-      } else {
-        setCategories([...categories, savedCategory]);
-        toast.success('Categoria criada com sucesso!');
-      }
+      toast.success(editingItem ? 'Categoria atualizada com sucesso!' : 'Categoria criada com sucesso!');
       setModalOpen(false);
+      fetchCategories();
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Erro ao salvar categoria';
       toast.error(message);
     } finally {
-      setLoading(false);
+      setFormLoading(false);
     }
   };
 
@@ -104,8 +150,8 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
         throw new Error(error.error || 'Failed to delete category');
       }
 
-      setCategories(categories.filter(c => c.id !== id));
       toast.success('Categoria excluída com sucesso!');
+      fetchCategories();
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Erro ao excluir categoria';
       toast.error(message);
@@ -120,7 +166,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
           <Input
             placeholder="Buscar categorias..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             className="pl-8 bg-slate-950/60 border-cyan-400/30 text-slate-200"
           />
         </div>
@@ -141,7 +187,21 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredCategories.map((category) => (
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={5} className="px-3 py-8 text-center border-b-0">
+                  <div className="flex justify-center items-center gap-2 text-gray-400">
+                    <Loader2 className="w-4 h-4 animate-spin" /> Carregando...
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : categories.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={5} className="px-3 py-8 text-center text-slate-400 border-b-0">
+                  Nenhuma categoria encontrada
+                </TableCell>
+              </TableRow>
+            ) : categories.map((category) => (
               <TableRow key={category.id} className="bg-slate-900/70 border-none hover:bg-slate-800/70 transition-colors">
                 <TableCell className="px-3 py-3 font-medium text-slate-100 border-b-0">{category.name}</TableCell>
                 <TableCell className="px-3 py-3 text-slate-400 text-xs font-mono border-b-0">{category.slug}</TableCell>
@@ -166,16 +226,20 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
                 </TableCell>
               </TableRow>
             ))}
-            {filteredCategories.length === 0 && (
-              <TableRow>
-                <TableCell colSpan={5} className="px-3 py-8 text-center text-slate-400 border-b-0">
-                  Nenhuma categoria encontrada
-                </TableCell>
-              </TableRow>
-            )}
           </TableBody>
         </Table>
       </div>
+
+      {!loading && totalPages > 0 && (
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={total}
+          limit={limit}
+          onPageChange={handlePageChange}
+          onLimitChange={handleLimitChange}
+        />
+      )}
 
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogContent className="bg-[#0f172a] border-cyan-400/20 text-slate-100">
@@ -217,8 +281,8 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
             </div>
             <DialogFooter>
               <Button type="button" variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800" onClick={() => setModalOpen(false)}>Cancelar</Button>
-              <Button type="submit" disabled={loading} className="bg-cyan-400 text-slate-900 hover:bg-cyan-300">
-                {loading ? 'Salvando...' : 'Salvar'}
+              <Button type="submit" disabled={formLoading} className="bg-cyan-400 text-slate-900 hover:bg-cyan-300">
+                {formLoading ? 'Salvando...' : 'Salvar'}
               </Button>
             </DialogFooter>
           </form>

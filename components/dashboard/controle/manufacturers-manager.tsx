@@ -1,14 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, Plus, Edit, Trash2 } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Search, Plus, Edit, Trash2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import { Pagination } from '@/components/ui/pagination';
 import { toast } from 'sonner';
+import { api } from '@/lib/api';
 
 interface Manufacturer {
   id: string;
@@ -18,29 +20,74 @@ interface Manufacturer {
   products?: { id: string }[];
 }
 
-interface ManufacturersManagerProps {
-  initialManufacturers: Manufacturer[];
-}
-
-function unwrapData<T>(payload: unknown): T {
-  if (payload && typeof payload === 'object' && 'data' in payload) {
-    return (payload as { data: T }).data;
-  }
-  return payload as T;
-}
-
-export function ManufacturersManager({ initialManufacturers }: ManufacturersManagerProps) {
-  const [manufacturers, setManufacturers] = useState<Manufacturer[]>(initialManufacturers);
+export function ManufacturersManager() {
+  const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Manufacturer | null>(null);
+  const [formLoading, setFormLoading] = useState(false);
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const [formData, setFormData] = useState({ name: '', website: '', active: true });
-  const [loading, setLoading] = useState(false);
 
-  const filteredItems = manufacturers.filter(m =>
-    (m.name ?? '').toLowerCase().includes(search.toLowerCase())
-  );
+  const fetchManufacturers = useCallback(async (searchValue?: string) => {
+    try {
+      setLoading(true);
+      const params = new URLSearchParams();
+      params.set('page', String(page));
+      params.set('limit', String(limit));
+      const effectiveSearch = searchValue !== undefined ? searchValue : search;
+      if (effectiveSearch) params.set('q', effectiveSearch);
+
+      const response = await api.get(`/manufacturers?${params.toString()}`);
+      const responseData = response.data;
+
+      if (responseData.data?.data) {
+        setManufacturers(responseData.data.data);
+        const meta = responseData.data.meta;
+        if (meta) {
+          setTotal(meta.total);
+          setTotalPages(meta.pages);
+        }
+      } else {
+        setManufacturers([]);
+      }
+    } catch (error) {
+      console.error('Error fetching manufacturers:', error);
+      toast.error('Erro ao carregar fabricantes');
+    } finally {
+      setLoading(false);
+    }
+  }, [page, limit, search]);
+
+  useEffect(() => {
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    searchTimeoutRef.current = setTimeout(() => {
+      fetchManufacturers();
+    }, 400);
+    return () => {
+      if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    };
+  }, [search, page, limit, fetchManufacturers]);
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setPage(1);
+  };
+
+  const handleLimitChange = (newLimit: number) => {
+    setLimit(newLimit);
+    setPage(1);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
 
   const handleOpenModal = (item?: Manufacturer) => {
     if (item) {
@@ -59,7 +106,7 @@ export function ManufacturersManager({ initialManufacturers }: ManufacturersMana
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setFormLoading(true);
 
     try {
       const url = editingItem
@@ -79,21 +126,14 @@ export function ManufacturersManager({ initialManufacturers }: ManufacturersMana
         throw new Error(error.error || 'Failed to save manufacturer');
       }
 
-      const savedItem = unwrapData<Manufacturer>(await response.json());
-
-      if (editingItem) {
-        setManufacturers(manufacturers.map(m => m.id === savedItem.id ? savedItem : m));
-        toast.success('Fabricante atualizado com sucesso!');
-      } else {
-        setManufacturers([...manufacturers, savedItem]);
-        toast.success('Fabricante criado com sucesso!');
-      }
+      toast.success(editingItem ? 'Fabricante atualizado com sucesso!' : 'Fabricante criado com sucesso!');
       setModalOpen(false);
+      fetchManufacturers();
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Erro ao salvar fabricante';
       toast.error(message);
     } finally {
-      setLoading(false);
+      setFormLoading(false);
     }
   };
 
@@ -110,8 +150,8 @@ export function ManufacturersManager({ initialManufacturers }: ManufacturersMana
         throw new Error(error.error || 'Failed to delete manufacturer');
       }
 
-      setManufacturers(manufacturers.filter(m => m.id !== id));
       toast.success('Fabricante excluído com sucesso!');
+      fetchManufacturers();
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Erro ao excluir fabricante';
       toast.error(message);
@@ -126,7 +166,7 @@ export function ManufacturersManager({ initialManufacturers }: ManufacturersMana
           <Input
             placeholder="Buscar fabricantes..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             className="pl-8 bg-slate-950/60 border-cyan-400/30 text-slate-200"
           />
         </div>
@@ -147,7 +187,21 @@ export function ManufacturersManager({ initialManufacturers }: ManufacturersMana
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredItems.map((item) => (
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={5} className="px-3 py-8 text-center border-b-0">
+                  <div className="flex justify-center items-center gap-2 text-gray-400">
+                    <Loader2 className="w-4 h-4 animate-spin" /> Carregando...
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : manufacturers.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={5} className="px-3 py-8 text-center text-slate-400 border-b-0">
+                  Nenhum fabricante encontrado
+                </TableCell>
+              </TableRow>
+            ) : manufacturers.map((item) => (
               <TableRow key={item.id} className="bg-slate-900/70 border-none hover:bg-slate-800/70 transition-colors">
                 <TableCell className="px-3 py-3 font-medium text-slate-100 border-b-0">{item.name}</TableCell>
                 <TableCell className="px-3 py-3 text-slate-400 border-b-0">
@@ -182,16 +236,20 @@ export function ManufacturersManager({ initialManufacturers }: ManufacturersMana
                 </TableCell>
               </TableRow>
             ))}
-            {filteredItems.length === 0 && (
-              <TableRow>
-                <TableCell colSpan={5} className="px-3 py-8 text-center text-slate-400 border-b-0">
-                  Nenhum fabricante encontrado
-                </TableCell>
-              </TableRow>
-            )}
           </TableBody>
         </Table>
       </div>
+
+      {!loading && totalPages > 0 && (
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={total}
+          limit={limit}
+          onPageChange={handlePageChange}
+          onLimitChange={handleLimitChange}
+        />
+      )}
 
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogContent className="bg-[#0f172a] border-cyan-400/20 text-slate-100">
@@ -234,8 +292,8 @@ export function ManufacturersManager({ initialManufacturers }: ManufacturersMana
             </div>
             <DialogFooter>
               <Button type="button" variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800" onClick={() => setModalOpen(false)}>Cancelar</Button>
-              <Button type="submit" disabled={loading} className="bg-cyan-400 text-slate-900 hover:bg-cyan-300">
-                {loading ? 'Salvando...' : 'Salvar'}
+              <Button type="submit" disabled={formLoading} className="bg-cyan-400 text-slate-900 hover:bg-cyan-300">
+                {formLoading ? 'Salvando...' : 'Salvar'}
               </Button>
             </DialogFooter>
           </form>

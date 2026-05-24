@@ -21,7 +21,6 @@ const staticRoutes: { url: string; changeFrequency: MetadataRoute.Sitemap[number
   { url: `${siteUrl}/contato`, changeFrequency: "monthly", priority: 0.8 },
   { url: `${siteUrl}/privacidade`, changeFrequency: "yearly", priority: 0.4 },
   { url: `${siteUrl}/termos`, changeFrequency: "yearly", priority: 0.4 },
-  { url: `${siteUrl}/acompanhar-reparo`, changeFrequency: "monthly", priority: 0.6 },
   { url: `${siteUrl}/campeonatos`, changeFrequency: "weekly", priority: 0.7 },
   { url: `${siteUrl}/assistencia-tecnica-santa-maria`, changeFrequency: "monthly", priority: 0.8 },
   { url: `${siteUrl}/blog`, changeFrequency: "weekly", priority: 0.7 },
@@ -36,12 +35,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   let blogUrls: MetadataRoute.Sitemap = [];
+  let categoryUrls: MetadataRoute.Sitemap = [];
+
   try {
-    const posts = await prisma.blogPost.findMany({
-      where: { published: true },
-      select: { slug: true, updatedAt: true },
-      orderBy: { updatedAt: "desc" },
-    });
+    const [posts, categorias] = await Promise.all([
+      prisma.blogPost.findMany({
+        where: { published: true },
+        select: { slug: true, updatedAt: true },
+        orderBy: { updatedAt: "desc" },
+      }),
+      prisma.blogPost.findMany({
+        where: { published: true },
+        select: { categoria: true },
+        distinct: ['categoria'],
+      }),
+    ]);
 
     blogUrls = posts.map((post) => ({
       url: `${siteUrl}/blog/${post.slug}`,
@@ -49,9 +57,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     }));
+
+    categoryUrls = categorias.map((cat) => ({
+      url: `${siteUrl}/blog/categoria/${encodeURIComponent(cat.categoria.toLowerCase().replace(/\s+/g, '-'))}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    }));
   } catch {
     // BlogPost table may not exist yet — ignore gracefully
   }
 
-  return [...staticUrls, ...blogUrls];
+  return [...staticUrls, ...blogUrls, ...categoryUrls];
 }

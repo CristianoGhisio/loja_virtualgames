@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Gamepad2, Lock, AlertCircle, ArrowLeft, UserCircle, Loader2, Shield, Eye, EyeOff, CheckCircle, Server, Wifi } from 'lucide-react';
+import { Gamepad2, Lock, AlertCircle, UserCircle, Loader2, Shield, Eye, EyeOff, CheckCircle, Server, Wifi } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/auth-context';
 import { Input } from '@/components/ui/input';
@@ -165,20 +165,7 @@ export default function LoginPage() {
       </div>
 
       <div className="w-full lg:w-[45%] flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-background relative min-h-dvh">
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="absolute top-4 sm:top-6 lg:top-8 left-4 sm:left-6 lg:left-8"
-        >
-          <Link
-            href="/"
-            className="text-gray-400 hover:text-white flex items-center gap-2 transition-colors text-xs sm:text-sm group"
-          >
-            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-x-1 transition-transform" />
-            Voltar para Loja
-          </Link>
-        </motion.div>
+
 
         <motion.div
           variants={containerVariants}

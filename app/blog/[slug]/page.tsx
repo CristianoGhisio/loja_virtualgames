@@ -142,7 +142,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       {faqSchema && <SchemaOrg schema={faqSchema} />}
       <SchemaOrg schema={breadcrumbSchema} />
       <SchemaOrg schema={aggregateRatingSchema} />
-      <main className="min-h-screen bg-background text-foreground">
+      <main id="main-content" className="min-h-screen text-foreground">
         <article className="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16 lg:py-20">
           <Breadcrumbs items={[
             { name: "Início", href: "/" },

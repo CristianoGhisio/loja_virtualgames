@@ -309,8 +309,8 @@ export default async function Home() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
         />
       ))}
-      <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
-        <div id="main-content">
+      <main id="main-content" className="min-h-screen text-foreground overflow-x-hidden">
+        <div>
           <Hero />
 
           <section className="py-14 sm:py-18 bg-background border-b border-white/5">

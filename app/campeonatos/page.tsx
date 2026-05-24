@@ -51,7 +51,7 @@ const PROXIMOS_TORNEIOS_VG = [
 
 export default function CampeonatosPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main id="main-content" className="min-h-screen text-foreground">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-12 sm:py-16 lg:py-20">
         <Breadcrumbs items={[{ name: "Início", href: "/" }, { name: "Campeonatos" }]} />
 

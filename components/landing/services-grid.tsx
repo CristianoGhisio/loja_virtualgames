@@ -68,7 +68,7 @@ export function ServicesGrid() {
             <Link
               key={service.href}
               href={service.href}
-              className="group relative bg-[rgba(255,255,255,0.02)] border border-white/5 rounded-2xl p-6 sm:p-8 hover:border-neon-blue/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-card-hover"
+              className="group relative bg-[rgba(255,255,255,0.02)] border border-white/5 rounded-2xl p-6 sm:p-8 hover:border-neon-blue/30 transition-all duration-500 hover:-translate-y-1 "
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500 pointer-events-none`} />
               <div className="relative z-10">

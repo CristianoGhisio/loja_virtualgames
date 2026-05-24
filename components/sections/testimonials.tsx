@@ -51,7 +51,7 @@ export function Testimonials() {
           {TESTIMONIALS.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="group relative bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] p-6 sm:p-8 rounded-2xl hover:border-neon-blue/30 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1"
+              className="group relative bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] p-6 sm:p-8 rounded-2xl hover:border-neon-blue/30 transition-all duration-500  hover:-translate-y-1"
             >
               <Quote className="absolute top-6 right-6 w-10 h-10 text-white/[0.03] group-hover:text-neon-blue/5 transition-colors duration-500" />
 

@@ -1,5 +1,6 @@
 
 import { NextRequest } from 'next/server';
+import { Prisma } from '@prisma/client';
 import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
@@ -16,17 +17,41 @@ function slugify(text: string): string {
     .replace(/(^-|-$)/g, '');
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const { authorized, response } = await checkAuth();
     if (!authorized) return response;
 
-    const categories = await prisma.category.findMany({
-      where: { active: true },
-      orderBy: { name: 'asc' },
-    });
+    const { searchParams } = new URL(req.url);
+    const page = Number(searchParams.get('page')) || 1;
+    const limit = Number(searchParams.get('limit')) || 20;
+    const skip = (page - 1) * limit;
+    const query = (searchParams.get('q') || '').trim();
+    const onlyActive = searchParams.get('active');
 
-    return successResponse(categories);
+    const where: Prisma.CategoryWhereInput = {};
+    if (onlyActive === 'true') where.active = true;
+    if (onlyActive === 'false') where.active = false;
+    if (query) {
+      where.OR = [
+        { name: { contains: query, mode: 'insensitive' } },
+      ];
+    }
+
+    const [total, categories] = await Promise.all([
+      prisma.category.count({ where }),
+      prisma.category.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { name: 'asc' },
+      }),
+    ]);
+
+    return successResponse({
+      data: categories,
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
+    });
   } catch (error) {
     return errorResponse(error);
   }

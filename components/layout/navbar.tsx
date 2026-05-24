@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
-import { Gamepad2, Menu, X, ChevronDown, Search } from 'lucide-react';
+import { Gamepad2, Menu, X, ChevronDown, PackageSearch } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 
 const SERVICES_LINKS = [
   { href: '/servicos/manutencao-ps5', label: 'Manutenção PS5' },
@@ -18,21 +19,13 @@ const SERVICES_LINKS = [
   { href: '/servicos/upgrade-ssd-ps5', label: 'Upgrade SSD PS5' },
 ];
 
-const TOP_LINKS = [
-  { href: '/sobre', label: 'Sobre' },
-  { href: '/campeonatos', label: 'Campeonatos' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/contato', label: 'Contato' },
-];
-
 const ALL_NAV_LINKS = [
-  { href: '/sobre', label: 'Sobre' },
   { href: '/servicos', label: 'Serviços', hasDropdown: true },
-  { href: '/campeonatos', label: 'Campeonatos' },
   { href: '/blog', label: 'Blog' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/contato', label: 'Contato' },
+  { href: '/faq', label: 'Dúvidas Frequentes' },
+  { href: '/campeonatos', label: 'Torneios' },
+  { href: '/sobre', label: 'Sobre Nós' },
+  { href: '/contato', label: 'Fale Conosco' },
 ];
 
 const containerVariants = {
@@ -125,7 +118,7 @@ export function Navbar() {
           <motion.div
             whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
             transition={{ duration: 0.4 }}
-            className="p-1.5 sm:p-2 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl shadow-neon-blue-sm"
+            className="p-1.5 sm:p-2 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl shadow-[0_0_15px_rgba(0,212,255,0.2)]"
           >
             <Gamepad2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </motion.div>
@@ -195,19 +188,17 @@ export function Navbar() {
               size="sm"
               className="text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300 text-sm"
             >
-              <Search className="w-4 h-4 mr-1.5" />
-              Acompanhar Reparo
+              <PackageSearch className="w-4 h-4 mr-1.5" />
+              Rastrear Reparo
             </Button>
           </Link>
           <a
             href="https://wa.me/55997252786?text=Olá!%20Gostaria%20de%20um%20orçamento."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-4 py-2 rounded-xl text-sm transition-all duration-300 hover:scale-105 shadow-whatsapp hover:shadow-whatsapp-hover"
+            className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-4 py-2 rounded-xl text-sm transition-all duration-300 hover:scale-105 shadow-[0_0_15px_rgba(37,211,102,0.2)] hover:shadow-[0_0_25px_rgba(37,211,102,0.4)]"
           >
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
-            </svg>
+            <WhatsAppIcon className="w-4 h-4" />
             Solicitar Orçamento
           </a>
         </div>
@@ -238,47 +229,53 @@ export function Navbar() {
             exit="exit"
             className="md:hidden fixed top-16 left-0 right-0 bottom-0 bg-[rgba(10,10,15,0.97)] backdrop-blur-2xl border-t border-[rgba(255,255,255,0.06)] p-6 flex flex-col gap-2 overflow-y-auto"
           >
-            {TOP_LINKS.map((link) => (
-              <motion.div key={link.href} variants={itemVariants}>
-                <Link
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-between px-4 py-4 text-lg text-gray-300 hover:text-neon-blue hover:bg-white/5 rounded-xl transition-all duration-300 font-medium"
-                >
-                  {link.label}
-                  <ChevronDown className="w-4 h-4 text-gray-600 rotate-[-90deg]" />
-                </Link>
-              </motion.div>
-            ))}
-
-            <motion.div variants={itemVariants}>
-              <Link
-                href="/servicos"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-4 text-lg text-neon-blue hover:text-neon-blue-dark hover:bg-white/5 rounded-xl transition-all duration-300 font-medium border border-neon-blue/20"
-              >
-                Serviços
-                <ChevronDown className="w-4 h-4 text-neon-blue rotate-[-90deg]" />
-              </Link>
-            </motion.div>
-            <div className="pl-4 space-y-1 border-l border-neon-blue/20 ml-4">
-              {SERVICES_LINKS.map((s) => (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-2 text-sm text-gray-400 hover:text-neon-blue hover:bg-white/5 rounded-lg transition-all duration-300"
-                >
-                  {s.label}
-                </Link>
-              ))}
-            </div>
+            {ALL_NAV_LINKS.map((link) => {
+              if (link.hasDropdown) {
+                return (
+                  <motion.div key={link.href} variants={itemVariants}>
+                    <div className="flex items-center justify-between px-4 py-4 text-lg text-neon-blue hover:text-neon-blue-dark hover:bg-white/5 rounded-xl transition-all duration-300 font-medium border border-neon-blue/20">
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                      <ChevronDown className="w-4 h-4 text-neon-blue rotate-[-90deg]" />
+                    </div>
+                    <div className="pl-4 space-y-1 border-l border-neon-blue/20 ml-4 mt-1">
+                      {SERVICES_LINKS.map((s) => (
+                        <Link
+                          key={s.href}
+                          href={s.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block px-4 py-2 text-sm text-gray-400 hover:text-neon-blue hover:bg-white/5 rounded-lg transition-all duration-300"
+                        >
+                          {s.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                );
+              }
+              return (
+                <motion.div key={link.href} variants={itemVariants}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-4 py-4 text-lg text-gray-300 hover:text-neon-blue hover:bg-white/5 rounded-xl transition-all duration-300 font-medium"
+                  >
+                    {link.label}
+                    <ChevronDown className="w-4 h-4 text-gray-600 rotate-[-90deg]" />
+                  </Link>
+                </motion.div>
+              );
+            })}
 
             <motion.div variants={itemVariants} className="mt-auto pt-6 border-t border-white/10 space-y-3">
               <Link href="/acompanhar-reparo" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button className="w-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white font-medium py-6 text-base border border-white/10">
-                  <Search className="w-5 h-5 mr-2" />
-                  Acompanhar Reparo
+                  <PackageSearch className="w-5 h-5 mr-2" />
+                  Rastrear Reparo
                 </Button>
               </Link>
               <a
@@ -288,9 +285,7 @@ export function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 rounded-xl text-base transition-all duration-300"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
-                </svg>
+                <WhatsAppIcon className="w-5 h-5" />
                 Solicitar Orçamento
               </a>
             </motion.div>

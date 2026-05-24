@@ -46,3 +46,6 @@ next-env.d.ts
 
 # whatsapp-web.js cache
 .wwebjs_cache/
+
+# database backups (sensitive data)
+backups/

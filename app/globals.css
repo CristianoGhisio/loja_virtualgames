@@ -5,18 +5,18 @@
   --background-secondary: #0f0f16;
   --foreground: #f0f0f5;
 
-  --neon-blue: oklch(0.72 0.18 240);
-  --neon-blue-dark: oklch(0.58 0.16 240);
-  --neon-purple: oklch(0.58 0.22 295);
-  --neon-purple-dark: oklch(0.48 0.20 295);
-  --cta-orange: oklch(0.68 0.20 45);
-  --cta-gold: oklch(0.84 0.18 85);
-  --cta-green: oklch(0.72 0.20 145);
+  --neon-blue: #00d4ff;
+  --neon-blue-dark: #0099cc;
+  --neon-purple: #b44dff;
+  --neon-purple-dark: #8a2be2;
+  --cta-orange: #ff6b35;
+  --cta-gold: #ffd700;
+  --cta-green: #25D366;
 
-  --color-success: oklch(0.65 0.20 145);
-  --color-warning: oklch(0.75 0.18 85);
-  --color-danger: oklch(0.60 0.22 30);
-  --color-info: oklch(0.72 0.18 240);
+  --color-success: #22c55e;
+  --color-warning: #eab308;
+  --color-danger: #ef4444;
+  --color-info: #00d4ff;
 
   --card-bg: rgba(18, 18, 26, 0.8);
   --card-border: rgba(255, 255, 255, 0.06);
@@ -85,20 +85,6 @@
   --font-size-4xl: 2.5rem;
   --font-size-5xl: 3.125rem;
   --font-size-6xl: 3.815rem;
-
-  --shadow-sm: var(--shadow-sm);
-  --shadow-md: var(--shadow-md);
-  --shadow-lg: var(--shadow-lg);
-  --shadow-xl: var(--shadow-xl);
-  --shadow-neon-blue-sm: var(--shadow-neon-blue-sm);
-  --shadow-neon-blue-md: var(--shadow-neon-blue-md);
-  --shadow-neon-blue-lg: var(--shadow-neon-blue-lg);
-  --shadow-neon-blue-xl: var(--shadow-neon-blue-xl);
-  --shadow-neon-purple-sm: var(--shadow-neon-purple-sm);
-  --shadow-neon-purple-md: var(--shadow-neon-purple-md);
-  --shadow-card-hover: var(--shadow-card-hover);
-  --shadow-whatsapp: var(--shadow-whatsapp);
-  --shadow-whatsapp-hover: var(--shadow-whatsapp-hover);
 }
 
 *,
@@ -550,32 +536,4 @@ textarea:focus-visible {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* =============================================
-   LIGHT MODE
-   ============================================= */
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #f4f4f9;
-    --background-secondary: #e8e8f0;
-    --foreground: #1a1a2e;
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --card-border: rgba(0, 0, 0, 0.08);
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(0, 0, 0, 0.1);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  }
-
-  body {
-    background: var(--background);
-    color: var(--foreground);
-  }
-
-  .text-gray-400 {
-    color: #6b7280;
-  }
-
-  [class*="bg-\\[rgba"] {
-    background: rgba(0, 0, 0, 0.03) !important;
-  }
-}

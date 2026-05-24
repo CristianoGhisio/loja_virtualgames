@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -10,6 +10,7 @@ import { Search, Plus, Edit, Power, Loader2, FileUp, Copy, Trash2 } from 'lucide
 import { ProductForm, Product, ProductFormData } from '@/components/dashboard/controle/product-form';
 import { CsvImportModal } from '@/components/dashboard/controle/csv-import-modal';
 import { DeleteConfirmationModal } from '@/components/ui/delete-confirmation-modal';
+import { Pagination } from '@/components/ui/pagination';
 import { toast } from 'sonner';
 import { api } from '@/lib/api';
 
@@ -17,26 +18,39 @@ export default function ProdutosPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Product | null>(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<string | null>(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async (searchValue?: string) => {
     try {
-      const response = await api.get('/products');
+      setLoading(true);
+      const params = new URLSearchParams();
+      params.set('page', String(page));
+      params.set('limit', String(limit));
+      const effectiveSearch = searchValue !== undefined ? searchValue : searchTerm;
+      if (effectiveSearch) params.set('q', effectiveSearch);
+
+      const response = await api.get(`/products?${params.toString()}`);
       const responseData = response.data;
 
       let items: Product[] = [];
 
       if (responseData.data && Array.isArray(responseData.data.data)) {
         items = responseData.data.data;
+        const meta = responseData.data.meta;
+        if (meta) {
+          setTotal(meta.total);
+          setTotalPages(meta.pages);
+        }
       } else if (Array.isArray(responseData.data)) {
         items = responseData.data;
       } else if (Array.isArray(responseData)) {
@@ -50,6 +64,30 @@ export default function ProdutosPage() {
     } finally {
       setLoading(false);
     }
+  }, [page, limit, searchTerm]);
+
+  useEffect(() => {
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    searchTimeoutRef.current = setTimeout(() => {
+      fetchProducts(searchTerm);
+    }, 400);
+    return () => {
+      if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    };
+  }, [searchTerm, page, limit, fetchProducts]);
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setPage(1);
+  };
+
+  const handleLimitChange = (newLimit: number) => {
+    setLimit(newLimit);
+    setPage(1);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
   };
 
   const handleSave = async (data: ProductFormData) => {
@@ -122,14 +160,6 @@ export default function ProdutosPage() {
     setIsModalOpen(true);
   };
 
-  const filteredItems = products.filter(item => {
-    const categoryName = typeof item.category === 'string' ? item.category : item.category?.name;
-    const itemName = item.name || item.commercialName;
-    return itemName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (categoryName && categoryName.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (item.barcode && item.barcode.includes(searchTerm));
-  });
-
   return (
     <div className="space-y-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -139,7 +169,7 @@ export default function ProdutosPage() {
               placeholder="Buscar produtos..."
               className="pl-9"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
             />
           </div>
           <div className="flex gap-2 w-full md:w-auto">
@@ -182,14 +212,14 @@ export default function ProdutosPage() {
                     </div>
                   </TableCell>
                 </TableRow>
-            ) : filteredItems.length === 0 ? (
+            ) : products.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={8} className="px-3 py-8 text-center text-slate-400 border-b-0">
                   Nenhum produto encontrado
                 </TableCell>
               </TableRow>
             ) : (
-              filteredItems.map((item) => (
+              products.map((item) => (
                 <TableRow key={item.id} className="bg-slate-900/70 border-none hover:bg-slate-800/70 transition-colors">
                   <TableCell className="px-3 py-3 font-medium text-slate-100 border-b-0">
                     <div>{item.name || item.commercialName}</div>
@@ -265,6 +295,17 @@ export default function ProdutosPage() {
           </TableBody>
         </Table>
       </div>
+
+      {!loading && totalPages > 0 && (
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={total}
+          limit={limit}
+          onPageChange={handlePageChange}
+          onLimitChange={handleLimitChange}
+        />
+      )}
 
       <Modal
         isOpen={isModalOpen}

@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { Prisma } from '@prisma/client';
 import { checkAuth } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 import { prisma } from '@/lib/prisma';
@@ -6,24 +7,53 @@ import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const { authorized, response } = await checkAuth();
     if (!authorized) return response;
 
-    const attributes = await prisma.attribute.findMany({
-      orderBy: [
-        { order: 'asc' },
-        { name: 'asc' }
-      ],
-      include: {
-        options: {
-          orderBy: { order: 'asc' }
-        }
-      }
-    });
+    const { searchParams } = new URL(req.url);
+    const page = Number(searchParams.get('page')) || 1;
+    const limit = Number(searchParams.get('limit')) || 20;
+    const skip = (page - 1) * limit;
+    const query = (searchParams.get('q') || '').trim();
 
-    return successResponse(attributes);
+    const where: Prisma.AttributeWhereInput = {};
+    if (query) {
+      where.OR = [
+        { name: { contains: query, mode: 'insensitive' } },
+        { slug: { contains: query, mode: 'insensitive' } },
+      ];
+    }
+
+    const [total, attributes] = await Promise.all([
+      prisma.attribute.count({ where }),
+      prisma.attribute.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: [
+          { order: 'asc' },
+          { name: 'asc' },
+        ],
+        include: {
+          options: { orderBy: { order: 'asc' } },
+        },
+      }),
+    ]);
+
+    const normalized = attributes.map(attribute => ({
+      ...attribute,
+      options: attribute.options?.map(option => ({
+        ...option,
+        label: option.label ?? option.value,
+      })),
+    }));
+
+    return successResponse({
+      data: normalized,
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
+    });
   } catch (error) {
     return errorResponse(error);
   }
