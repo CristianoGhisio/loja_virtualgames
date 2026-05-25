@@ -80,7 +80,7 @@ export async function GET(req: NextRequest) {
       ];
     }
 
-    const [total, products] = await Promise.all([
+    const [total, products, stockAggregate] = await Promise.all([
       prisma.product.count({ where }),
       prisma.product.findMany({
         where,
@@ -98,10 +98,26 @@ export async function GET(req: NextRequest) {
         },
         orderBy: { commercialName: 'asc' },
       }),
+      prisma.stock.findMany({
+        where: { product: where },
+        select: {
+          quantity: true,
+          averageCost: true,
+          minStock: true,
+          product: { select: { price: true } }
+        }
+      }),
     ]);
 
-    // Flatten/Format for frontend if necessary, or frontend adapts.
-    // Frontend expects flat structure mostly.
+    const totalItems = stockAggregate.reduce((sum, s) => sum + s.quantity, 0);
+    const totalCostValue = stockAggregate.reduce(
+      (sum, s) => sum + s.quantity * Number(s.averageCost), 0
+    );
+    const totalSaleValue = stockAggregate.reduce(
+      (sum, s) => sum + s.quantity * Number(s.product.price), 0
+    );
+    const lowStockCount = stockAggregate.filter(s => s.quantity < s.minStock).length;
+
     const formattedProducts = products.map(p => ({
       ...p,
       stock: p.stock?.quantity || 0,
@@ -117,7 +133,13 @@ export async function GET(req: NextRequest) {
 
     return successResponse({
       data: formattedProducts,
-      meta: { total, page, limit, pages: Math.ceil(total / limit) }
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
+      aggregate: {
+        totalItems,
+        totalCostValue,
+        totalSaleValue,
+        lowStockCount,
+      },
     });
   } catch (error) {
     return errorResponse(error);

@@ -14,7 +14,8 @@ export class StockService {
     referenceId?: string,
     userId?: string,
     tx?: Prisma.TransactionClient,
-    unitCost?: number
+    unitCost?: number,
+    salePrice?: number
   ) {
     const db = tx || prisma;
 
@@ -83,7 +84,7 @@ export class StockService {
         stock: {
           upsert: {
             create: {
-              quantity: quantity, // If no stock existed, this is the first entry
+              quantity: quantity,
               averageCost: newAverageCost,
               totalValue: newAverageCost * quantity
             },
@@ -97,6 +98,13 @@ export class StockService {
       },
       include: { stock: true }
     });
+
+    if (isEntry && salePrice !== undefined && salePrice > 0) {
+      await db.product.update({
+        where: { id: productId },
+        data: { price: salePrice },
+      });
+    }
 
     // 6. Validate negative stock (Optional: could allow negative if configured)
     if (product.stock && product.stock.quantity < 0) {

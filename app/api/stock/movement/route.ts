@@ -15,6 +15,7 @@ const movementSchema = z.object({
   type: z.enum(['IN_PURCHASE', 'IN_RETURN', 'IN_ADJUSTMENT', 'OUT_LOSS', 'OUT_ADJUSTMENT', 'OUT_SALE', 'OUT_WARRANTY', 'OUT_SERVICE_PART']),
   reason: z.string().min(3),
   unitCost: z.number().min(0).optional(),
+  salePrice: z.number().min(0).optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -33,7 +34,8 @@ export async function POST(req: NextRequest) {
       undefined,
       user?.id,
       undefined,
-      body.unitCost
+      body.unitCost,
+      body.salePrice
     );
 
     return successResponse(movement, 201);

@@ -41,6 +41,13 @@ export function InventoryGrid() {
   const [modalDefaultType, setModalDefaultType] = useState<'entrada' | 'saida'>('entrada');
   const [selectedProductId, setSelectedProductId] = useState<string | undefined>(undefined);
 
+  const [aggregate, setAggregate] = useState({
+    totalItems: 0,
+    totalCostValue: 0,
+    totalSaleValue: 0,
+    lowStockCount: 0,
+  });
+
   const fetchInventory = useCallback(async (searchValue?: string) => {
     try {
       setLoading(true);
@@ -60,6 +67,9 @@ export function InventoryGrid() {
         if (meta) {
           setTotal(meta.total);
           setTotalPages(meta.pages);
+        }
+        if (responseData.data.aggregate) {
+          setAggregate(responseData.data.aggregate);
         }
       } else if (Array.isArray(responseData.data)) {
         fetchedItems = responseData.data;
@@ -131,7 +141,7 @@ export function InventoryGrid() {
 
   return (
     <div className="space-y-4 text-slate-100">
-      <StockKpiCards items={filteredProducts} />
+      <StockKpiCards aggregate={aggregate} />
 
       <div className="flex flex-col md:flex-row md:items-end gap-4">
         <div className="w-full md:w-[420px] space-y-1">

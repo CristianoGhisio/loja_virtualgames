@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ArrowUp, ArrowDown } from 'lucide-react';
+import { ArrowUp, ArrowDown, DollarSign, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/native-select';
@@ -12,6 +12,8 @@ interface Product {
   id: string;
   name: string;
   stock: number;
+  costPrice?: number;
+  price?: number;
 }
 
 interface MovementModalProps {
@@ -30,6 +32,10 @@ export function MovementModal({ isOpen, onClose, onSuccess, defaultType = 'entra
   const [obs, setObs] = useState('');
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const [unitCost, setUnitCost] = useState<string>('');
+  const [salePrice, setSalePrice] = useState<string>('');
+
+  const selectedProduct = products.find(p => p.id === productId);
 
   useEffect(() => {
     if (isOpen) {
@@ -37,6 +43,8 @@ export function MovementModal({ isOpen, onClose, onSuccess, defaultType = 'entra
         setQuantity(1);
         setReason('');
         setObs('');
+        setUnitCost('');
+        setSalePrice('');
         setType(defaultType);
         fetchProducts();
     }
@@ -82,12 +90,22 @@ export function MovementModal({ isOpen, onClose, onSuccess, defaultType = 'entra
             else apiType = 'OUT_ADJUSTMENT';
         }
 
-        await api.post('/stock/movement', {
+        const body: Record<string, unknown> = {
             productId,
             quantity,
             type: apiType,
             reason: obs ? `${reason} - ${obs}` : reason
-        });
+        };
+
+        if (type === 'entrada') {
+            const parsedUnitCost = Number(unitCost);
+            if (unitCost && parsedUnitCost > 0) body.unitCost = parsedUnitCost;
+
+            const parsedSalePrice = Number(salePrice);
+            if (salePrice && parsedSalePrice > 0) body.salePrice = parsedSalePrice;
+        }
+
+        await api.post('/stock/movement', body);
         
         onSuccess();
         onClose();
@@ -197,6 +215,41 @@ export function MovementModal({ isOpen, onClose, onSuccess, defaultType = 'entra
             </div>
           </div>
         </div>
+
+        {type === 'entrada' && (
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-cyan-300/70">Custo Unitário (R$)</label>
+              <div className="relative">
+                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-cyan-300/50" />
+                <Input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  placeholder={selectedProduct?.costPrice ? `Atual: R$ ${selectedProduct.costPrice}` : 'Opcional...'}
+                  value={unitCost}
+                  onChange={(e) => setUnitCost(e.target.value)}
+                  className="h-10 pl-9 bg-slate-950/60 border-cyan-400/20 text-slate-300 focus:border-cyan-400"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-cyan-300/70">Preço de Venda (R$)</label>
+              <div className="relative">
+                <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-cyan-300/50" />
+                <Input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  placeholder={selectedProduct?.price ? `Atual: R$ ${selectedProduct.price}` : 'Opcional...'}
+                  value={salePrice}
+                  onChange={(e) => setSalePrice(e.target.value)}
+                  className="h-10 pl-9 bg-slate-950/60 border-cyan-400/20 text-slate-300 focus:border-cyan-400"
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-cyan-300/70">Observações</label>

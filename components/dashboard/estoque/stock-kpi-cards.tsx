@@ -2,27 +2,20 @@
 
 import { Package, DollarSign, TrendingUp, AlertTriangle, BarChart3 } from 'lucide-react';
 
-interface InventoryItem {
-  id: string;
-  name: string;
-  price: number;
-  costPrice?: number;
-  stock: number;
-  minStock?: number;
-  stockTotalValue?: number;
-  totalSaleValue?: number;
+interface StockAggregate {
+  totalItems: number;
+  totalCostValue: number;
+  totalSaleValue: number;
+  lowStockCount: number;
 }
 
 interface StockKpiCardsProps {
-  items: InventoryItem[];
+  aggregate: StockAggregate;
 }
 
-export function StockKpiCards({ items }: StockKpiCardsProps) {
-  const totalItems = items.reduce((acc, item) => acc + item.stock, 0);
-  const totalCostValue = items.reduce((acc, item) => acc + (item.stock * (item.costPrice || 0)), 0);
-  const totalSaleValue = items.reduce((acc, item) => acc + (item.stock * item.price), 0);
+export function StockKpiCards({ aggregate }: StockKpiCardsProps) {
+  const { totalItems, totalCostValue, totalSaleValue, lowStockCount } = aggregate;
   const potentialMargin = totalSaleValue - totalCostValue;
-  const lowStockCount = items.filter(item => item.stock < (item.minStock || 5)).length;
 
   const formatCurrency = (value: number) =>
     value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
