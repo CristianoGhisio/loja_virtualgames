@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 export const metadata: Metadata = {
   title: "Acompanhar Meu Reparo | Virtual Games",
   description: "Acompanhe o status do seu reparo pelo número da Ordem de Serviço.",
-  robots: { index: false },
+  robots: { index: true, follow: true },
 };
 
 export default function AcompanharReparoPage() {

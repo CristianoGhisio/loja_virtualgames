@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 export const metadata: Metadata = {
   title: "Termos de Serviço | Virtual Games",
   description: "Termos e condições de serviço da Virtual Games. Prazos, garantias e responsabilidades.",
-  robots: { index: false },
+  robots: { index: true, follow: true },
 };
 
 export default function TermosPage() {

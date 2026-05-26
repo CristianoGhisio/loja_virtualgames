@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 export const metadata: Metadata = {
   title: "Política de Privacidade | Virtual Games",
   description: "Política de Privacidade da Virtual Games em conformidade com a LGPD. Saiba como tratamos seus dados pessoais.",
-  robots: { index: false },
+  robots: { index: true, follow: true },
 };
 
 export default function PrivacidadePage() {
