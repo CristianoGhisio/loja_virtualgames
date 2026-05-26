@@ -57,6 +57,11 @@ export function Hero() {
         Assistência Técnica Gamer em Santa Maria | Virtual Games — Manutenção de PS5, Xbox, Nintendo Switch, PC Gamer e Celulares. Consertos, reparos e acessórios.
       </h1>
 
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ backgroundImage: 'url(/hero-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,212,255,0.08),transparent_70%)]" />
 
       <div className="absolute inset-0 pointer-events-none">
