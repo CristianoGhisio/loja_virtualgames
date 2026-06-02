@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, Trash2, Plus } from 'lucide-react';
+import { ArrowLeft, Trash2, Plus, Coins } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -31,6 +31,7 @@ export default function NovaVendaPage() {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [notes, setNotes] = useState('');
   const [prefillApplied, setPrefillApplied] = useState(false);
+  const [creditBalance, setCreditBalance] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +55,14 @@ export default function NovaVendaPage() {
     }
   }, [searchParams, clients, loadingData, prefillApplied]);
 
+  // Fetch credit balance when client changes
+  useEffect(() => {
+    if (!selectedClient) { setCreditBalance(0); return; }
+    api.get(`/clients/${selectedClient}/credit`)
+      .then((res) => setCreditBalance(Number(res.data?.data?.balance ?? 0)))
+      .catch(() => setCreditBalance(0));
+  }, [selectedClient]);
+
   const customerName = useMemo(() => clients.find((c) => c.id === selectedClient)?.name ?? '', [clients, selectedClient]);
   const subtotal = useMemo(() => cart.reduce((acc, item) => acc + item.price * item.quantity, 0), [cart]);
 
@@ -75,11 +84,18 @@ export default function NovaVendaPage() {
 
   const handleSubmit = async () => {
     if (!selectedClient || cart.length === 0 || !paymentMethod) { toast.error('Preencha cliente, itens e pagamento'); return; }
+    if (paymentMethod === 'CREDITO_LOJA' && creditBalance <= 0) { toast.error('Cliente não possui crédito disponível'); return; }
+    const creditToUse = paymentMethod === 'CREDITO_LOJA' ? Math.min(creditBalance, subtotal) : 0;
+    if (paymentMethod === 'CREDITO_LOJA' && creditToUse < subtotal) {
+      toast.warning(`Crédito cobre ${fmt(creditToUse)}. Os ${fmt(subtotal - creditToUse)} restantes devem ser pagos por outro método. Para pagamento parcial, use o PDV.`);
+      return;
+    }
     setLoading(true);
     try {
       await api.post('/sales', {
         customerId: selectedClient, items: cart.map((item) => ({ productId: item.id, quantity: item.quantity, unitPrice: item.price })),
         paymentMethod, status: 'COMPLETED',
+        creditUsed: creditToUse > 0 ? creditToUse : undefined,
       });
       toast.success('Venda finalizada');
       router.push('/dashboard/vendas/em-andamento');
@@ -156,6 +172,11 @@ export default function NovaVendaPage() {
                 </select>
               </div>
               {customerName && <p className="text-sm text-gray-400">Cliente: <span className="text-white font-bold">{customerName}</span></p>}
+              {creditBalance > 0 && (
+                <p className="text-sm text-yellow-400 flex items-center gap-1">
+                  <Coins className="w-3 h-3" /> Crédito disponível: {fmt(creditBalance)}
+                </p>
+              )}
             </CardContent>
           </Card>
 
@@ -171,6 +192,7 @@ export default function NovaVendaPage() {
                   <option value="CREDITO">Crédito</option>
                   <option value="DEBITO">Débito</option>
                   <option value="DINHEIRO">Dinheiro</option>
+                  <option value="CREDITO_LOJA">Crédito em Loja</option>
                 </select>
               </div>
               <div className="pt-4 border-t border-[rgba(255,255,255,0.06)] space-y-2">
