@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   Banknote,
+  Coins,
   CreditCard,
   DollarSign,
   Minus,
@@ -75,6 +76,7 @@ const PAYMENT_METHODS: Array<{
   { id: 'credito', label: 'Crédito', icon: CreditCard },
   { id: 'debito', label: 'Débito', icon: Wallet },
   { id: 'dinheiro', label: 'Dinheiro', icon: Banknote },
+  { id: 'credito_loja', label: 'Crédito Loja', icon: Coins },
 ];
 
 const formatCurrency = (value: number) =>
@@ -151,6 +153,8 @@ export default function PDVFrenteCaixaPage() {
   const [prefillApplied, setPrefillApplied] = useState(false);
   const [receiptOpen, setReceiptOpen] = useState(false);
   const [cashClosedDialogOpen, setCashClosedDialogOpen] = useState(false);
+  const [creditBalance, setCreditBalance] = useState(0);
+  const [creditUsedState, setCreditUsedState] = useState(0);
   const {
     cartItems,
     discount,
@@ -348,19 +352,36 @@ export default function PDVFrenteCaixaPage() {
     if (paymentMethod === 'dinheiro' && receivedAmount < total) {
       setReceivedAmount(total);
     }
+    // Handle credit payment
+    if (paymentMethod === 'credito_loja') {
+      if (creditBalance <= 0) {
+        toast.error('Cliente não possui crédito disponível');
+        return;
+      }
+      const creditToUse = Math.min(creditBalance, total);
+      setCreditUsedState(creditToUse);
+    } else {
+      setCreditUsedState(0);
+    }
     setCheckoutOpen(true);
-  }, [cartItems.length, customerName, paymentMethod, receivedAmount, selectedCustomer, setReceivedAmount, total]);
+  }, [cartItems.length, customerName, paymentMethod, receivedAmount, selectedCustomer, setReceivedAmount, total, creditBalance]);
 
   const handleSelectCustomer = (customer: PDVCustomer) => {
     setSelectedCustomer(customer);
     setClientSearch(customer.name);
     setClientResults([]);
+    // Fetch credit balance
+    api.get(`/clients/${customer.id}/credit`)
+      .then((res) => setCreditBalance(Number(res.data?.data?.balance ?? 0)))
+      .catch(() => setCreditBalance(0));
   };
 
   const handleClearCustomer = () => {
     setSelectedCustomer(null);
     setClientSearch('');
     setClientResults([]);
+    setCreditBalance(0);
+    setCreditUsedState(0);
   };
 
   const handleCreateQuickCustomer = async () => {
@@ -428,6 +449,7 @@ export default function PDVFrenteCaixaPage() {
         status: 'COMPLETED',
         sourceCardId,
         sourceFlowKind: sourceCardId ? 'PRODUCT' : undefined,
+        creditUsed: creditUsedState > 0 ? creditUsedState : undefined,
       });
 
       const saleId = response.data?.data?.id as string | undefined;
@@ -765,6 +787,12 @@ export default function PDVFrenteCaixaPage() {
                   <div>
                     <p className="text-sm font-semibold text-slate-200">{selectedCustomer.name}</p>
                     <p className="text-xs text-slate-400">{selectedCustomer.document}</p>
+                    {creditBalance > 0 && (
+                      <p className="text-xs text-yellow-400 mt-1 flex items-center gap-1">
+                        <Coins className="w-3 h-3" />
+                        Crédito: {formatCurrency(creditBalance)}
+                      </p>
+                    )}
                   </div>
                   <Button type="button" variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10" onClick={handleClearCustomer}>
                     <X className="w-4 h-4" />
@@ -891,6 +919,21 @@ export default function PDVFrenteCaixaPage() {
                 </p>
               </div>
             </div>
+
+            {paymentMethod === 'credito_loja' && creditUsedState > 0 && (
+              <div className="rounded-lg border border-yellow-400/30 p-3 bg-slate-950/40 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-yellow-400">Crédito utilizado</span>
+                  <span className="text-yellow-400 font-bold">{formatCurrency(creditUsedState)}</span>
+                </div>
+                {creditUsedState < total && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-slate-400">Restante a pagar</span>
+                    <span className="text-slate-200 font-bold">{formatCurrency(total - creditUsedState)}</span>
+                  </div>
+                )}
+              </div>
+            )}
 
             <Input
               label="Valor recebido"

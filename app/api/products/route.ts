@@ -43,6 +43,7 @@ const productSchema = z.object({
   condition: z.enum(['Novo', 'Usado']).optional(),
   supplierId: z.string().optional(),
   originClientId: z.string().optional(),
+  creditValue: z.number().min(0).optional(),
 
   variations: z.array(z.object({
     sku: z.string(),
@@ -240,6 +241,41 @@ export async function POST(req: NextRequest) {
         });
 
         stock.quantity = parsed.stock;
+      }
+
+      // 4. Grant credit to client when registering used product
+      if (parsed.condition === 'Usado' && normalizedOriginClientId) {
+        const creditAmount = parsed.creditValue ?? (parsed.costPrice * parsed.stock);
+
+        if (creditAmount > 0) {
+          const customer = await tx.customer.findUnique({
+            where: { id: normalizedOriginClientId },
+            select: { creditBalance: true },
+          });
+
+          const balanceBefore = Number(customer?.creditBalance ?? 0);
+          const balanceAfter = balanceBefore + creditAmount;
+
+          await tx.customerCredit.create({
+            data: {
+              customerId: normalizedOriginClientId,
+              type: 'CREDIT',
+              amount: creditAmount,
+              balanceBefore,
+              balanceAfter,
+              description: `Crédito por equipamento usado: ${parsed.commercialName} (${parsed.stock}x)`,
+              referenceId: product.id,
+              referenceType: 'PRODUCT',
+              productId: product.id,
+              createdBy: session?.user?.id,
+            },
+          });
+
+          await tx.customer.update({
+            where: { id: normalizedOriginClientId },
+            data: { creditBalance: balanceAfter },
+          });
+        }
       }
 
       return { ...product, stock };

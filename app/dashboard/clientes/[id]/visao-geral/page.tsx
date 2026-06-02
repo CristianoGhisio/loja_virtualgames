@@ -2,7 +2,7 @@
 
 import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Mail, Phone, MapPin, Edit, Building2, User } from 'lucide-react';
+import { Mail, Phone, MapPin, Edit, Building2, User, Coins } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -36,6 +36,7 @@ export default function ClientGeneralPage({ params }: { params: Promise<{ id: st
   const [client, setClient] = useState<Client | null>(null);
   const [funnelStage, setFunnelStage] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [creditBalance, setCreditBalance] = useState(0);
 
   const stageLabel: Record<string, string> = {
     NOVO_CONTATO: 'Novo Contato',
@@ -51,6 +52,10 @@ export default function ClientGeneralPage({ params }: { params: Promise<{ id: st
         setClient(response.data);
         const funnelResponse = await api.get(`/clients/${id}/funnel`);
         setFunnelStage(funnelResponse.data?.stage ?? null);
+        // Fetch credit balance
+        api.get(`/clients/${id}/credit`)
+          .then((res) => setCreditBalance(Number(res.data?.data?.balance ?? 0)))
+          .catch(() => {});
       } catch (error) {
         console.error('Erro ao carregar cliente', error);
       } finally {
@@ -81,6 +86,7 @@ export default function ClientGeneralPage({ params }: { params: Promise<{ id: st
   }
 
   return (
+    <>
     <Card>
       <CardHeader className="flex flex-row justify-between items-center border-b border-[rgba(255,255,255,0.06)] pb-4">
         <CardTitle className="flex items-center gap-2">
@@ -123,5 +129,28 @@ export default function ClientGeneralPage({ params }: { params: Promise<{ id: st
         </div>
       </CardContent>
     </Card>
+
+    <Card className="mt-6">
+      <CardHeader className="border-b border-[rgba(255,255,255,0.06)] pb-4">
+        <CardTitle className="flex items-center gap-2">
+          <Coins className="w-5 h-5 text-yellow-400" />
+          Crédito em Loja
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="pt-6">
+        <p className="text-3xl font-bold text-yellow-400">
+          {creditBalance.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+        </p>
+        <Button
+          variant="outline"
+          size="sm"
+          className="mt-3"
+          onClick={() => router.push(`/dashboard/clientes/${id}/creditos`)}
+        >
+          Ver Extrato
+        </Button>
+      </CardContent>
+    </Card>
+    </>
   );
 }

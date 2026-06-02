@@ -2,7 +2,7 @@
 
 import { use, useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { ArrowLeft, User, ShoppingBag, Wrench, ShieldCheck, MessageSquare } from 'lucide-react';
+import { ArrowLeft, User, ShoppingBag, Wrench, ShieldCheck, MessageSquare, Coins } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { api } from '@/lib/api';
@@ -42,6 +42,7 @@ export default function ClientDetailLayout({
     { label: 'Compras', href: `/dashboard/clientes/${id}/compras`, icon: ShoppingBag },
     { label: 'OS', href: `/dashboard/clientes/${id}/os`, icon: Wrench },
     { label: 'Garantias', href: `/dashboard/clientes/${id}/garantias`, icon: ShieldCheck },
+    { label: 'Créditos', href: `/dashboard/clientes/${id}/creditos`, icon: Coins },
     { label: 'Interações', href: `/dashboard/clientes/${id}/interacoes`, icon: MessageSquare },
   ];
 

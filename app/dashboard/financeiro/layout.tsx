@@ -3,7 +3,7 @@
 import { useAuth } from '@/contexts/auth-context';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, TrendingUp, FileClock, FileWarning, ShieldCheck, BarChart3 } from 'lucide-react';
+import { LayoutDashboard, TrendingUp, FileClock, FileWarning, ShieldCheck, BarChart3, Coins } from 'lucide-react';
 import { AccessDenied } from '@/components/ui/access-denied';
 
 const FINANCIAL_TABS = [
@@ -13,6 +13,7 @@ const FINANCIAL_TABS = [
   { id: 'reconciliation', label: 'Conciliação', icon: ShieldCheck, href: '/dashboard/financeiro/conciliacao' },
   { id: 'dre', label: 'DRE Gerencial', icon: BarChart3, href: '/dashboard/financeiro/dre' },
   { id: 'flow', label: 'Fluxo de Caixa', icon: TrendingUp, href: '/dashboard/financeiro/fluxo' },
+  { id: 'credits', label: 'Créditos de Clientes', icon: Coins, href: '/dashboard/financeiro/creditos' },
 ];
 
 export default function FinanceiroLayout({ children }: { children: React.ReactNode }) {

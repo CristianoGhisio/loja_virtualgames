@@ -18,6 +18,7 @@ interface CreateSaleDTO {
   status?: SaleStatus;
   sourceCardId?: string;
   sourceFlowKind?: 'PRODUCT';
+  creditUsed?: number;
   userId: string;
 }
 
@@ -120,26 +121,69 @@ export class SalesService {
           where: { type: 'REVENUE' },
         });
 
+        // Debit customer credit if used
+        if (data.creditUsed && data.creditUsed > 0 && data.customerId) {
+          const customer = await tx.customer.findUnique({
+            where: { id: data.customerId },
+            select: { creditBalance: true },
+          });
+
+          const balanceBefore = Number(customer?.creditBalance ?? 0);
+
+          if (balanceBefore < data.creditUsed) {
+            throw new Error('Saldo de crédito insuficiente');
+          }
+
+          const balanceAfter = balanceBefore - data.creditUsed;
+
+          await tx.customerCredit.create({
+            data: {
+              customerId: data.customerId,
+              type: 'DEBIT',
+              amount: data.creditUsed,
+              balanceBefore,
+              balanceAfter,
+              description: `Crédito utilizado na venda #${sale.id}`,
+              referenceId: sale.id,
+              referenceType: 'SALE',
+              saleId: sale.id,
+              createdBy: data.userId,
+            },
+          });
+
+          await tx.customer.update({
+            where: { id: data.customerId },
+            data: { creditBalance: balanceAfter },
+          });
+        }
+
+        const creditUsed = data.creditUsed && data.creditUsed > 0 ? data.creditUsed : 0;
+        const remainingTotal = finalTotal - creditUsed;
+
         const receivable = await tx.receivable.create({
           data: {
             description: `Venda #${sale.id}`,
             origin: 'SALE',
-            value: finalTotal,
+            value: remainingTotal > 0 ? remainingTotal : finalTotal,
             dueDate: new Date(),
-            status: 'PENDING',
+            status: remainingTotal > 0 ? 'PENDING' : 'PAID',
             saleId: sale.id,
             customerId: data.customerId,
             costCenterId: revenueCostCenter?.id,
+            paymentMethod: remainingTotal > 0 ? data.paymentMethod : 'CREDITO_LOJA',
+            paidAt: remainingTotal > 0 ? undefined : sale.date,
           },
         });
 
-        await FinancialService.registerPayment({
-          receivableId: receivable.id,
-          paymentMethod: data.paymentMethod,
-          paidValue: finalTotal,
-          userId: data.userId,
-          paidAt: sale.date,
-        }, tx);
+        if (remainingTotal > 0) {
+          await FinancialService.registerPayment({
+            receivableId: receivable.id,
+            paymentMethod: data.paymentMethod,
+            paidValue: remainingTotal,
+            userId: data.userId,
+            paidAt: sale.date,
+          }, tx);
+        }
 
         if (data.customerId) {
           if (data.sourceCardId && data.sourceFlowKind === 'PRODUCT') {

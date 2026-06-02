@@ -2,7 +2,7 @@
 
 import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 
-export type PaymentMethod = 'pix' | 'credito' | 'debito' | 'dinheiro';
+export type PaymentMethod = 'pix' | 'credito' | 'debito' | 'dinheiro' | 'credito_loja';
 
 export type PDVProduct = {
   id: string;

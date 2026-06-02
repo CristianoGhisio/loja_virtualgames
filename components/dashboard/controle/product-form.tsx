@@ -180,6 +180,8 @@ export interface Product {
     controlSerialNumber: boolean;
     allowUsed: boolean;
 
+    creditValue?: number;
+
     condition?: string;
     supplierId?: string | null;
     originClientId?: string | null;
@@ -220,6 +222,7 @@ export interface ProductFormData {
     condition: string;
     supplierId: string;
     originClientId: string;
+    creditValue?: number;
 
     variations: {
         id?: string;
@@ -292,6 +295,8 @@ export function ProductForm({ initialData, onSave, onCancel }: ProductFormProps)
 
         controlSerialNumber: initialData?.controlSerialNumber || false,
         allowUsed: initialData?.allowUsed ?? true,
+
+        creditValue: undefined as number | undefined,
 
         initialStock: false,
         condition: initialData?.condition === 'USED' ? 'Usado' : 'Novo',
@@ -1085,6 +1090,26 @@ export function ProductForm({ initialData, onSave, onCancel }: ProductFormProps)
                                                             ))
                                                         )}
                                                     </Select>
+                                                    {isUsado && (
+                                                        <div className="mt-2">
+                                                            <label className="text-xs font-bold text-yellow-400/80 uppercase flex items-center gap-1">
+                                                                <DollarSign className="w-3 h-3" />
+                                                                Valor do Crédito para o Cliente
+                                                            </label>
+                                                            <Input
+                                                                type="number"
+                                                                min={0}
+                                                                step="0.01"
+                                                                value={formData.creditValue ?? (formData.costPrice * formData.stock)}
+                                                                onChange={(e) => handleChange('creditValue' as keyof ProductFormData, parseFloat(e.target.value) || 0)}
+                                                                className="mt-1 bg-slate-950/60 border-yellow-400/30 text-yellow-300 focus:border-yellow-400"
+                                                                placeholder="Valor do crédito"
+                                                            />
+                                                            <p className="text-[10px] text-gray-500 mt-1">
+                                                                Padrão: preço de custo × quantidade. Altere se o valor negociado for diferente.
+                                                            </p>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             );
                                         }

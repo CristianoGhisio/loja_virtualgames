@@ -21,6 +21,7 @@ const createSaleSchema = z.object({
   status: z.nativeEnum(SaleStatus).optional(),
   sourceCardId: z.string().optional().nullable(),
   sourceFlowKind: z.enum(['PRODUCT']).optional(),
+  creditUsed: z.number().min(0).optional(),
 });
 
 export async function POST(req: NextRequest) {
