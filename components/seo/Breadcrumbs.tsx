@@ -2,7 +2,7 @@ import Link from "next/link";
 
 type BreadcrumbItem = { name: string; href?: string };
 
-export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+export function Breadcrumbs({ items, currentUrl }: { items: BreadcrumbItem[]; currentUrl?: string }) {
   if (!items || items.length === 0) return null;
 
   return (
@@ -31,12 +31,15 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
                   <span itemProp="name">{item.name}</span>
                 </Link>
               ) : (
-                <span
-                  itemProp="name"
-                  className={isLast ? "text-white font-medium" : "text-gray-400"}
-                >
-                  {item.name}
-                </span>
+                <>
+                  {currentUrl && <meta itemProp="item" content={currentUrl} />}
+                  <span
+                    itemProp="name"
+                    className={isLast ? "text-white font-medium" : "text-gray-400"}
+                  >
+                    {item.name}
+                  </span>
+                </>
               )}
               <meta itemProp="position" content={String(i + 1)} />
               {!isLast && (

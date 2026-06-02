@@ -17,7 +17,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Clock3, Plus, RefreshCw, AlertCircle, Trash2, ShoppingCart, Wrench, MessageCircle, Send, CheckCheck } from 'lucide-react';
+import { Clock3, Plus, RefreshCw, AlertCircle, Trash2, MessageCircle, Send, CheckCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -27,7 +27,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { api } from '@/lib/api';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
 
 const POLL_INTERACTIONS_MS = 3000;
 const REFRESH_CARDS_MS = 30000;
@@ -62,25 +61,6 @@ type Interaction = {
   createdAt: string;
 };
 
-type InterestItem = {
-  id: string;
-  type: 'PRODUCT' | 'SERVICE';
-  name: string;
-  price?: number;
-};
-
-type CatalogProduct = {
-  id: string;
-  commercialName: string;
-  price: number;
-};
-
-type CatalogService = {
-  id: string;
-  name: string;
-  priceBase: number;
-};
-
 type FeedbackPreview = {
   customerName: string;
   customerPhone: string | null;
@@ -104,22 +84,6 @@ function isClientMessage(type: string): boolean {
 
 function isSystemMessage(type: string): boolean {
   return type === 'CRM';
-}
-
-function parseInterestPayload(raw: string | null): InterestItem[] {
-  if (!raw) return [];
-  try {
-    const parsed = JSON.parse(raw) as InterestItem[];
-    if (!Array.isArray(parsed)) return [];
-    return parsed.filter((item) => item?.id && item?.name && (item.type === 'PRODUCT' || item.type === 'SERVICE'));
-  } catch {
-    return [];
-  }
-}
-
-function formatInterestText(items: InterestItem[]): string {
-  if (items.length === 0) return '';
-  return items.map((item) => item.name).join(', ');
 }
 
 function formatDuration(dateIso: string) {
@@ -176,16 +140,12 @@ function SortableCard({
   card,
   onOpenInteractions,
   onDeleteCard,
-  onOpenPreSale,
-  onOpenPreService,
-  onEditInterest,
+  onOpenTransition,
 }: {
   card: FunnelCard;
   onOpenInteractions: (card: FunnelCard) => void;
   onDeleteCard: (card: FunnelCard) => void;
-  onOpenPreSale: (card: FunnelCard) => void;
-  onOpenPreService: (card: FunnelCard) => void;
-  onEditInterest: (card: FunnelCard) => void;
+  onOpenTransition: (card: FunnelCard) => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: card.id,
@@ -199,12 +159,6 @@ function SortableCard({
     card.stage === 'CONTATO_QUENTE'
       ? 'border-emerald-500/70 hover:border-emerald-400'
       : 'border-white/10 hover:border-[#00a3ff]/60';
-  const interestItems = parseInterestPayload(card.itemInterest);
-  const hasProductInterest = interestItems.some((item) => item.type === 'PRODUCT');
-  const hasServiceInterest = interestItems.some((item) => item.type === 'SERVICE');
-  const productCompleted = card.productFlowStatus === 'COMPLETED' || card.productFlowStatus === 'IN_PROGRESS';
-  const serviceCompleted = card.serviceFlowStatus === 'COMPLETED' || card.serviceFlowStatus === 'IN_PROGRESS';
-  const interestText = interestItems.length > 0 ? formatInterestText(interestItems) : card.itemInterest;
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
@@ -212,7 +166,7 @@ function SortableCard({
         className={`bg-[#0f172a] border rounded-xl transition-colors cursor-grab active:cursor-grabbing ${stageBorderClass}`}
         onClick={() => {
           if (card.stage === 'CONTATO_QUENTE') {
-            onEditInterest(card);
+            onOpenTransition(card);
           }
         }}
       >
@@ -237,41 +191,8 @@ function SortableCard({
               <Clock3 className="w-3 h-3" />
               <span>Atualizado: {new Date(card.updatedAt).toLocaleString('pt-BR')}</span>
             </div>
-            {interestText ? <p>Interesse: {interestText}</p> : null}
             {card.sellerNote ? <p>Observação: {card.sellerNote}</p> : null}
           </div>
-          {card.stage === 'CONTATO_QUENTE' ? (
-            <div className="grid grid-cols-1 gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-slate-700 text-slate-300 hover:bg-slate-800"
-                onPointerDown={(event) => event.stopPropagation()}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onOpenPreSale(card);
-                }}
-                disabled={!hasProductInterest || productCompleted}
-              >
-                <ShoppingCart className="w-4 h-4 mr-2" />
-                Pré-venda
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-slate-700 text-slate-300 hover:bg-slate-800"
-                onPointerDown={(event) => event.stopPropagation()}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onOpenPreService(card);
-                }}
-                disabled={!hasServiceInterest || serviceCompleted}
-              >
-                <Wrench className="w-4 h-4 mr-2" />
-                Pré-serviço
-              </Button>
-            </div>
-          ) : null}
           <div className="flex gap-2">
             <Button
               variant="outline"
@@ -311,9 +232,7 @@ function Column({
   cards,
   onOpenInteractions,
   onDeleteCard,
-  onOpenPreSale,
-  onOpenPreService,
-  onEditInterest,
+  onOpenTransition,
   isDragOver,
 }: {
   stage: FunnelStage;
@@ -321,9 +240,7 @@ function Column({
   cards: FunnelCard[];
   onOpenInteractions: (card: FunnelCard) => void;
   onDeleteCard: (card: FunnelCard) => void;
-  onOpenPreSale: (card: FunnelCard) => void;
-  onOpenPreService: (card: FunnelCard) => void;
-  onEditInterest: (card: FunnelCard) => void;
+  onOpenTransition: (card: FunnelCard) => void;
   isDragOver: boolean;
 }) {
   const { setNodeRef } = useDroppable({ id: stage });
@@ -346,9 +263,7 @@ function Column({
               card={card}
               onOpenInteractions={onOpenInteractions}
               onDeleteCard={onDeleteCard}
-              onOpenPreSale={onOpenPreSale}
-              onOpenPreService={onOpenPreService}
-              onEditInterest={onEditInterest}
+              onOpenTransition={onOpenTransition}
             />
           ))}
         </SortableContext>
@@ -358,7 +273,6 @@ function Column({
 }
 
 export default function AtendimentoPage() {
-  const router = useRouter();
   const [cards, setCards] = useState<FunnelCard[]>([]);
   const [loading, setLoading] = useState(true);
   const [newModalOpen, setNewModalOpen] = useState(false);
@@ -381,7 +295,6 @@ export default function AtendimentoPage() {
   const [newWhatsapp, setNewWhatsapp] = useState('');
   const [newStage, setNewStage] = useState<FunnelStage>('NOVO_CONTATO');
   const [newNote, setNewNote] = useState('');
-  const [newItemInterest, setNewItemInterest] = useState('');
 
   const [targetStage, setTargetStage] = useState<FunnelStage>('NOVO_CONTATO');
   const [transitionContactNote, setTransitionContactNote] = useState('');
@@ -390,11 +303,6 @@ export default function AtendimentoPage() {
   const [feedbackPreview, setFeedbackPreview] = useState<FeedbackPreview | null>(null);
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [loadingFeedbackPreview, setLoadingFeedbackPreview] = useState(false);
-
-  const [catalogProducts, setCatalogProducts] = useState<CatalogProduct[]>([]);
-  const [catalogServices, setCatalogServices] = useState<CatalogService[]>([]);
-  const [interestSearch, setInterestSearch] = useState('');
-  const [transitionInterestItems, setTransitionInterestItems] = useState<InterestItem[]>([]);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -479,31 +387,6 @@ export default function AtendimentoPage() {
   }, []);
 
   useEffect(() => {
-    const loadCatalog = async () => {
-      try {
-        const [productsResponse, servicesResponse] = await Promise.all([
-          api.get('/products', { params: { limit: 200 } }),
-          api.get('/services', { params: { active: true } }),
-        ]);
-
-        const productsData = productsResponse.data?.data?.data as CatalogProduct[] | undefined;
-        const servicesData = Array.isArray(servicesResponse.data?.data)
-          ? (servicesResponse.data.data as CatalogService[])
-          : Array.isArray(servicesResponse.data)
-            ? (servicesResponse.data as CatalogService[])
-            : [];
-
-        setCatalogProducts(Array.isArray(productsData) ? productsData : []);
-        setCatalogServices(Array.isArray(servicesData) ? servicesData : []);
-      } catch {
-        setCatalogProducts([]);
-        setCatalogServices([]);
-      }
-    };
-    loadCatalog();
-  }, []);
-
-  useEffect(() => {
     const loadFeedbackPreview = async () => {
       if (!selectedCard || !transitionModalOpen) return;
       if (!(selectedCard.stage === 'VENDA_CONCLUIDA' && targetStage === 'FEEDBACK_REALIZADO')) {
@@ -545,8 +428,6 @@ export default function AtendimentoPage() {
     setSelectedCard(card);
     setTargetStage(forcedStage ?? card.stage);
     setTransitionContactNote(card.sellerNote || '');
-    setTransitionInterestItems(parseInterestPayload(card.itemInterest));
-    setInterestSearch('');
     setTransitionObservation('');
     setSendFeedbackRequest(true);
     setFeedbackMessage('');
@@ -594,7 +475,6 @@ export default function AtendimentoPage() {
   const handleCreateCard = async () => {
     if (newCustomerType === 'EXISTING' && !selectedCustomerId) return;
     if (newCustomerType === 'NEW' && (!newName.trim() || !newWhatsapp.trim())) return;
-    if (newStage === 'CONTATO_QUENTE' && !newItemInterest.trim()) return;
 
     await api.post('/atendimento', {
       customerId: newCustomerType === 'EXISTING' ? selectedCustomerId : undefined,
@@ -602,7 +482,6 @@ export default function AtendimentoPage() {
       whatsapp: newCustomerType === 'NEW' ? newWhatsapp.trim() : undefined,
       stage: newStage,
       sellerNote: newNote.trim() || undefined,
-      itemInterest: newItemInterest.trim() || undefined,
     });
 
     setNewModalOpen(false);
@@ -611,42 +490,22 @@ export default function AtendimentoPage() {
     setNewWhatsapp('');
     setNewStage('NOVO_CONTATO');
     setNewNote('');
-    setNewItemInterest('');
     await fetchCards();
-  };
-
-  const addInterestItem = (item: InterestItem) => {
-    setTransitionInterestItems((current) => {
-      if (current.some((existing) => existing.id === item.id && existing.type === item.type)) {
-        return current;
-      }
-      return [...current, item];
-    });
-  };
-
-  const removeInterestItem = (item: InterestItem) => {
-    setTransitionInterestItems((current) =>
-      current.filter((existing) => !(existing.id === item.id && existing.type === item.type))
-    );
   };
 
   const handleApplyTransition = async () => {
     if (!selectedCard) return;
     const isFirstContactTransition =
       selectedCard.stage === 'NOVO_CONTATO' && targetStage === 'EM_ANDAMENTO';
-    const isInterestTransition =
+    const isContactQuenteTransition =
       selectedCard.stage === 'EM_ANDAMENTO' && targetStage === 'CONTATO_QUENTE';
-    const isInterestEdit =
+    const isContactQuenteEdit =
       selectedCard.stage === 'CONTATO_QUENTE' && targetStage === 'CONTATO_QUENTE';
     const isFeedbackTransition =
       selectedCard.stage === 'VENDA_CONCLUIDA' && targetStage === 'FEEDBACK_REALIZADO';
 
-    if (!isFirstContactTransition && !isInterestTransition && !isInterestEdit && !isFeedbackTransition && !transitionObservation.trim()) {
+    if (!isFirstContactTransition && !isContactQuenteTransition && !isContactQuenteEdit && !isFeedbackTransition && !transitionObservation.trim()) {
       setTransitionError('Justificativa é obrigatória para mover o card');
-      return;
-    }
-    if (targetStage === 'CONTATO_QUENTE' && transitionInterestItems.length === 0) {
-      setTransitionError('Item de Interesse é obrigatório para etapa Contato Quente');
       return;
     }
 
@@ -664,18 +523,15 @@ export default function AtendimentoPage() {
           transitionObservation.trim() ||
           (isFirstContactTransition
             ? 'Primeiro atendimento iniciado.'
-            : isInterestTransition
-              ? 'Interesse do cliente registrado.'
-              : isInterestEdit
-                ? 'Interesse atualizado.'
+            : isContactQuenteTransition
+              ? 'Cliente avançou para fase de contato interessado.'
+              : isContactQuenteEdit
+                ? 'Observações do atendimento atualizadas.'
                 : isFeedbackTransition
                   ? 'Solicitação de feedback enviada.'
               : ''),
         sellerNote: transitionContactNote.trim() || undefined,
       };
-      if (targetStage === 'CONTATO_QUENTE') {
-        payload.itemInterest = JSON.stringify(transitionInterestItems);
-      }
       if (isFeedbackTransition) {
         payload.requestFeedback = sendFeedbackRequest;
         payload.feedbackMessage = feedbackMessage.trim() || undefined;
@@ -737,31 +593,7 @@ export default function AtendimentoPage() {
     openTransitionModal(draggedCard, targetStageId);
   };
 
-  const openPreSale = (card: FunnelCard) => {
-    const interests = parseInterestPayload(card.itemInterest);
-    const productIds = interests.filter((item) => item.type === 'PRODUCT').map((item) => item.id);
-    if (productIds.length === 0) return;
-    const params = new URLSearchParams();
-    params.set('customerId', card.customerId);
-    params.set('productIds', productIds.join(','));
-    params.set('sourceCardId', card.id);
-    if (card.sellerNote) params.set('note', card.sellerNote);
-    router.push(`/dashboard/vendas/em-andamento?${params.toString()}`);
-  };
-
-  const openPreService = (card: FunnelCard) => {
-    const interests = parseInterestPayload(card.itemInterest);
-    const serviceIds = interests.filter((item) => item.type === 'SERVICE').map((item) => item.id);
-    if (serviceIds.length === 0) return;
-    const params = new URLSearchParams();
-    params.set('customerId', card.customerId);
-    params.set('serviceIds', serviceIds.join(','));
-    params.set('sourceCardId', card.id);
-    if (card.sellerNote) params.set('note', card.sellerNote);
-    router.push(`/dashboard/os/nova?${params.toString()}`);
-  };
-
-  const openInterestEditor = (card: FunnelCard) => {
+  const handleOpenCardTransition = (card: FunnelCard) => {
     openTransitionModal(card, 'CONTATO_QUENTE');
   };
 
@@ -796,36 +628,6 @@ export default function AtendimentoPage() {
       handleSendReply();
     }
   };
-
-  const filteredInterestCandidates = useMemo(() => {
-    const query = interestSearch.trim().toLowerCase();
-    if (query.length < 2) {
-      return [];
-    }
-    const products = catalogProducts
-      .filter((item) => item.commercialName.toLowerCase().includes(query))
-      .slice(0, 5)
-      .map<InterestItem>((item) => ({
-        id: item.id,
-        type: 'PRODUCT',
-        name: item.commercialName,
-        price: Number(item.price),
-      }));
-
-    const services = catalogServices
-      .filter((item) => item.name.toLowerCase().includes(query))
-      .slice(0, 5)
-      .map<InterestItem>((item) => ({
-        id: item.id,
-        type: 'SERVICE',
-        name: item.name,
-        price: Number(item.priceBase),
-      }));
-
-    return [...products, ...services].filter((candidate) =>
-      !transitionInterestItems.some((selected) => selected.id === candidate.id && selected.type === candidate.type)
-    );
-  }, [interestSearch, catalogProducts, catalogServices, transitionInterestItems]);
 
   return (
     <div className="space-y-6 text-slate-100">
@@ -864,9 +666,7 @@ export default function AtendimentoPage() {
                 cards={cardsByStage[column.id]}
                 onOpenInteractions={openInteractionsModal}
                 onDeleteCard={handleDeleteCard}
-                onOpenPreSale={openPreSale}
-                onOpenPreService={openPreService}
-                onEditInterest={openInterestEditor}
+                onOpenTransition={handleOpenCardTransition}
                 isDragOver={dragOverColumn === column.id && activeDragId !== null}
               />
             ))}
@@ -907,7 +707,6 @@ export default function AtendimentoPage() {
               ))}
             </Select>
 
-            <Input label="Item de Interesse" value={newItemInterest} onChange={(event) => setNewItemInterest(event.target.value)} className="bg-slate-950/60 border-cyan-400/30 text-slate-200" />
             <Textarea placeholder="Observação inicial do vendedor" value={newNote} onChange={(event) => setNewNote(event.target.value)} className="bg-slate-950/60 border-cyan-400/30 text-slate-200" />
           </div>
 
@@ -957,57 +756,6 @@ export default function AtendimentoPage() {
               <div className="rounded-lg border border-cyan-400/20 p-3 bg-slate-950/40 space-y-1 text-sm text-slate-300">
                 <p><strong className="text-slate-200">Cliente:</strong> {selectedCard.customerName}</p>
                 <p><strong className="text-slate-200">Telefone:</strong> {selectedCard.customerPhone || 'Sem WhatsApp cadastrado'}</p>
-              </div>
-            ) : null}
-
-            {targetStage === 'CONTATO_QUENTE' ? (
-              <div className="space-y-3">
-                <Input
-                  label="Buscar produtos e serviços"
-                  placeholder="Digite pelo menos 2 letras"
-                  value={interestSearch}
-                  onChange={(event) => setInterestSearch(event.target.value)}
-                  className="bg-slate-950/60 border-cyan-400/30 text-slate-200"
-                />
-                {interestSearch.trim().length < 2 ? (
-                  <p className="text-xs text-slate-500 px-1">Digite as iniciais para buscar</p>
-                ) : (
-                  <div className="max-h-40 overflow-y-auto border border-cyan-400/20 rounded-lg p-2 space-y-2 bg-slate-950/40">
-                    {filteredInterestCandidates.length === 0 ? (
-                      <p className="text-xs text-slate-500 px-1">Nenhum item encontrado</p>
-                    ) : (
-                      filteredInterestCandidates.map((candidate) => (
-                        <button
-                          key={`${candidate.type}-${candidate.id}`}
-                          type="button"
-                          className="w-full text-left px-2 py-1 rounded hover:bg-slate-800/50 text-sm flex items-center justify-between text-slate-200"
-                          onClick={() => addInterestItem(candidate)}
-                        >
-                          <span>{candidate.name}</span>
-                          <Badge variant="outline" className="border-white/10 text-gray-300">{candidate.type === 'PRODUCT' ? 'Produto' : 'Serviço'}</Badge>
-                        </button>
-                      ))
-                    )}
-                  </div>
-                )}
-                <Input
-                  label="Produtos/serviços selecionados"
-                  value={formatInterestText(transitionInterestItems)}
-                  readOnly
-                  className="bg-slate-950/60 border-cyan-400/30 text-slate-200"
-                />
-                <div className="flex flex-wrap gap-2">
-                  {transitionInterestItems.map((item) => (
-                    <button
-                      key={`${item.type}-${item.id}`}
-                      type="button"
-                      className="px-2 py-1 rounded border border-cyan-400/20 text-xs bg-slate-900/50 text-slate-200 hover:bg-rose-500/20 hover:text-rose-400 hover:border-rose-500/30 transition-colors"
-                      onClick={() => removeInterestItem(item)}
-                    >
-                      {item.name} ({item.type === 'PRODUCT' ? 'Produto' : 'Serviço'}) ×
-                    </button>
-                  ))}
-                </div>
               </div>
             ) : null}
 

@@ -84,11 +84,16 @@ export async function PATCH(
       const stageChanged = nextStage !== current.stage;
       const noteChanged = requestedNote !== undefined && requestedNote !== (current.sellerNote ?? '');
       const itemInterestChanged = requestedItemInterest !== undefined && requestedItemInterest !== (current.itemInterest ?? '');
+      const isFirstContactTransition = current.stage === 'NOVO_CONTATO' && nextStage === 'EM_ANDAMENTO';
+      const isContactQuenteTransition = current.stage === 'EM_ANDAMENTO' && nextStage === 'CONTATO_QUENTE';
+      const isContactQuenteEdit = current.stage === 'CONTATO_QUENTE' && nextStage === 'CONTATO_QUENTE';
+      const isFeedbackTransition = current.stage === 'VENDA_CONCLUIDA' && nextStage === 'FEEDBACK_REALIZADO';
+
       const requiresObservation =
-        !(current.stage === 'NOVO_CONTATO' && nextStage === 'EM_ANDAMENTO') &&
-        !(current.stage === 'EM_ANDAMENTO' && nextStage === 'CONTATO_QUENTE') &&
-        !(current.stage === 'CONTATO_QUENTE' && nextStage === 'CONTATO_QUENTE') &&
-        !(current.stage === 'VENDA_CONCLUIDA' && nextStage === 'FEEDBACK_REALIZADO');
+        !isFirstContactTransition &&
+        !isContactQuenteTransition &&
+        !isContactQuenteEdit &&
+        !isFeedbackTransition;
 
       if (!stageChanged && !noteChanged && !itemInterestChanged) {
         throw new Error('Nenhuma alteração detectada. Atualize pelo menos um campo antes de salvar.');
@@ -96,10 +101,6 @@ export async function PATCH(
 
       if (requiresObservation && !observation) {
         throw new Error('Justificativa é obrigatória para qualquer mudança de etapa');
-      }
-
-      if (nextStage === 'CONTATO_QUENTE' && !nextItemInterest) {
-        throw new Error('Item de Interesse é obrigatório para etapa Contato Quente');
       }
 
       const lastStageChangeExpression = stageChanged
@@ -123,9 +124,6 @@ export async function PATCH(
       if (stageChanged) {
         // eslint-disable-next-line security/detect-object-injection
         contentParts.push(`Status alterado de ${STAGE_LABEL[current.stage]} para ${STAGE_LABEL[nextStage]}`);
-      }
-      if (itemInterestChanged) {
-        contentParts.push(`Item de interesse atualizado para "${nextItemInterest}"`);
       }
       if (noteChanged && nextNote) {
         contentParts.push(`Observação atualizada: ${nextNote}`);

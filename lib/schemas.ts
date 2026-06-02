@@ -66,7 +66,7 @@ export const createBreadcrumbSchema = (
     "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: item.url,
+    ...(item.url ? { item: item.url } : {}),
   })),
 });
 

@@ -50,3 +50,7 @@ export function isValidImageHeader(buffer: Buffer): boolean {
 
   return false;
 }
+
+export function toCategorySlug(categoria: string): string {
+  return categoria.toLowerCase().replace(/\s+/g, "-");
+}

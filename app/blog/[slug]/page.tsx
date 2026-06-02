@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SchemaOrg } from "@/components/seo/SchemaOrg";
 import { createFAQPageSchema, aggregateRatingSchema } from "@/lib/schemas";
+import { toCategorySlug } from "@/lib/utils";
 import Link from "next/link";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
@@ -122,7 +123,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       { "@type": "ListItem", position: 1, name: "Início", item: siteUrl },
       { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
       { "@type": "ListItem", position: 3, name: post.categoria, item: `${siteUrl}/blog/categoria/${post.categoria.toLowerCase()}` },
-      { "@type": "ListItem", position: 4, name: post.title },
+      { "@type": "ListItem", position: 4, name: post.title, item: `${siteUrl}/blog/${post.slug}` },
     ],
   };
 
@@ -147,12 +148,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <Breadcrumbs items={[
             { name: "Início", href: "/" },
             { name: "Blog", href: "/blog" },
-            { name: post.categoria, href: `/blog/categoria/${post.categoria.toLowerCase()}` },
+            { name: post.categoria, href: `/blog/categoria/${toCategorySlug(post.categoria)}` },
             { name: post.title },
-          ]} />
+          ]} currentUrl={`${siteUrl}/blog/${post.slug}`} />
 
           <div className="mt-6 mb-2">
-            <Link href={`/blog/categoria/${post.categoria.toLowerCase()}`} className="text-neon-blue text-xs font-medium uppercase tracking-wider hover:underline">
+            <Link href={`/blog/categoria/${toCategorySlug(post.categoria)}`} className="text-neon-blue text-xs font-medium uppercase tracking-wider hover:underline">
               {post.categoria}
             </Link>
           </div>

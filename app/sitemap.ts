@@ -60,7 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     categoryUrls = categorias.map((cat) => ({
-      url: `${siteUrl}/blog/categoria/${encodeURIComponent(cat.categoria.toLowerCase().replace(/\s+/g, '-'))}`,
+      url: `${siteUrl}/blog/categoria/${cat.categoria.toLowerCase().replace(/\s+/g, '-')}`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.6,

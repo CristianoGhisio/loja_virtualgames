@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { toCategorySlug } from "@/lib/utils";
 import Link from "next/link";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
@@ -66,7 +67,7 @@ export default async function BlogPage() {
           <div className="flex flex-wrap gap-2 mb-10">
             <Link href="/blog" className="bg-neon-blue/10 text-neon-blue text-sm px-4 py-2 rounded-lg hover:bg-neon-blue/20 transition-colors font-medium">Todos</Link>
             {categorias.map((cat) => (
-              <Link key={cat} href={`/blog/categoria/${cat.toLowerCase()}`} className="bg-white/5 text-gray-400 text-sm px-4 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-colors">
+              <Link key={cat} href={`/blog/categoria/${toCategorySlug(cat)}`} className="bg-white/5 text-gray-400 text-sm px-4 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-colors">
                 {cat}
               </Link>
             ))}
