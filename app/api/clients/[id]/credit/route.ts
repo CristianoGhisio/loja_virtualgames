@@ -12,8 +12,11 @@ export async function GET(
   const { id } = await context.params;
 
   try {
-    const { authorized, response } = await checkAuth();
+    const { authorized, response, user } = await checkAuth();
     if (!authorized) return response;
+    if (!hasApiPermission(user, 'credits', 'view')) {
+      return errorResponse(new Error('Permissão negada'), 403);
+    }
 
     const customer = await prisma.customer.findUnique({
       where: { id },

@@ -1,14 +1,17 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { checkAuth } from '@/lib/api-auth';
+import { checkAuth, hasApiPermission } from '@/lib/api-auth';
 import { successResponse, errorResponse } from '@/lib/api-response';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
-    const { authorized, response } = await checkAuth();
+    const { authorized, response, user } = await checkAuth();
     if (!authorized) return response;
+    if (!hasApiPermission(user, 'credits', 'view')) {
+      return errorResponse(new Error('Permissão negada'), 403);
+    }
 
     const { searchParams } = new URL(req.url);
     const query = searchParams.get('q')?.trim() || '';
