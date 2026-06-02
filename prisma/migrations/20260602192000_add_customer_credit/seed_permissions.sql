@@ -9,7 +9,7 @@ VALUES
   (gen_random_uuid(), 'adjust', 'credits', 'Ajustar saldo de crédito (positivo ou negativo)', NOW(), NOW())
 ON CONFLICT ("action", "resource") DO NOTHING;
 
--- Associar permissões ao perfil Admin (buscar roleId do admin)
+-- Associar permissões ao perfil ADMIN (todos os 3: view, create, adjust)
 INSERT INTO "RolePermission" ("id", "roleId", "permissionId", "createdAt", "updatedAt")
 SELECT 
   gen_random_uuid(),
@@ -19,8 +19,26 @@ SELECT
   NOW()
 FROM "Role" r
 CROSS JOIN "Permission" p
-WHERE r.name = 'Admin'
+WHERE r.name = 'ADMIN'
   AND p.resource = 'credits'
+  AND NOT EXISTS (
+    SELECT 1 FROM "RolePermission" rp 
+    WHERE rp."roleId" = r.id AND rp."permissionId" = p.id
+  );
+
+-- Associar permissão credits.view ao perfil SELLER
+INSERT INTO "RolePermission" ("id", "roleId", "permissionId", "createdAt", "updatedAt")
+SELECT 
+  gen_random_uuid(),
+  r.id,
+  p.id,
+  NOW(),
+  NOW()
+FROM "Role" r
+CROSS JOIN "Permission" p
+WHERE r.name = 'SELLER'
+  AND p.resource = 'credits'
+  AND p.action = 'view'
   AND NOT EXISTS (
     SELECT 1 FROM "RolePermission" rp 
     WHERE rp."roleId" = r.id AND rp."permissionId" = p.id
