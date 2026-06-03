@@ -22,10 +22,10 @@ export async function POST(
     const { authorized, session, response, user } = await checkAuth();
     if (!authorized) return response;
 
-    // Permissão será refinada na Fase 5; por enquanto, apenas autenticado
+    // `user.role` chega como string na sessão; manter fallback só para ADMIN.
     if (!hasApiPermission(user, 'credits', 'adjust')) {
-      // Fallback: permitir admin temporariamente
-      const isAdmin = user?.role?.name === 'admin' || user?.role?.name === 'Admin';
+      const normalizedRole = user?.role?.trim().toUpperCase();
+      const isAdmin = normalizedRole === 'ADMIN';
       if (!isAdmin) {
         return errorResponse(new Error('Permissão negada'), 403);
       }
