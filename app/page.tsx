@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { Hero } from '@/components/sections/hero';
 import { Team } from '@/components/sections/team';
 import { ServicesGrid } from '@/components/landing/services-grid';
@@ -83,6 +84,32 @@ function isDatabaseOfflineError(error: unknown): boolean {
   return error instanceof Error && error.name === 'PrismaClientInitializationError';
 }
 
+const getStoreSettings = cache(async () => {
+  let settings = await prisma.storeSettings.findFirst({ orderBy: { updatedAt: 'desc' } });
+  if (!settings) {
+    settings = await prisma.storeSettings.create({ data: {} });
+  }
+  return settings;
+});
+
+const getTeamMembers = cache(async () => {
+  return await prisma.employee.findMany({
+    where: { status: 'ATIVO' },
+    select: { id: true, nomeCompleto: true, cargoFuncao: true, fotoUrl: true, descricaoPerfil: true },
+    orderBy: { createdAt: 'asc' },
+    take: 4,
+  });
+});
+
+const getLatestPosts = cache(async () => {
+  return await prisma.blogPost.findMany({
+    where: { published: true },
+    select: { title: true, slug: true, excerpt: true, categoria: true },
+    orderBy: { publishedAt: 'desc' },
+    take: 3,
+  });
+});
+
 const TRUST_SIGNALS = [
   { icon: Search, label: 'Diagnóstico Gratuito', desc: 'Avaliação completa do seu equipamento sem compromisso' },
   { icon: ShieldCheck, label: 'Garantia de 90 Dias', desc: 'Todos os nossos reparos têm garantia em peças e mão de obra' },
@@ -90,20 +117,49 @@ const TRUST_SIGNALS = [
   { icon: Wrench, label: 'Especialistas Gamers', desc: 'Equipe técnica que entende e joga — feito por gamers para gamers' },
 ];
 
+type TeamMember = {
+  id: string;
+  nomeCompleto: string;
+  cargoFuncao: string;
+  fotoUrl: string | null;
+  descricaoPerfil: string | null;
+};
+
+type BlogPostPreview = {
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  categoria: string;
+};
+
 export default async function Home() {
-  let settings = null;
-  try {
-    settings = await prisma.storeSettings.findFirst({
-      orderBy: { updatedAt: 'desc' },
-    });
-    if (!settings) {
-      settings = await prisma.storeSettings.create({ data: {} });
-    }
-  } catch (error) {
-    if (!isMissingTableError(error, 'StoreSettings') && !isDatabaseOfflineError(error)) {
-      throw error;
-    }
-  }
+  let settings: Awaited<ReturnType<typeof getStoreSettings>> | null = null;
+  let teamMembers: TeamMember[] = [];
+  let latestPosts: BlogPostPreview[] = [];
+
+  await Promise.all([
+    (async () => {
+      try {
+        settings = await getStoreSettings();
+      } catch (error) {
+        if (!isMissingTableError(error, 'StoreSettings') && !isDatabaseOfflineError(error)) throw error;
+      }
+    })(),
+    (async () => {
+      try {
+        teamMembers = await getTeamMembers();
+      } catch (error) {
+        if (!isMissingTableError(error, 'Employee') && !isDatabaseOfflineError(error)) throw error;
+      }
+    })(),
+    (async () => {
+      try {
+        latestPosts = await getLatestPosts();
+      } catch {
+        // Blog may not be seeded yet
+      }
+    })(),
+  ]);
 
   const storeInfo = settings ?? {
     nameFantasia: 'Virtual Games',
@@ -113,44 +169,6 @@ export default async function Home() {
     email: 'contato@virtualgames.com',
     serviceHours: 'Segunda a Sexta: 09:00 às 18:30 | Sábado: 09:00 às 13:00',
   };
-
-  let teamMembers: Array<{
-    id: string;
-    nomeCompleto: string;
-    cargoFuncao: string;
-    fotoUrl: string | null;
-    descricaoPerfil: string | null;
-  }> = [];
-  try {
-    teamMembers = await prisma.employee.findMany({
-      where: { status: 'ATIVO' },
-      select: {
-        id: true,
-        nomeCompleto: true,
-        cargoFuncao: true,
-        fotoUrl: true,
-        descricaoPerfil: true,
-      },
-      orderBy: { createdAt: 'asc' },
-      take: 4,
-    });
-  } catch (error) {
-    if (!isMissingTableError(error, 'Employee') && !isDatabaseOfflineError(error)) {
-      throw error;
-    }
-  }
-
-  let latestPosts: Array<{ title: string; slug: string; excerpt: string | null; categoria: string }> = [];
-  try {
-    latestPosts = await prisma.blogPost.findMany({
-      where: { published: true },
-      select: { title: true, slug: true, excerpt: true, categoria: true },
-      orderBy: { publishedAt: 'desc' },
-      take: 3,
-    });
-  } catch {
-    // Blog may not be seeded yet
-  }
 
   const faqJsonLd = {
     '@context': 'https://schema.org',

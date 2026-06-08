@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useMemo, ReactNode } from 'react';
+import { createContext, useContext, useMemo, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
@@ -33,19 +33,19 @@ function normalizePermissionResource(resource: string): string {
   return normalized;
 }
 
-function parsePermission(permission: string): { action: string | null; resource: string } {
-  const [rawAction, ...rest] = permission.toLowerCase().split(':');
-  if (rest.length === 0) {
-    return {
-      action: null,
-      resource: normalizePermissionResource(rawAction),
-    };
-  }
+const parsePermissionCache = new Map<string, { action: string | null; resource: string }>();
 
-  return {
-    action: rawAction,
-    resource: normalizePermissionResource(rest.join(':')),
-  };
+function parsePermission(permission: string): { action: string | null; resource: string } {
+  const cached = parsePermissionCache.get(permission);
+  if (cached) return cached;
+
+  const [rawAction, ...rest] = permission.toLowerCase().split(':');
+  const result = rest.length === 0
+    ? { action: null, resource: normalizePermissionResource(rawAction) }
+    : { action: rawAction, resource: normalizePermissionResource(rest.join(':')) };
+
+  parsePermissionCache.set(permission, result);
+  return result;
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -83,7 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     router.push('/login');
   };
 
-  const hasPermission = (module: string, action?: string) => {
+  const hasPermission = useCallback((module: string, action?: string) => {
     if (!user) return false;
 
     const parsedInput = parsePermission(module);
@@ -106,7 +106,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       return parsedPermission.action === requiredAction || parsedPermission.action === 'manage';
     });
-  };
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ 

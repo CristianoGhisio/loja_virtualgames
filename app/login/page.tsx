@@ -51,12 +51,14 @@ export default function LoginPage() {
   const isValid = password.length >= 3;
 
   useEffect(() => {
-    fetchUsers();
+    const abortController = new AbortController();
+    fetchUsers(abortController.signal);
+    return () => abortController.abort();
   }, []);
 
-  const fetchUsers = async () => {
+  const fetchUsers = async (signal?: AbortSignal) => {
     try {
-      const res = await fetch('/api/login/users');
+      const res = await fetch('/api/login/users', { signal });
       const data = await res.json();
       if (Array.isArray(data)) {
         setUsers(data);

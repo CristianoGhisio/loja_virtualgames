@@ -13,19 +13,19 @@ function normalizePermissionResource(resource: string): string {
   return normalized;
 }
 
-function parsePermission(permission: string): { action: string | null; resource: string } {
-  const [rawAction, ...rest] = permission.toLowerCase().split(':');
-  if (rest.length === 0) {
-    return {
-      action: null,
-      resource: normalizePermissionResource(rawAction),
-    };
-  }
+const parsePermissionCache = new Map<string, { action: string | null; resource: string }>();
 
-  return {
-    action: rawAction,
-    resource: normalizePermissionResource(rest.join(':')),
-  };
+function parsePermission(permission: string): { action: string | null; resource: string } {
+  const cached = parsePermissionCache.get(permission);
+  if (cached) return cached;
+
+  const [rawAction, ...rest] = permission.toLowerCase().split(':');
+  const result = rest.length === 0
+    ? { action: null, resource: normalizePermissionResource(rawAction) }
+    : { action: rawAction, resource: normalizePermissionResource(rest.join(':')) };
+
+  parsePermissionCache.set(permission, result);
+  return result;
 }
 
 export function hasApiPermission(user: SessionUser | null | undefined, module: string, action?: string): boolean {

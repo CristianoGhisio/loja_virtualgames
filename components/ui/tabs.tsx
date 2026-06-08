@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from "react"
-import { cn } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 // Simplified Tabs implementation without Radix UI dependency if prefered, 
 // but using Radix logic structure for compatibility.
