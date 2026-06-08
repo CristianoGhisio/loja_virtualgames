@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { ZodError } from 'zod';
+import { ZodError, ZodIssue } from 'zod';
 import { statusToCode, ErrorCodes } from './error-codes';
 
 type ErrorBody = {
@@ -8,14 +8,18 @@ type ErrorBody = {
   code: string;
 };
 
+type ZodErrorBody = ErrorBody & {
+  details: ZodIssue[];
+};
+
 export function successResponse(data: unknown, status = 200) {
   return NextResponse.json({ success: true, data }, { status });
 }
 
-export function errorResponse(error: unknown, status = 500): NextResponse<ErrorBody> {
+export function errorResponse(error: unknown, status = 500): NextResponse<ErrorBody | ZodErrorBody> {
   if (error instanceof ZodError) {
     return NextResponse.json(
-      { success: false, error: 'Validation Error', code: ErrorCodes.VALIDATION_ERROR, details: error.issues } as never,
+      { success: false, error: 'Validation Error', code: ErrorCodes.VALIDATION_ERROR, details: error.issues },
       { status: 400 }
     );
   }

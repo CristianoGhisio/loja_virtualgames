@@ -53,5 +53,5 @@ export const PERMISSIONS = {
   owner: ['dashboard', 'sales', 'purchases', 'os', 'stock', 'customers', 'financial', 'reports', 'registers', 'admin', 'settings'],
   manager: ['dashboard', 'sales', 'purchases', 'os', 'stock', 'customers', 'financial', 'reports', 'registers', 'settings'],
   sales: ['dashboard', 'sales', 'os', 'stock_view', 'customers'],
-  tech: ['dashboard', 'os', 'stock_parts', 'customers_view']
-};
+  tech: ['dashboard', 'os', 'stock_parts', 'customers_view'],
+} satisfies Record<UserRole, string[]>;

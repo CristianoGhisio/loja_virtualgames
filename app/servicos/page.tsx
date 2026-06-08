@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Gamepad2, Target, Joystick, Monitor, Gamepad, Smartphone, Sparkles, Cable, HardDrive, type LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
-const services = [
-  { slug: "manutencao-ps5", title: "Manutenção de PS5", desc: "Reparo especializado em PlayStation 5 — HDMI, superaquecimento, disco, não liga", icon: "🎮" },
-  { slug: "manutencao-xbox", title: "Reparo de Xbox", desc: "Xbox Series X/S e Xbox One — HDMI, leitor, superaquecimento", icon: "🎯" },
-  { slug: "manutencao-nintendo-switch", title: "Reparo Nintendo Switch", desc: "Switch, Lite e OLED — tela, bateria, drift, não liga", icon: "🕹️" },
-  { slug: "montagem-pc-gamer", title: "Montagem PC Gamer", desc: "Consultoria, montagem e upgrade de computador gamer", icon: "💻" },
-  { slug: "reparo-controle-drift", title: "Reparo de Controle (Drift)", desc: "Conserto de drift em DualSense, Xbox e Joy-Con", icon: "🎛️" },
-  { slug: "reparo-celular", title: "Reparo de Celular", desc: "Troca de tela, bateria e reparos em iPhone e Android", icon: "📱" },
-  { slug: "limpeza-preventiva", title: "Limpeza Preventiva", desc: "Limpeza interna, troca de pasta térmica para consoles e PC", icon: "🧹" },
-  { slug: "reparo-hdmi-ps5", title: "Reparo HDMI PS5", desc: "Troca da porta HDMI do PS5 com solda de precisão", icon: "🔌" },
-  { slug: "upgrade-ssd-ps5", title: "Upgrade SSD PS5", desc: "Instalação e configuração de SSD NVMe no PlayStation 5", icon: "💾" },
+const services: { slug: string; title: string; desc: string; icon: LucideIcon }[] = [
+  { slug: "manutencao-ps5", title: "Manutenção de PS5", desc: "Reparo especializado em PlayStation 5 — HDMI, superaquecimento, disco, não liga", icon: Gamepad2 },
+  { slug: "manutencao-xbox", title: "Reparo de Xbox", desc: "Xbox Series X/S e Xbox One — HDMI, leitor, superaquecimento", icon: Target },
+  { slug: "manutencao-nintendo-switch", title: "Reparo Nintendo Switch", desc: "Switch, Lite e OLED — tela, bateria, drift, não liga", icon: Joystick },
+  { slug: "montagem-pc-gamer", title: "Montagem PC Gamer", desc: "Consultoria, montagem e upgrade de computador gamer", icon: Monitor },
+  { slug: "reparo-controle-drift", title: "Reparo de Controle (Drift)", desc: "Conserto de drift em DualSense, Xbox e Joy-Con", icon: Gamepad },
+  { slug: "reparo-celular", title: "Reparo de Celular", desc: "Troca de tela, bateria e reparos em iPhone e Android", icon: Smartphone },
+  { slug: "limpeza-preventiva", title: "Limpeza Preventiva", desc: "Limpeza interna, troca de pasta térmica para consoles e PC", icon: Sparkles },
+  { slug: "reparo-hdmi-ps5", title: "Reparo HDMI PS5", desc: "Troca da porta HDMI do PS5 com solda de precisão", icon: Cable },
+  { slug: "upgrade-ssd-ps5", title: "Upgrade SSD PS5", desc: "Instalação e configuração de SSD NVMe no PlayStation 5", icon: HardDrive },
 ];
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
@@ -50,7 +51,9 @@ export default function ServicosPage() {
               href={`/servicos/${service.slug}`}
               className="group bg-[rgba(255,255,255,0.02)] border border-white/5 rounded-xl p-6 hover:border-neon-blue/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,212,255,0.06)]"
             >
-              <span className="text-3xl mb-4 block">{service.icon}</span>
+              <div className="w-12 h-12 rounded-xl bg-neon-blue/10 border border-neon-blue/20 flex items-center justify-center mb-4 group-hover:bg-neon-blue/20 group-hover:border-neon-blue/40 transition-all duration-300">
+              <service.icon className="w-6 h-6 text-neon-blue" />
+            </div>
               <h2 className="text-white font-bold text-lg mb-2 group-hover:text-neon-blue transition-colors">
                 {service.title}
               </h2>

@@ -3,6 +3,7 @@
 import { createContext, useContext, useMemo, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { parsePermission } from '@/lib/permissions';
 
 interface User {
   id: string;
@@ -22,31 +23,6 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-function normalizePermissionResource(resource: string): string {
-  const normalized = resource.toLowerCase();
-  if (normalized === 'clients' || normalized === 'customers') return 'customers';
-  if (normalized === 'products' || normalized === 'registers' || normalized === 'stock') return 'registers';
-  if (normalized === 'finance' || normalized === 'financial') return 'financial';
-  if (normalized === 'users' || normalized === 'roles' || normalized === 'permissions' || normalized === 'logs') return 'admin';
-  if (normalized === 'config' || normalized === 'settings') return 'settings';
-  return normalized;
-}
-
-const parsePermissionCache = new Map<string, { action: string | null; resource: string }>();
-
-function parsePermission(permission: string): { action: string | null; resource: string } {
-  const cached = parsePermissionCache.get(permission);
-  if (cached) return cached;
-
-  const [rawAction, ...rest] = permission.toLowerCase().split(':');
-  const result = rest.length === 0
-    ? { action: null, resource: normalizePermissionResource(rawAction) }
-    : { action: rawAction, resource: normalizePermissionResource(rest.join(':')) };
-
-  parsePermissionCache.set(permission, result);
-  return result;
-}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { data: session, status } = useSession();

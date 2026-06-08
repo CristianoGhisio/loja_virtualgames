@@ -1,6 +1,8 @@
+import type { SchemaLD } from '@/components/seo/SchemaOrg';
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
 
-export const localBusinessSchema: Record<string, unknown> = {
+export const localBusinessSchema: SchemaLD<"LocalBusiness"> = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": `${siteUrl}/#empresa`,
@@ -59,7 +61,7 @@ export const localBusinessSchema: Record<string, unknown> = {
 
 export const createBreadcrumbSchema = (
   items: { name: string; url?: string }[],
-): Record<string, unknown> => ({
+): SchemaLD<"BreadcrumbList"> => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: items.map((item, index) => ({
@@ -72,7 +74,7 @@ export const createBreadcrumbSchema = (
 
 export const createFAQPageSchema = (
   questions: { question: string; answer: string }[],
-): Record<string, unknown> => ({
+): SchemaLD<"FAQPage"> => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: questions.map((q) => ({
@@ -92,7 +94,7 @@ export const createServiceSchema = (
     serviceType?: string;
     subServices?: { name: string; description: string }[];
   },
-): Record<string, unknown> => ({
+  ): SchemaLD<"Service"> => ({
   "@context": "https://schema.org",
   "@type": "Service",
   name: service.name,
@@ -129,7 +131,8 @@ export const createServiceSchema = (
     }),
 });
 
-export const aggregateRatingSchema: Record<string, unknown> = {
+export const aggregateRatingSchema: SchemaLD<"AggregateRating"> = {
+  "@context": "https://schema.org",
   "@type": "AggregateRating",
   ratingValue: "5.0",
   reviewCount: "87",
@@ -137,7 +140,7 @@ export const aggregateRatingSchema: Record<string, unknown> = {
   worstRating: "1",
 };
 
-export const websiteSchema: Record<string, unknown> = {
+export const websiteSchema: SchemaLD<"WebSite"> = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${siteUrl}/#website`,
@@ -156,7 +159,7 @@ export const websiteSchema: Record<string, unknown> = {
 
 export const createHowToSchema = (
   steps: { title: string; description: string }[],
-): Record<string, unknown> => ({
+): SchemaLD<"HowTo"> => ({
   "@context": "https://schema.org",
   "@type": "HowTo",
   name: "Processo de Reparo",
@@ -176,7 +179,7 @@ export const createHowToSchema = (
 
 export const createReviewSchema = (
   reviews: { name: string; role: string; text: string }[],
-): Record<string, unknown>[] => reviews.map((review, index) => ({
+): SchemaLD<"Review">[] => reviews.map((review, index) => ({
   "@context": "https://schema.org",
   "@type": "Review",
   "@id": `${siteUrl}/#review-${index + 1}`,
