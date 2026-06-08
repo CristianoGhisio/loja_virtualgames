@@ -53,15 +53,9 @@ export function Hero() {
 
   return (
     <section className="relative h-dvh min-h-[600px] sm:min-h-[700px] flex items-center justify-center overflow-hidden">
-      <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold font-orbitron text-white text-center px-4 max-w-5xl leading-tight z-10">
-        Assistência Técnica Gamer{' '}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">
-          em Santa Maria
-        </span>
+      <h1 className="sr-only">
+        Assistência Técnica Gamer em Santa Maria | Virtual Games — Manutenção de PS5, Xbox, Nintendo Switch, PC Gamer e Celulares. Consertos, reparos e acessórios.
       </h1>
-      <h2 className="sr-only">
-        Virtual Games — Manutenção de PS5, Xbox, Nintendo Switch, PC Gamer e Celulares. Consertos, reparos e acessórios.
-      </h2>
 
       <div
         className="absolute inset-0 -z-10"
