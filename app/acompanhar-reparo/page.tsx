@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://virtualgames.com.br";
+
 export const metadata: Metadata = {
   title: "Acompanhar Meu Reparo | Virtual Games",
   description: "Acompanhe o status do seu reparo pelo número da Ordem de Serviço.",
   robots: { index: true, follow: true },
+  alternates: { canonical: `${siteUrl}/acompanhar-reparo` },
 };
 
 export default function AcompanharReparoPage() {

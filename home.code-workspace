@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../santaimobiliaria"
+		},
+		{
+			"path": "../minimalarkanban"
 		}
 	],
 	"settings": {}

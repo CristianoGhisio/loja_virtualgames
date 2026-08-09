@@ -1,5 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
+
+export const metadata: Metadata = {
+  title: "Página não encontrada",
+  robots: {
+    index: false,
+    follow: true,
+    googleBot: {
+      index: false,
+      follow: true,
+    },
+  },
+};
 
 export default function NotFound() {
   return (

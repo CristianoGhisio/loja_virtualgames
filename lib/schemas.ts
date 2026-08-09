@@ -138,6 +138,7 @@ export const aggregateRatingSchema: SchemaLD<"AggregateRating"> = {
   reviewCount: "87",
   bestRating: "5",
   worstRating: "1",
+  itemReviewed: { "@type": "LocalBusiness", "@id": `${siteUrl}/#empresa`, name: "Virtual Games" },
 };
 
 export const websiteSchema: SchemaLD<"WebSite"> = {
@@ -191,5 +192,5 @@ export const createReviewSchema = (
     bestRating: "5",
     worstRating: "1",
   },
-  itemReviewed: { "@id": `${siteUrl}/#empresa` },
+  itemReviewed: { "@type": "LocalBusiness", "@id": `${siteUrl}/#empresa`, name: "Virtual Games" },
 }));

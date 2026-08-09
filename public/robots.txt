@@ -41,6 +41,7 @@ Disallow: /admin/
 Disallow: /api/auth/
 Disallow: /login
 Disallow: /*?*
+Disallow: /_next/static/
 Crawl-delay: 1
 
 # Bloquear indexação de assets estáticos do Next.js

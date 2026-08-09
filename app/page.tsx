@@ -282,7 +282,7 @@ export default async function Home() {
       author: { '@type': 'Person', name: 'Carlos S.' },
       reviewBody: 'Meu PS5 parou de dar vídeo. Levei em várias assistências e não resolveram. A equipe da Virtual Games resolveu o problema na placa em 2 dias. Atendimento sensacional!',
       reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-      itemReviewed: { '@type': 'LocalBusiness', name: 'Virtual Games' },
+      itemReviewed: { '@type': 'LocalBusiness', '@id': `${siteUrl}/#empresa`, name: 'Virtual Games' },
     },
     {
       '@context': 'https://schema.org',
@@ -290,7 +290,7 @@ export default async function Home() {
       author: { '@type': 'Person', name: 'Ana S.' },
       reviewBody: 'Fiz a limpeza preventiva e troca de pasta térmica do meu PC com eles. A temperatura baixou 15 graus e o desempenho melhorou muito. Profissionais de verdade.',
       reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-      itemReviewed: { '@type': 'LocalBusiness', name: 'Virtual Games' },
+      itemReviewed: { '@type': 'LocalBusiness', '@id': `${siteUrl}/#empresa`, name: 'Virtual Games' },
     },
     {
       '@context': 'https://schema.org',
@@ -298,7 +298,7 @@ export default async function Home() {
       author: { '@type': 'Person', name: 'Pedro Oliveira' },
       reviewBody: 'Meus controles estavam com drift severo. A troca dos analógicos foi feita com peças de alta qualidade e ficaram como novos. Recomendo demais!',
       reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-      itemReviewed: { '@type': 'LocalBusiness', name: 'Virtual Games' },
+      itemReviewed: { '@type': 'LocalBusiness', '@id': `${siteUrl}/#empresa`, name: 'Virtual Games' },
     },
   ];
 
@@ -318,7 +318,7 @@ export default async function Home() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({ ...aggregateRatingSchema, itemReviewed: { '@type': 'LocalBusiness', name: 'Virtual Games' } }) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ ...aggregateRatingSchema, itemReviewed: { '@type': 'LocalBusiness', '@id': `${siteUrl}/#empresa`, name: 'Virtual Games' } }) }}
       />
       {reviewSchemas.map((reviewSchema, i) => (
         <script
